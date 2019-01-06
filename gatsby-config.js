@@ -1,3 +1,12 @@
+/**
+ * environment variable setting
+ *
+ * https://www.gatsbyjs.org/docs/environment-variables/#server-side-nodejs
+ */
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
