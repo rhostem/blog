@@ -122,7 +122,7 @@ module.exports = {
         background_color: '#f7f7f7',
         theme_color: '#4568dc',
         display: 'browser',
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.`,
+        icon: `src/images/rhostem-profile.png`, // This path is relative to the root of the site.`,
       },
     },
     `gatsby-plugin-catch-links`,

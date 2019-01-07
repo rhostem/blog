@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
+import SEO from '../components/seo'
+import Head from '../components/Head'
 
 class PostTemplate extends Component {
   constructor(props) {
@@ -9,9 +11,23 @@ class PostTemplate extends Component {
 
   render() {
     const { markdownRemark } = this.props.data
-    console.log(`this.props.data`, this.props.data)
+    const { frontmatter } = markdownRemark
 
-    return <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+    return (
+      <div>
+        <SEO
+          title={frontmatter.title}
+          description={frontmatter.description}
+          keywords={frontmatter.tags || []}
+        />
+        <Head>
+          <script type="text/javascript" async src="/js/facebook-sdk.js" />
+          <script type="text/javascript" async src="/js/disqus.js" />
+        </Head>
+
+        <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
+      </div>
+    )
   }
 }
 
