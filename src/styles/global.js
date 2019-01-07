@@ -3,7 +3,7 @@ import { fontFace } from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    font-family: 'Nanum Square';
+    font-family: 'Nanum Square, Roboto, Spectral, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
   }
 
   ${fontFace({
@@ -26,23 +26,12 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  body {
-    font-family: 'Nanum Square';
-  }
-
-  .iframe-video-wrapper {
-    position: relative;
-    display: block;
-    padding-bottom: 56.25%;
-    margin: 3.2rem 0;
-  }
-
-  .iframe-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  /**
+   * gatsby-remark-images-contentful 플러그인의 오류 때문에 강제 스타일 추가.
+   * 이미지 로딩 완료 후 opacity를 1에서 0으로 변경해버리는 오류가 있음.
+   */
+  .gatsby-resp-image-background-image {
+    opacity: 1 !important;
   }
 
   /**
