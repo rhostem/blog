@@ -1,3 +1,5 @@
+const SITE_CONFIG = require('./site-config')
+
 /**
  * environment variable setting
  *
@@ -8,18 +10,51 @@ require('dotenv').config({
 })
 
 module.exports = {
+  pathPrefix: SITE_CONFIG.pathPrefix,
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: SITE_CONFIG.title,
+    description: SITE_CONFIG.description,
+    author: SITE_CONFIG.author,
+    githubUrl: 'https://github.com/rhostem/blog',
+    url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`,
+    emailUrl: 'syoung.j@gmail.com',
+    siteUrl: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`, // sitemap plugin
+    googleAnalyticsID: SITE_CONFIG.googleAnalyticsID,
+    rssMetadata: {
+      site_url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`,
+      feed_url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}${
+        SITE_CONFIG.siteRss
+      }`,
+      title: SITE_CONFIG.title,
+      description: SITE_CONFIG.description,
+      image_url: `${SITE_CONFIG.siteUrl}/${
+        SITE_CONFIG.pathPrefix
+      }/logos/logo-512.png`,
+      author: SITE_CONFIG.author,
+      copyright: SITE_CONFIG.copyright,
+    },
   },
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.CONTENTFUL_SPACE_ID,
         // Learn about environment variables: https://gatsby.app/env-vars
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
@@ -30,29 +65,149 @@ module.exports = {
         footnotes: true,
         pedantic: true,
         gfm: true,
-        plugins: [],
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 960,
+              showCaptions: false,
+              wrapperStyle: 'background: white;',
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          `gatsby-remark-copy-linked-files`,
+          {
+            resolve: `gatsby-remark-smartypants`,
+            options: {
+              dashes: `oldschool`,
+            },
+          },
+          {
+            // https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/?=gatsby-remark-prismjs
+            resolve: `gatsby-remark-prismjs`,
+            options: {
+              classPrefix: 'language-',
+              inlineCodeMarker: null,
+              aliases: {},
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
+          },
+          `gatsby-remark-autolink-headers`,
+          {
+            resolve: 'gatsby-remark-external-links',
+            options: {
+              target: '_blank',
+              rel: 'nofollow',
+            },
+          },
+        ],
       },
     },
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        name: SITE_CONFIG.title,
+        short_name: SITE_CONFIG.title,
+        description: SITE_CONFIG.description,
+        start_url: SITE_CONFIG.pathPrefix,
+        background_color: '#f7f7f7',
+        theme_color: '#4568dc',
+        display: 'browser',
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.`,
+      },
+    },
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: SITE_CONFIG.googleAnalyticsID,
+      },
+    },
+    'gatsby-plugin-sitemap',
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `#76b835`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        setup(ref) {
+          const ret = ref.query.site.siteMetadata.rssMetadata
+          ret.allMarkdownRemark = ref.query.allMarkdownRemark
+          ret.generator = 'blog.rhostem.com'
+          return ret
+        },
+        query: `
+        {
+          site {
+            siteMetadata {
+              rssMetadata {
+                site_url
+                feed_url
+                title
+                description
+                image_url
+                author
+                copyright
+              }
+            }
+          }
+        }
+      `,
+        feeds: [
+          {
+            serialize(ctx) {
+              const rssMetadata = ctx.query.site.siteMetadata.rssMetadata
+              return ctx.query.allMarkdownRemark.edges.map(edge => ({
+                title: edge.node.frontmatter.title,
+                description: edge.node.excerpt,
+                date: edge.node.frontmatter.date,
+                author: rssMetadata.author,
+                url: `${rssMetadata.site_url}/posts/${
+                  edge.node.frontmatter.path
+                }`,
+                guid: `${rssMetadata.site_url}/posts/${
+                  edge.node.frontmatter.path
+                }`,
+                custom_elements: [{ 'content:encoded': edge.node.html }],
+              }))
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  limit: 1000,
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt(truncate: true, pruneLength:150)
+                      html
+                      timeToRead
+                      frontmatter {
+                        title
+                        date
+                        path
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: SITE_CONFIG.siteRss,
+          },
+        ],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

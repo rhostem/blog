@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { graphql } from 'gatsby'
 
 class PostTemplate extends Component {
   constructor(props) {
