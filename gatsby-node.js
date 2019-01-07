@@ -5,6 +5,8 @@
  */
 
 const path = require(`path`)
+const SITE_CONFIG = require('./site-config')
+const getPostPath = path => `${SITE_CONFIG.pathPrefix}/posts/${path}`
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -29,12 +31,10 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
-    console.log(`result`, result)
-
     const blogTemplate = path.resolve(`./src/templates/post.js`)
     result.data.allMarkdownRemark.edges.forEach(edge => {
       createPage({
-        path: `/posts/${edge.node.frontmatter.path}`,
+        path: getPostPath(edge.node.frontmatter.path),
         component: blogTemplate,
         context: {
           id: edge.node.id,

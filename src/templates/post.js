@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import SEO from '../components/seo'
 import Head from '../components/Head'
+const SITE_CONFIG = require('../../site-config')
 
 class PostTemplate extends Component {
   constructor(props) {
@@ -43,7 +44,6 @@ export const pageQuery = graphql`
         path
         date
         description
-        mainImageAlt
       }
       html
     }
