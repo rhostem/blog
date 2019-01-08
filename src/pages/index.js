@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+import Layout from '../components/Layout'
+import SEO from '../components/Seo'
 import Head from '../components/Head'
 import { getPostPath } from '../utils/getPostPath'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO title="Post" keywords={[`gatsby`, `application`, `react`]} />
     <Head />
     <StaticQuery
       query={graphql`

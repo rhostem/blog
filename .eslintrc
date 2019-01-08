@@ -1,6 +1,11 @@
 {
   "extends": ["react-app"],
   "plugins": ["react", "import"],
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "globals": {
     "__PREFIX_LINKS__": true,
     "importScripts": true,

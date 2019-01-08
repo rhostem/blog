@@ -1,8 +1,8 @@
+const path = require('path')
 const SITE_CONFIG = require('./site-config')
 
 /**
  * environment variable setting
- *
  * https://www.gatsbyjs.org/docs/environment-variables/#server-side-nodejs
  */
 require('dotenv').config({
@@ -221,6 +221,15 @@ module.exports = {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/styles/typography`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        components: path.join(__dirname, 'src/components'),
+        styles: path.join(__dirname, 'src/styles'),
+        utils: path.join(__dirname, 'src/utils'),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
