@@ -2,10 +2,6 @@ import { createGlobalStyle } from 'styled-components'
 import { fontFace } from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: 'Nanum Square, Roboto, Spectral, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
-  }
-
   ${fontFace({
     fontFamily: 'Menlo Regular',
     fontFilePath: '/fonts/menlo-regular',

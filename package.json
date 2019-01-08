@@ -5,11 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "scripts": {
-    "build": "gatsby build",
+    "build": "npm run clean && gatsby build",
     "serve": "gatsby serve",
     "build:serve": "gatsby build && gatsby serve",
-    "dev": "gatsby develop",
-    "start": "npm run develop",
+    "dev": "npm run clean && gatsby develop",
+    "start": "npm run dev",
     "format": "prettier --write \"src/**/*.{js,css}\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "clean": "rm -rf .cache node_modules/.cache"
@@ -27,6 +27,7 @@
     "gatsby-plugin-react-helmet": "^3.0.5",
     "gatsby-plugin-sharp": "^2.0.17",
     "gatsby-plugin-sitemap": "^2.0.4",
+    "gatsby-plugin-typography": "^2.2.5",
     "gatsby-remark-autolink-headers": "^2.0.12",
     "gatsby-remark-copy-linked-files": "^2.0.8",
     "gatsby-remark-external-links": "0.0.4",
@@ -45,7 +46,9 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
-    "styled-components": "^4.1.3"
+    "react-typography": "^0.16.18",
+    "styled-components": "^4.1.3",
+    "typography": "^0.16.18"
   },
   "keywords": [
     "gatsby"

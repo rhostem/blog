@@ -17,8 +17,6 @@ export default function Head({ children }) {
           crossorigin="anonymous"
         />
         <link rel="stylesheet" href="/fonts/nanum-square/font.css" />
-        <link rel="stylesheet" href="/css/normalize.css" />
-        {/* <link rel="stylesheet" href="/css/global.css" /> */}
         {children}
       </Helmet>
       <GlobalStyle />

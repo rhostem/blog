@@ -4,13 +4,13 @@ import { StaticQuery, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import Image from '../components/image'
 import SEO from '../components/seo'
+import Head from '../components/Head'
 import { getPostPath } from '../utils/getPostPath'
-
-console.log(`getPostPath`, getPostPath)
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+    <Head />
     <StaticQuery
       query={graphql`
         query postList {
