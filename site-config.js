@@ -5,8 +5,8 @@ module.exports = {
   description: '프론트엔드 웹 개발 기술 블로그',
   copyright: 'Copyright © rhostem All rights reserved',
   siteUrl: 'https://blog.rhostem.com',
-  githubUrl: 'https://www.github.com/rhostem',
   pathPrefix: '/',
+  githubUrl: 'https://www.github.com/rhostem',
   siteRss: '/rss.xml',
   googleAnalyticsID: 'UA-83587837-3',
 }

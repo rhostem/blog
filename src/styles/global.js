@@ -30,6 +30,12 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 1 !important;
   }
 
+  .gatsby-resp-image-link {
+    &::after {
+      display: none !important;
+    }
+  }
+
   /**
    * Github-like theme for Prism.js
    * @author Luke Askew http://github.com/lukeaskew

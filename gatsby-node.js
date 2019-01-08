@@ -6,7 +6,7 @@
 
 const path = require(`path`)
 const SITE_CONFIG = require('./site-config')
-const getPostPath = path => `${SITE_CONFIG.pathPrefix}/posts/${path}`
+const getPostPath = path => `${SITE_CONFIG.pathPrefix}posts/${path}`
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions

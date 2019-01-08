@@ -9,6 +9,8 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
+const SITE_URL = `${SITE_CONFIG.siteUrl}${SITE_CONFIG.pathPrefix}`
+
 module.exports = {
   pathPrefix: SITE_CONFIG.pathPrefix,
   siteMetadata: {
@@ -16,20 +18,16 @@ module.exports = {
     description: SITE_CONFIG.description,
     author: SITE_CONFIG.author,
     githubUrl: 'https://github.com/rhostem/blog',
-    url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`,
+    url: `${SITE_URL}`,
     emailUrl: 'syoung.j@gmail.com',
-    siteUrl: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`, // sitemap plugin
+    siteUrl: `${SITE_URL}`, // sitemap plugin
     googleAnalyticsID: SITE_CONFIG.googleAnalyticsID,
     rssMetadata: {
-      site_url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}`,
-      feed_url: `${SITE_CONFIG.siteUrl}/${SITE_CONFIG.pathPrefix}${
-        SITE_CONFIG.siteRss
-      }`,
+      site_url: `${SITE_URL}`,
+      feed_url: `${SITE_URL}${SITE_CONFIG.siteRss}`,
       title: SITE_CONFIG.title,
       description: SITE_CONFIG.description,
-      image_url: `${SITE_CONFIG.siteUrl}/${
-        SITE_CONFIG.pathPrefix
-      }/logos/logo-512.png`,
+      image_url: `${SITE_URL}icons/icon-512x512.png`,
       author: SITE_CONFIG.author,
       copyright: SITE_CONFIG.copyright,
     },
