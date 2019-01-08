@@ -1,0 +1,21 @@
+{
+  "extends": ["react-app"],
+  "plugins": ["react", "import"],
+  "globals": {
+    "__PREFIX_LINKS__": true,
+    "importScripts": true,
+    "FB": true,
+    "define": true,
+    "searchUtil": true,
+    "R": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jest": true
+  },
+  "rules": {
+    "jsx-a11y/href-no-hash": "off"
+  }
+}

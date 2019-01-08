@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "targets": {
+          "browsers": [">0.25%", "not dead"]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    "add-module-exports",
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "components": "./components",
+          "styles": "./styles",
+          "utils": "./utils"
+        }
+      }
+    ],
+    "transform-flow-strip-types",
+    "babel-plugin-styled-components"
+  ]
+}

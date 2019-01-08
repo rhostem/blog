@@ -11,5 +11,4 @@ export const colors = {
   linkHover: '#4568dc',
   body: '#fafafa',
   border: '#ebebeb',
-  'gray-01': 'rgba(0, 0, 0, 0.44)',
 }
