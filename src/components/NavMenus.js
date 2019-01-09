@@ -157,12 +157,12 @@ const MENU_LIST = [
   {
     to: '/stats',
     text: '인기',
-    icon: () => <i className="fa fa-bar-chart" />,
+    icon: () => <i className="fas fa-fire-alt" />,
   },
   {
     to: '/archive',
     text: '연도별',
-    icon: () => <i className="fa fa-list-alt" />,
+    icon: () => <i className="fas fa-archive" />,
   },
 ]
 

@@ -21,7 +21,7 @@ const PostTitle = styled.h1`
   margin-bottom: ${rhythm(0.5)};
 `
 
-const PostSubTitle = styled.h2`
+const PostSubTitle = styled.p`
   margin-top: 1rem;
   font-size: 1.5rem;
   font-weight: 400;
@@ -39,32 +39,6 @@ const PostInfo = styled.div`
 
 const TagsWrapper = styled.div`
   margin-top: ${rhythm(1 / 2)};
-`
-
-const MainImageArea = styled.div`
-  width: 100%;
-  max-width: ${sizes.postMainImageMax};
-  margin: ${rhythm(2)} auto 0;
-`
-
-const MainImageAlt = styled.em`
-  font-size: 0.8rem;
-  line-height: 1.4;
-  display: block;
-  width: calc(100% - ${rhythm(2)});
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: ${rhythm(1)};
-  margin-bottom: ${rhythm(3)};
-  color: hsla(291, 0%, 18%, 0.5);
-  & a {
-    color: hsla(291, 0%, 18%, 0.5);
-  }
-
-  ${media.largerThanTablet} {
-    width: 90%;
-  }
 `
 
 const Post = styled.article`
@@ -168,8 +142,6 @@ class PostTemplate extends Component {
     const description = excerpt
     const mainImage = this.getMainImageUrl()
 
-    console.log(`content`, mainImage)
-
     return (
       <Layout>
         <SEO
@@ -209,9 +181,15 @@ class PostTemplate extends Component {
         </Head>
 
         <PostTitle>{frontmatter.title}</PostTitle>
+
+        {frontmatter.subTitle && (
+          <PostSubTitle>{frontmatter.subTitle}</PostSubTitle>
+        )}
+
         <PostInfo>
           {frontmatter.date} &middot; 읽기 {markdownRemark.timeToRead}분
         </PostInfo>
+
         <TagsWrapper>
           <Tags tags={tags} />
         </TagsWrapper>
@@ -222,9 +200,8 @@ class PostTemplate extends Component {
         />
         <ShareButtons>
           <ShareButton onClick={this.handleShareFB}>
-            <i className="fa fa-2x fa-facebook-square" />
+            <i className="fab fa-facebook fa-2x" />
           </ShareButton>
-
           <ShareLink
             href={this.getTwitterWebIntent({
               text: frontmatter.title,
@@ -232,7 +209,7 @@ class PostTemplate extends Component {
             })}
             target="_blank"
           >
-            <i className="fa fa-2x fa-twitter" />
+            <i className="fab fa-twitter fa-2x" />
           </ShareLink>
         </ShareButtons>
 

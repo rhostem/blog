@@ -25,20 +25,23 @@ const FooterContent = styled(ContentWrapper)`
   }
 `
 
-const CopyRight = styled.div``
+const CopyRight = styled.div`
+  margin: 0.5rem auto;
+`
 
 const OwnerLink = styled.a`
+  margin: 0.5rem auto;
   color: ${colors.text};
   text-decoration: underline;
 `
 
 const FooterLinks = styled.div`
+  margin: 0.5rem auto;
   text-align: center;
   font-size: 1rem;
-  margin-top: 0.5rem;
 
   @media ${media.largerThanMobile} {
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 
   & > * {
@@ -51,12 +54,16 @@ const FooterLinks = styled.div`
 `
 
 const PoweredBy = styled.div`
-  margin: 0 auto;
-  margin-top: 1rem;
+  margin: 0.5rem auto;
+  color: ${colors.text};
 
   & > p {
-    font-weight: bold;
+    font-weight: 400;
     margin: 0.8rem 0 0;
+  }
+
+  & a {
+    text-decoration: underline;
   }
 
   img {
@@ -69,30 +76,38 @@ function Footer() {
   return (
     <FooterWrap>
       <FooterContent>
+        <FooterLinks>
+          <a href={SITE_CONFIG.githubUrl}>
+            <i className="fab fa-github" />
+          </a>
+          <a href={`mailto:${SITE_CONFIG.authorEmail}`}>
+            <i className="far fa-envelope" />
+          </a>
+          <a href={`${SITE_CONFIG.siteRss}`}>
+            <i className="fas fa-rss" />
+          </a>
+        </FooterLinks>
         <CopyRight>
           <span>Copyright © 2018. </span>
           <OwnerLink href="https://www.github.com/rhostem">rhostem</OwnerLink>
           <span> All rights reserved</span>
         </CopyRight>
-        <FooterLinks>
-          <a href={SITE_CONFIG.githubUrl}>
-            <i className="fa fa-github" />
-          </a>
-          <a href={`mailto:${SITE_CONFIG.authorEmail}`}>
-            <i className="fa fa-envelope-o" />
-          </a>
-          <a href={`${SITE_CONFIG.siteRss}`}>
-            <i className="fa fa-rss" />
-          </a>
-        </FooterLinks>
         <PoweredBy>
-          <p>powered by</p>
+          powered by{' '}
           <a
             href="https://www.gatsbyjs.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src="/image/gatsby-logo.svg" alt="" />
+            Gatsby
+          </a>
+          ,{' '}
+          <a
+            href="https://www.contentful.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ContentfulCMS
           </a>
         </PoweredBy>
       </FooterContent>

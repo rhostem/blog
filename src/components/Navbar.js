@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { media, colors, sizes } from '../styles'
+import { colors, sizes } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 // import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
@@ -31,16 +31,8 @@ const SiteTitle = styled.div`
   letter-spacing: -1px;
 `
 
-const NavbarSearchWrap = styled.div`
+const MenuArea = styled.div`
   margin-left: auto;
-  margin-right: 0.5rem;
-  @media ${media.largerThanTablet} {
-    margin-right: 1rem;
-  }
-`
-
-const MenuWrap = styled.div`
-  margin: 0;
   list-style: none;
   padding-left: 0;
 `
@@ -64,18 +56,19 @@ class Navbar extends React.Component {
           <Link to={'/'}>
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
-          {/* 검색 */}
-          {/* <NavbarSearchWrap>
-            <NavbarSearch />
-          </NavbarSearchWrap> */}
 
-          {/* 메뉴 */}
-          <MenuWrap>
+          <MenuArea>
+            {/* 검색 */}
+            {/* <NavbarSearchWrap>
+              <NavbarSearch />
+            </NavbarSearchWrap> */}
+
+            {/* 메뉴 */}
             <NavMenus
               isMobileMenuVisible={this.state.isMobileMenuVisible}
               onClickMenuBtn={this.handleClickMenuButton}
             />
-          </MenuWrap>
+          </MenuArea>
         </NavbarCotent>
       </Wrap>
     )
