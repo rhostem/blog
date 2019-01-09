@@ -128,6 +128,18 @@ class PostTemplate extends Component {
     })
   }
 
+  /**
+   * 마크다운에서 첫번째 src 속성을 가져온다.
+   */
+  getMainImageUrl = () => {
+    const { html } = this.props.data.markdownRemark
+
+    // 첫번째 캡쳐링 그룹이 URL이 된다
+    const result = /src\s*=\s*"(.+?)"/.exec(html)
+
+    return result && result[1].startsWith('http') ? result[1] : ''
+  }
+
   handleShareFB = () => {
     const { siteMetadata } = this.props.data.site
     FB.ui(
@@ -148,17 +160,15 @@ class PostTemplate extends Component {
 
   render() {
     const { markdownRemark = {}, site = {} } = this.props.data
-    const { frontmatter = {} } = markdownRemark
+    const { frontmatter = {}, excerpt } = markdownRemark
     const { siteMetadata = {} } = site
     const tags = frontmatter.tags || []
     const postUrl = getPostPath(frontmatter)
     const title = `${frontmatter.title}`
-    const description = frontmatter.description || frontmatter.subTitle || ''
-    const mainImage =
-      `${siteMetadata.siteUrl}${R.path(
-        ['mainImage', 'childImageSharp', 'sizes', 'src'],
-        frontmatter
-      )}` || `${siteMetadata.siteUrl}/image/logo-192x192.png`
+    const description = excerpt
+    const mainImage = this.getMainImageUrl()
+
+    console.log(`content`, mainImage)
 
     return (
       <Layout>
@@ -247,13 +257,14 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       timeToRead
       html
+      excerpt(truncate: true, pruneLength: 150)
       frontmatter {
-        tags
+        path
         title
         subTitle
-        path
         date
-        description
+        layout
+        tags
       }
     }
   }

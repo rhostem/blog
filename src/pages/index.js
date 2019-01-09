@@ -22,12 +22,11 @@ const IndexPage = () => (
                 excerpt(truncate: true, pruneLength: 150)
                 timeToRead
                 frontmatter {
-                  tags
+                  path
                   title
                   subTitle
-                  path
                   date
-                  mainImage
+                  tags
                 }
                 html
               }

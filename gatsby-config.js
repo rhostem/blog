@@ -201,9 +201,9 @@ module.exports = {
                       html
                       timeToRead
                       frontmatter {
-                        title
-                        date
                         path
+                        date
+                        title
                       }
                     }
                   }
