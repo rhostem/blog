@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { StaticQuery, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
@@ -9,7 +8,20 @@ import { PostListItem, PostListWrap } from '../components/PostLIst'
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="" keywords={[`gatsby`, `application`, `react`]} />
+    <SEO
+      title=""
+      keywords={[
+        '웹 개발',
+        'Front-end',
+        '프론트엔드',
+        'JavaScript',
+        'node.js',
+        'React',
+        'Vue',
+        'Angular',
+        '번역',
+      ]}
+    />
     <Head />
     <StaticQuery
       query={graphql`

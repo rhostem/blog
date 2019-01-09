@@ -9,7 +9,6 @@ import { ContentWrapper } from './content-wrapper'
 
 const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
-  min-height: 100vh;
 `
 
 const Layout = ({ children }) => (
