@@ -2,19 +2,16 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
-import Layout from '../components/Layout'
-import Helmet from 'react-helmet'
+import Layout from 'components/Layout'
 import styled from 'styled-components'
 import { clearFix } from 'polished'
-import { media, sizes } from '../styles'
-import { rhythm } from '../styles/typography'
+import { rhythm } from 'styles/typography'
 import Tags from '../components/Tags'
-import Img from 'gatsby-image'
-import * as R from 'ramda'
 import qs from 'qs'
 import { css } from 'styled-components'
-import { setHeightLimitAndEllipsis } from '../styles/mixins/setHeightLimit'
+import { setHeightLimitAndEllipsis } from 'styles/mixins/setHeightLimit'
 import { getPostPath } from 'utils/getPostPath'
+import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 
 const PostTitle = styled.h1`
   text-align: left;
@@ -102,18 +99,6 @@ class PostTemplate extends Component {
     })
   }
 
-  /**
-   * 마크다운에서 첫번째 src 속성을 가져온다.
-   */
-  getMainImageUrl = () => {
-    const { html } = this.props.data.markdownRemark
-
-    // 첫번째 캡쳐링 그룹이 URL이 된다
-    const result = /src\s*=\s*"(.+?)"/.exec(html)
-
-    return result && result[1].startsWith('http') ? result[1] : ''
-  }
-
   handleShareFB = () => {
     const { siteMetadata } = this.props.data.site
     FB.ui(
@@ -140,7 +125,7 @@ class PostTemplate extends Component {
     const postUrl = getPostPath(frontmatter)
     const title = `${frontmatter.title}`
     const description = excerpt
-    const mainImage = this.getMainImageUrl()
+    const mainImage = getMainImageFromRemark()
 
     return (
       <Layout>
