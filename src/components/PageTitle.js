@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { rhythm } from '../styles/typography'
 
 const Title = styled.h1`
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 400;
   line-height: ${rhythm(2)};
   margin-top: ${rhythm(2)};

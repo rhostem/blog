@@ -107,7 +107,7 @@ function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            ContentfulCMS
+            Contentful
           </a>
         </PoweredBy>
       </FooterContent>

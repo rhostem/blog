@@ -4,7 +4,6 @@ import { setHeightLimitAndEllipsis } from '../styles/mixins/setHeightLimit'
 import Link from 'gatsby-link'
 
 export type PostRankData = {
-  title: string,
   route: string,
   pageView: number,
 }
@@ -19,7 +18,12 @@ const PostTitle = styled(Link)`
   ${setHeightLimitAndEllipsis({ line: 1 })};
 `
 
-export default ({ postList = [] }: { postList: PostRankData[] }) => {
+export default ({
+  postList = [],
+  titleMap = {},
+}: {
+  postList: PostRankData[],
+}) => {
   return (
     <PostTable>
       <thead>
@@ -33,7 +37,9 @@ export default ({ postList = [] }: { postList: PostRankData[] }) => {
           return (
             <tr key={index}>
               <td>
-                <PostTitle to={post.route}>{post.title}</PostTitle>
+                <PostTitle to={post.route}>
+                  {titleMap[post.route] || post.route}
+                </PostTitle>
               </td>
               <td>{post.pageView}</td>
             </tr>

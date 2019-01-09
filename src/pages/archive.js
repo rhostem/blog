@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import { mixins, colors } from 'styles'
 import { rhythm } from 'styles/typography'
 import format from 'date-fns/format'
+import PageTitle from '../components/PageTitle'
 
 const YearArchive = styled.ul`
   margin: ${rhythm(2)} 0;
@@ -118,6 +119,7 @@ const IndexPage = () => (
         const postByYear = getPostByYear(postList)
         return (
           <div>
+            <PageTitle>연도별 포스트</PageTitle>
             {postByYear.map(item => (
               <YearArchive key={item.year}>
                 <YearTitle>{item.year}</YearTitle>
