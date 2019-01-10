@@ -18,10 +18,6 @@ export default function Head({ children }) {
         />
         <link rel="stylesheet" href="/fonts/nanum-square/font.css" />
         {children}
-
-        <noscript>{`
-          Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
-        `}</noscript>
       </Helmet>
       <GlobalStyle />
     </div>

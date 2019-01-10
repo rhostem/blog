@@ -4,7 +4,7 @@ import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Head from '../components/Head'
 import { getPostRoute } from '../utils/routeResolver'
-import { PostListItem, PostListWrap } from '../components/PostLIst'
+import PostList, { PostListItem, PostListWrap } from '../components/PostLIst'
 
 const IndexPage = () => (
   <Layout>
@@ -48,24 +48,7 @@ const IndexPage = () => (
       `}
       render={data => {
         const postEdges = data.allMarkdownRemark.edges
-
-        return (
-          <PostListWrap>
-            {postEdges.map(({ node }) => {
-              const { frontmatter, timeToRead } = node
-              return (
-                <PostListItem
-                  key={node.id}
-                  path={getPostRoute(frontmatter.path)}
-                  title={frontmatter.title}
-                  subTitle={frontmatter.subTitle}
-                  date={frontmatter.date}
-                  timeToRead={timeToRead}
-                />
-              )
-            })}
-          </PostListWrap>
-        )
+        return <PostList postEdges={postEdges} />
       }}
     />
   </Layout>

@@ -78,7 +78,7 @@ class PostTemplate extends Component {
     this.state = {}
   }
 
-  getScriptSrc() {
+  getScriptSrcInPost() {
     const scripts = []
     const scriptRegex = /<script[^>].*<\/script>/gi
     let match = []
@@ -155,12 +155,15 @@ class PostTemplate extends Component {
           <link rel="canonical" href={postUrl} />
           <script type="text/javascript" async src="/js/facebook-sdk.js" />
           <script type="text/javascript" async src="/js/disqus.js" />
+          <noscript>{`
+            Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a>
+          `}</noscript>
           <script
             type="text/javascript"
             async
             src="https://platform.twitter.com/widgets.js"
           />
-          {this.getScriptSrc().map((src, i) => (
+          {this.getScriptSrcInPost().map((src, i) => (
             <script async src={src} type="text/javascript" key={i} />
           ))}
         </Head>

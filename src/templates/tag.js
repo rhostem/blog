@@ -3,8 +3,7 @@ import { graphql } from 'gatsby'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
 import Layout from 'components/Layout'
-import { getPostRoute } from 'utils/routeResolver'
-import { PostListItem, PostListWrap } from '../components/PostLIst'
+import PostList from '../components/PostLIst'
 import PageTitle from '../components/PageTitle'
 
 class PostTemplate extends Component {
@@ -20,22 +19,11 @@ class PostTemplate extends Component {
       <Layout>
         <SEO title={tag} />
         <Head />
-        <PageTitle>{tag}</PageTitle>
-        <PostListWrap>
-          {postEdges.map(({ node }) => {
-            const { frontmatter, timeToRead } = node
-            return (
-              <PostListItem
-                key={node.id}
-                path={getPostRoute(frontmatter.path)}
-                title={frontmatter.title}
-                subTitle={frontmatter.subTitle}
-                date={frontmatter.date}
-                timeToRead={timeToRead}
-              />
-            )
-          })}
-        </PostListWrap>
+        <PageTitle>
+          {tag} - {postEdges.length}개의 글
+        </PageTitle>
+
+        <PostList postEdges={postEdges} />
       </Layout>
     )
   }

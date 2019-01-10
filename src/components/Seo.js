@@ -59,17 +59,20 @@ function SEO({ title, description, keywords, meta, lang }) {
                       name: `keywords`,
                       content: keywords.join(`, `),
                     }
-                  : [
-                      '웹 개발',
-                      'Front-end',
-                      '프론트엔드',
-                      'JavaScript',
-                      'node.js',
-                      'React',
-                      'Vue',
-                      'Angular',
-                      '번역',
-                    ]
+                  : {
+                      name: 'keywords',
+                      content: [
+                        '웹 개발',
+                        'Front-end',
+                        '프론트엔드',
+                        'JavaScript',
+                        'node.js',
+                        'React',
+                        'Vue',
+                        'Angular',
+                        '번역',
+                      ].join(', '),
+                    }
               )
               .concat(meta)}
           />

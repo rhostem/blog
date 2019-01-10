@@ -6,6 +6,10 @@ import { media } from '../styles'
 import styled from 'styled-components'
 import { setHeightLimitAndEllipsis } from '../styles/mixins/setHeightLimit'
 import format from 'date-fns/format'
+import { throttle } from 'throttle-debounce'
+import { getBodyHeight } from '../utils/getBodyHeight'
+import { getPostRoute } from '../utils/routeResolver'
+import * as R from 'ramda'
 
 export const PostListWrap = styled.div`
   width: 100%;
@@ -71,3 +75,87 @@ export const PostListItem = ({
     </PostLink>
   )
 }
+
+type Props = {
+  postEdges: Array<{
+    node: {
+      id: string,
+      timeToRead: number,
+      frontmatter: {
+        path: string,
+        title: string,
+        subTitle: string,
+        date: string,
+      },
+    },
+  }>,
+}
+
+type State = {}
+
+class PostList extends React.Component<Props, State> {
+  static defaultProps = {
+    postEdges: [],
+  }
+
+  pageSize = 10
+
+  get postEdgesInView() {
+    return R.slice(0, this.state.pageNum * this.pageSize, this.props.postEdges)
+  }
+
+  get lastPage() {
+    return Math.ceil(this.props.postEdges.length / this.pageSize)
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      pageNum: 1,
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.loadMorePost)
+    this.loadMorePost()
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.loadMorePost)
+  }
+
+  loadMorePost = throttle(300, e => {
+    const innerHeight = window.innerHeight
+    const bodyHeight = getBodyHeight()
+    const maximumScrollY = bodyHeight - innerHeight
+    const scrollY = window.scrollY
+    const isNextPageRequired =
+      maximumScrollY - scrollY < 200 && this.state.pageNum < this.lastPage
+    if (isNextPageRequired) {
+      this.setState({ pageNum: R.inc(this.state.pageNum) })
+    }
+  })
+
+  render() {
+    return (
+      <PostListWrap>
+        {this.postEdgesInView.map(({ node }) => {
+          const { frontmatter, timeToRead } = node
+          return (
+            <div key={node.id}>
+              <PostListItem
+                path={getPostRoute(frontmatter.path)}
+                title={frontmatter.title}
+                subTitle={frontmatter.subTitle}
+                date={frontmatter.date}
+                timeToRead={timeToRead}
+              />
+            </div>
+          )
+        })}
+      </PostListWrap>
+    )
+  }
+}
+
+export default PostList
