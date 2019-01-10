@@ -6,7 +6,8 @@
 
 const path = require(`path`)
 const SITE_CONFIG = require('./site-config')
-const getPostPath = path => `${SITE_CONFIG.pathPrefix}posts/${path}`
+const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
+const R = require('ramda')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -22,6 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
             id
             frontmatter {
               path
+              tags
             }
           }
         }
@@ -31,13 +33,37 @@ exports.createPages = ({ graphql, actions }) => {
     if (result.errors) {
       throw result.errors
     }
+
+    /**
+     * create pages of each post
+     */
     const blogTemplate = path.resolve(`./src/templates/post.js`)
     result.data.allMarkdownRemark.edges.forEach(edge => {
       createPage({
-        path: getPostPath(edge.node.frontmatter.path),
+        path: getPostRoute(edge.node.frontmatter.path),
         component: blogTemplate,
         context: {
           id: edge.node.id,
+        },
+      })
+    })
+
+    /**
+     * create pages of each tags
+     */
+    const tags = R.compose(
+      R.uniq,
+      R.flatten,
+      R.map(edge => edge.node.frontmatter.tags)
+    )(result.data.allMarkdownRemark.edges)
+
+    const tagTemplate = path.resolve(`./src/templates/tag.js`)
+    tags.forEach(tag => {
+      createPage({
+        path: getTagRoute(tag),
+        component: tagTemplate,
+        context: {
+          tag,
         },
       })
     })

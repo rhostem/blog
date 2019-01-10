@@ -5,7 +5,7 @@ import Layout from 'components/Layout'
 import Link from 'gatsby-link'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
-import { getPostPath } from 'utils/getPostPath'
+import { getPostRoute } from 'utils/routeResolver'
 import styled from 'styled-components'
 import { mixins, colors } from 'styles'
 import { rhythm } from 'styles/typography'
@@ -126,7 +126,7 @@ const IndexPage = () => (
                 {item.posts.map(post => (
                   <PostTitleLink
                     key={post.id}
-                    to={getPostPath(post.frontmatter.path)}
+                    to={getPostRoute(post.frontmatter.path)}
                   >
                     {post.frontmatter.title}
                   </PostTitleLink>

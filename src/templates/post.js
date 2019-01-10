@@ -10,7 +10,7 @@ import Tags from '../components/Tags'
 import qs from 'qs'
 import { css } from 'styled-components'
 import { setHeightLimitAndEllipsis } from 'styles/mixins/setHeightLimit'
-import { getPostPath } from 'utils/getPostPath'
+import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 
 const PostTitle = styled.h1`
@@ -122,7 +122,7 @@ class PostTemplate extends Component {
     const { frontmatter = {}, excerpt } = markdownRemark
     const { siteMetadata = {} } = site
     const tags = frontmatter.tags || []
-    const postUrl = getPostPath(frontmatter)
+    const postUrl = getPostRoute(frontmatter)
     const title = `${frontmatter.title}`
     const description = excerpt
     const mainImage = getMainImageFromRemark()

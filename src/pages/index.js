@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import SEO from '../components/Seo'
 import Head from '../components/Head'
-import { getPostPath } from '../utils/getPostPath'
+import { getPostRoute } from '../utils/routeResolver'
 import { PostListItem, PostListWrap } from '../components/PostLIst'
 
 const IndexPage = () => (
@@ -56,7 +56,7 @@ const IndexPage = () => (
               return (
                 <PostListItem
                   key={node.id}
-                  path={getPostPath(frontmatter.path)}
+                  path={getPostRoute(frontmatter.path)}
                   title={frontmatter.title}
                   subTitle={frontmatter.subTitle}
                   date={frontmatter.date}

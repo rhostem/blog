@@ -1,14 +1,10 @@
 import React from 'react'
-import * as R from 'ramda'
 import { StaticQuery, graphql } from 'gatsby'
 import Layout from 'components/Layout'
-import Link from 'gatsby-link'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
-import { getPostPath } from 'utils/getPostPath'
+import { getPostRoute } from 'utils/routeResolver'
 import styled from 'styled-components'
-import { mixins, colors } from 'styles'
-import { rhythm } from 'styles/typography'
 import PageTitle from '../components/PageTitle'
 import PostRankTable, { PostRankData } from '../components/PostRankTable'
 import axios from 'axios'
@@ -22,9 +18,7 @@ type PageView = {
   page: string,
 }
 
-type Props = {
-  data: any,
-}
+type Props = {}
 
 type State = {
   postList: PostRankData[],
@@ -40,7 +34,7 @@ const MONTH = 'month'
 const YEAR = 'year'
 const ALL = 'ALL'
 
-class StatsRoute extends React.Component {
+class StatsRoute extends React.Component<Props, State> {
   tabs = [MONTH, YEAR, ALL]
   tabNameMap = {
     [MONTH]: '지난 30일',
@@ -114,7 +108,8 @@ class StatsRoute extends React.Component {
                 pageView: pageView.count,
               }
             })
-            .filter(post => !!post.title),
+            .filter(post => !!post.title)
+            .filter(post => post.pageView > 10),
         })
       })
   }
@@ -148,9 +143,10 @@ class StatsRoute extends React.Component {
           render={data => {
             const titleMap = {}
             data.allMarkdownRemark.edges.forEach(({ node }) => {
-              titleMap[getPostPath(node.frontmatter.path)] =
+              titleMap[getPostRoute(node.frontmatter.path)] =
                 node.frontmatter.title
             })
+
             return (
               <div>
                 <PageTitle>인기 포스트</PageTitle>
