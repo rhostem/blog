@@ -230,6 +230,7 @@ module.exports = {
         utils: path.join(__dirname, 'src/utils'),
       },
     },
+    'gatsby-plugin-styled-components',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
