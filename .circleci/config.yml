@@ -3,6 +3,10 @@ jobs:
   build:
     docker: # run the steps with Docker
       - image: circleci/node:8
+    working_directory: ~/blog
+    environment:
+      BLOG_BUILD_DIR: ~/blog/public
+
     steps:
       - checkout
       - run:
@@ -20,6 +24,18 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - add_ssh_keys:
+          fingerprints:
+            - 'e3:80:b0:a8:8e:21:16:53:d5:db:1f:96:38:ef:b9:96'
+      - run: echo $REMOTE_HOSTKEY >> ~/.ssh/known_hosts
+      - deploy:
+          name: deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then
+              rsync -avce ssh $BLOG_BUILD_DIR ubuntu@52.78.50.81:/home/ubuntu/www/blog-v2
+            else
+              echo "Not master branch, dry run only"
+            fi
 
 workflows:
   version: 2
