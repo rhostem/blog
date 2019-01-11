@@ -20,3 +20,12 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+
+workflows:
+  version: 2
+  deploy-master:
+    jobs:
+      - build
+          filters:
+            branches:
+              only: master
