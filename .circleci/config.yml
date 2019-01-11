@@ -3,7 +3,10 @@ jobs:
   build:
     docker: # run the steps with Docker
       - image: circleci/node:8
+    working_directory: /tmp/workspace
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - checkout
       - run:
           name: update npm
@@ -20,6 +23,18 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - public/*
+            - node_modules/*
+
+  deploy:
+    docker: # run the steps with Docker
+      - image: circleci/node:8
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
       - add_ssh_keys:
           fingerprints:
             - 'e3:80:b0:a8:8e:21:16:53:d5:db:1f:96:38:ef:b9:96'
@@ -36,9 +51,18 @@ jobs:
 
 workflows:
   version: 2
-  deploy-master:
+  build-develop:
     jobs:
       - build:
+          filters:
+            branches:
+              only: develop
+  deploy-master:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
           filters:
             branches:
               only: master
