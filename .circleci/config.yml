@@ -59,7 +59,10 @@ workflows:
               only: develop
   deploy-master:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build
