@@ -9,7 +9,6 @@ import { rhythm } from 'styles/typography'
 import Tags from '../components/Tags'
 import qs from 'qs'
 import { css } from 'styled-components'
-import { setHeightLimitAndEllipsis } from 'styles/mixins/setHeightLimit'
 import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 
@@ -20,13 +19,9 @@ const PostTitle = styled.h1`
 
 const PostSubTitle = styled.p`
   margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.54);
-  ${setHeightLimitAndEllipsis({
-    line: 2,
-    lineHeight: '2.4rem',
-  })};
 `
 
 const PostInfo = styled.div`
