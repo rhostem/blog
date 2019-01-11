@@ -27,11 +27,11 @@ jobs:
           root: /tmp/workspace
           paths:
             - public/*
-            - node_modules/*
 
   deploy:
     docker: # run the steps with Docker
       - image: circleci/node:8
+    working_directory: /tmp/workspace
     steps:
       - attach_workspace:
           at: /tmp/workspace
