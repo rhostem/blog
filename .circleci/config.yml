@@ -3,10 +3,6 @@ jobs:
   build:
     docker: # run the steps with Docker
       - image: circleci/node:8
-    working_directory: ~/blog
-    environment:
-      BLOG_BUILD_DIR: ~/blog/public
-
     steps:
       - checkout
       - run:
@@ -33,7 +29,7 @@ jobs:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avce ssh $BLOG_BUILD_DIR ubuntu@52.78.50.81:/home/ubuntu/www/blog-v2
+              rsync -avce ssh ./public ubuntu@52.78.50.81:/home/ubuntu/www/blog-v2
             else
               echo "Not master branch, dry run only"
             fi
