@@ -29,7 +29,7 @@ jobs:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avce ssh ./public ubuntu@52.78.50.81:/home/ubuntu/www/blog-v2
+              rsync -avce ssh ./public/* ubuntu@52.78.50.81:/home/ubuntu/www/blog-v2
             else
               echo "Not master branch, dry run only"
             fi
