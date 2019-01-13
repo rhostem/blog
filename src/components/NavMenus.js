@@ -160,6 +160,11 @@ const MENU_LIST = [
     icon: () => <i className="fas fa-fire-alt" />,
   },
   {
+    to: '/tags',
+    text: '태그',
+    icon: () => <i className="fas fa-tags" />,
+  },
+  {
     to: '/archive',
     text: '연도별',
     icon: () => <i className="fas fa-archive" />,
@@ -204,7 +209,15 @@ export default class NavMenus extends Component<Props, State> {
                         to={menu.to}
                         onClick={this.props.onClickMenuBtn}
                       >
-                        {menu.icon()}
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            minWidth: '1.4rem',
+                            marginRight: '0.5rem',
+                          }}
+                        >
+                          {menu.icon()}
+                        </span>
                         {menu.text}
                       </MobileMenuLink>
                     ))}

@@ -39,7 +39,7 @@ const PostTitle = styled.h2`
   }
 `
 const PostSubTitle = styled.h3`
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.4;
   font-weight: 400;
   margin: 0.5rem 0;
@@ -51,6 +51,7 @@ const PostSubTitle = styled.h3`
 
 const Info = styled.div`
   display: block;
+  margin: 0.5rem 0;
   font-size: 0.8rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
