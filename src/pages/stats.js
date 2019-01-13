@@ -12,6 +12,7 @@ import { TabWrapper, Tab } from '../components/PostRankTab'
 import LoadingSpinner from '../components/LoadingSpinner'
 import subDays from 'date-fns/sub_days'
 import format from 'date-fns/format'
+const SITE_CONFIG = require('../../site-config')
 
 type PageView = {
   count: number,
@@ -143,8 +144,11 @@ class StatsRoute extends React.Component<Props, State> {
           render={data => {
             const titleMap = {}
             data.allMarkdownRemark.edges.forEach(({ node }) => {
-              titleMap[getPostRoute(node.frontmatter.path)] =
-                node.frontmatter.title
+              titleMap[
+                `${SITE_CONFIG.pathPrefix}${getPostRoute(
+                  node.frontmatter.path
+                )}`
+              ] = node.frontmatter.title
             })
 
             return (
