@@ -25,7 +25,7 @@ const YearTitle = styled.h2`
   font-weight: 400;
 
   &::before {
-    ${mixins.centeredY};
+    ${mixins.centeredY()};
     content: ' ';
     left: 0;
     width: 4px;

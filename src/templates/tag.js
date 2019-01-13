@@ -23,7 +23,7 @@ class PostTemplate extends Component {
           {tag} - {postEdges.length}개의 글
         </PageTitle>
 
-        <PostList postEdges={postEdges} />
+        <PostList isInfiniteScroll={true} postEdges={postEdges} />
       </Layout>
     )
   }

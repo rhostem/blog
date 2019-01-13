@@ -76,6 +76,7 @@ export const PostListItem = ({
 }
 
 type Props = {
+  isInfiniteScroll: boolean,
   postEdges: Array<{
     node: {
       id: string,
@@ -94,6 +95,7 @@ type State = {}
 
 class PostList extends React.Component<Props, State> {
   static defaultProps = {
+    isInfiniteScroll: false,
     postEdges: [],
   }
 
@@ -115,12 +117,16 @@ class PostList extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    window.addEventListener('scroll', this.loadMorePost)
-    this.loadMorePost()
+    if (this.props.isInfiniteScroll) {
+      window.addEventListener('scroll', this.loadMorePost)
+      this.loadMorePost()
+    }
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.loadMorePost)
+    if (this.props.isInfiniteScroll) {
+      window.removeEventListener('scroll', this.loadMorePost)
+    }
   }
 
   loadMorePost = throttle(300, e => {

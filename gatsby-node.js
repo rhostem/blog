@@ -7,6 +7,7 @@
 const path = require(`path`)
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
+const createPaginatedPages = require('gatsby-paginate')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -20,8 +21,13 @@ exports.createPages = ({ graphql, actions }) => {
         edges {
           node {
             id
+            excerpt(truncate: true, pruneLength: 150)
+            timeToRead
             frontmatter {
               path
+              title
+              subTitle
+              date
               tags
             }
           }
@@ -33,6 +39,14 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
+    createPaginatedPages({
+      edges: result.data.allMarkdownRemark.edges,
+      createPage: createPage,
+      pageTemplate: 'src/templates/index.js',
+      pageLength: 10, // This is optional and defaults to 10 if not used
+      pathPrefix: '', // This is optional and defaults to an empty string if not used
+      context: {}, // This is optional and defaults to an empty object if not used
+    })
     /**
      * create pages of each post
      */

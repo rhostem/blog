@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-const DEFAULT_KEYWORDS = ['웹 개발', 'Front-end', '프론트엔드']
+export const DEFAULT_KEYWORDS = ['웹 개발', 'Front-end', '프론트엔드']
 
 function SEO({ title, description, keywords = [], meta = [], lang }) {
   return (
@@ -89,7 +89,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `ko`,
   meta: [],
   keywords: [],
 }
@@ -99,7 +99,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.array,
   keywords: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
 }
 
 export default SEO
