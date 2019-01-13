@@ -8,6 +8,7 @@ const path = require(`path`)
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
 const createPaginatedPages = require('gatsby-paginate')
+const cheerio = require('cheerio')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -23,6 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
             id
             excerpt(truncate: true, pruneLength: 150)
             timeToRead
+            html
             frontmatter {
               path
               title
@@ -39,14 +41,6 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
-    createPaginatedPages({
-      edges: result.data.allMarkdownRemark.edges,
-      createPage: createPage,
-      pageTemplate: 'src/templates/index.js',
-      pageLength: 10, // This is optional and defaults to 10 if not used
-      pathPrefix: '', // This is optional and defaults to an empty string if not used
-      context: {}, // This is optional and defaults to an empty object if not used
-    })
     /**
      * create pages of each post
      */
@@ -59,6 +53,31 @@ exports.createPages = ({ graphql, actions }) => {
           id: edge.node.id,
         },
       })
+    })
+
+    /**
+     * TODO: html에서 첫번째 이미지를 찾고, 있으면 메인이미지로 사용한다
+     */
+    // const edgesWithMainImage = result.data.allMarkdownRemark.edges.map(edge => {
+    //   const $ = cheerio.load(`<div>${edge.node.html}</div>`)
+    //   const images = $('span[class="gatsby-resp-image-wrapper"]')
+    //   if (images.length > 0) {
+    //     return R.mergeDeepRight(edge, {
+    //       node: { mainImage: images.first().html() },
+    //     })
+    //   } else {
+    //     return edge
+    //   }
+    // })
+
+    createPaginatedPages({
+      // edges: edgesWithMainImage,  // TODO:
+      edges: result.data.allMarkdownRemark.edges,
+      createPage: createPage,
+      pageTemplate: 'src/templates/index.js',
+      pageLength: 10, // This is optional and defaults to 10 if not used
+      pathPrefix: '', // This is optional and defaults to an empty string if not used
+      context: {}, // This is optional and defaults to an empty object if not used
     })
 
     /**

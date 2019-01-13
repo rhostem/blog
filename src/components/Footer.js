@@ -88,7 +88,7 @@ function Footer() {
           </a>
         </FooterLinks>
         <CopyRight>
-          <span>Copyright © 2018. </span>
+          <span>Copyright © </span>
           <OwnerLink href="https://www.github.com/rhostem">rhostem</OwnerLink>
           <span> All rights reserved</span>
         </CopyRight>
@@ -108,6 +108,14 @@ function Footer() {
             rel="noopener noreferrer"
           >
             Contentful
+          </a>
+          ,{' '}
+          <a
+            href="https://circleci.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CircleCI
           </a>
         </PoweredBy>
       </FooterContent>

@@ -1,5 +1,6 @@
 import Link from 'gatsby-link'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { rhythm } from '../styles/typography'
 import { wordWrap } from 'polished'
 import { media } from '../styles'
@@ -55,6 +56,10 @@ const Info = styled.div`
   font-size: 0.8rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
+`
+
+const MainImage = styled.div`
+  width: 200px;
 `
 
 export const PostListItem = ({
