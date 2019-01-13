@@ -23,8 +23,12 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - 'e3:80:b0:a8:8e:21:16:53:d5:db:1f:96:38:ef:b9:96'
-      - run: ssh-keyscan -t rsa $DEPLOY_HOST >> ~/.ssh/known_hosts
-      - run: sudo apt-get update && sudo apt-get install rsync
+      - run:
+          name: Add host's key
+          command: ssh-keyscan -t rsa $DEPLOY_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: Install rsync
+          command: sudo apt-get update && sudo apt-get install rsync
       - deploy:
           name: deploy
           command: |

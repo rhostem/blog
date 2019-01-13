@@ -1,9 +1,12 @@
 import React from 'react'
+import * as R from 'ramda'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ title, description, keywords, meta, lang }) {
+const DEFAULT_KEYWORDS = ['웹 개발', 'Front-end', '프론트엔드']
+
+function SEO({ title, description, keywords = [], meta = [], lang }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -12,6 +15,65 @@ function SEO({ title, description, keywords, meta, lang }) {
           description || data.site.siteMetadata.description
         const siteTitle = data.site.siteMetadata.title
 
+        let metaTags = [
+          {
+            name: `description`,
+            content: metaDescription,
+          },
+          {
+            property: `og:title`,
+            content: title,
+          },
+          {
+            property: `og:description`,
+            content: metaDescription,
+          },
+          {
+            property: `og:type`,
+            content: `website`,
+          },
+          {
+            name: `twitter:card`,
+            content: `summary`,
+          },
+          {
+            name: `twitter:creator`,
+            content: data.site.siteMetadata.author,
+          },
+          {
+            name: `twitter:title`,
+            content: title,
+          },
+          {
+            name: `twitter:description`,
+            content: metaDescription,
+          },
+        ]
+
+        if (keywords.length) {
+          metaTags.push({
+            name: `keywords`,
+            content: keywords.concat(DEFAULT_KEYWORDS).join(`, `),
+          })
+        } else {
+          metaTags.push({
+            name: 'keywords',
+            content: DEFAULT_KEYWORDS.join(', '),
+          })
+        }
+
+        // 전달받은 메타 태그가 있을 때
+        if (meta.length) {
+          const metaNames = meta.map(m => m.name)
+          metaTags = R.concat(
+            // defaultMeta에서 중복 제거
+            R.filter(m => R.not(R.includes(m.name, metaNames)))(metaTags),
+            meta
+          )
+        }
+
+        console.log(`metaTags`, metaTags)
+
         return (
           <Helmet
             htmlAttributes={{
@@ -19,62 +81,7 @@ function SEO({ title, description, keywords, meta, lang }) {
             }}
             title={title || siteTitle}
             titleTemplate={title ? `%s | ${siteTitle}` : ''}
-            meta={[
-              {
-                name: `description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:title`,
-                content: title,
-              },
-              {
-                property: `og:description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:type`,
-                content: `website`,
-              },
-              {
-                name: `twitter:card`,
-                content: `summary`,
-              },
-              {
-                name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: `twitter:title`,
-                content: title,
-              },
-              {
-                name: `twitter:description`,
-                content: metaDescription,
-              },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
-                  : {
-                      name: 'keywords',
-                      content: [
-                        '웹 개발',
-                        'Front-end',
-                        '프론트엔드',
-                        'JavaScript',
-                        'node.js',
-                        'React',
-                        'Vue',
-                        'Angular',
-                        '번역',
-                      ].join(', '),
-                    }
-              )
-              .concat(meta)}
+            meta={metaTags}
           />
         )
       }}

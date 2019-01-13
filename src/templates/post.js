@@ -119,18 +119,19 @@ class PostTemplate extends Component {
     const tags = frontmatter.tags || []
     const postUrl = getPostRoute(frontmatter)
     const title = `${frontmatter.title}`
-    const description = excerpt
-    const mainImage = getMainImageFromRemark()
+    const description = `${
+      frontmatter.subTitle ? `${frontmatter.subTitle} - ` : ''
+    }${excerpt}`
+    const mainImage = getMainImageFromRemark(markdownRemark.html)
 
     return (
       <Layout>
         <SEO
           title={frontmatter.title}
           description={frontmatter.description}
-          keywords={frontmatter.tags || []}
+          keywords={frontmatter.tags}
           meta={[
             { name: 'author', content: siteMetadata.author },
-            { name: 'keywords', content: tags.join(`,`) },
             { name: 'description', content: description },
             { itemProp: 'name', content: title },
             { itemProp: 'description', content: description },

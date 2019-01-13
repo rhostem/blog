@@ -5,7 +5,6 @@
  */
 
 const path = require(`path`)
-const SITE_CONFIG = require('./site-config')
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
 

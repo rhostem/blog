@@ -11,8 +11,7 @@
     "importScripts": true,
     "FB": true,
     "define": true,
-    "searchUtil": true,
-    "R": true
+    "searchUtil": true
   },
   "env": {
     "browser": true,
