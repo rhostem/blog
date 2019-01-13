@@ -1,5 +1,3 @@
-const SITE_CONFIG = require('../../site-config')
-
 /**
  * UMD module deinitions for node.js and browser
  */
@@ -21,14 +19,14 @@ const SITE_CONFIG = require('../../site-config')
      * 포스트 경로
      */
     getPostRoute: function(path) {
-      return `${SITE_CONFIG.pathPrefix}posts/${path}`
+      return `posts/${path}`
     },
     /**
      * 태그 경로
      * 태그 문자열의 공백 문자는 underscore로 대체한다.
      */
     getTagRoute: function(tag) {
-      return `/tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
+      return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
     },
   }
 })

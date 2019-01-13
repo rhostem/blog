@@ -21,7 +21,7 @@ const PostLink = styled(Link)`
   background-color: #fff;
   border-radius: 2px;
   padding-bottom: ${rhythm(0.5)};
-  margin: ${rhythm(1.5)} 0;
+  margin: ${rhythm(2)} 0;
 
   &:first-child {
     margin-top: 0;
@@ -34,27 +34,26 @@ const PostTitle = styled.h2`
   line-height: 1.4;
   margin: 0;
   font-size: 1.2rem;
-  @media ${media.largerThanTablet} {
+  @media ${media.largerThanMobile} {
     font-size: 1.4rem;
   }
 `
 const PostSubTitle = styled.h3`
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   line-height: 1.4;
   font-weight: 400;
-  margin: 0.5rem 0 0.9rem;
+  margin: 0.5rem 0;
   color: rgba(0, 0, 0, 0.6);
   ${setHeightLimitAndEllipsis({
     line: 2,
   })};
 `
 
-const Info = styled.time`
+const Info = styled.div`
   display: block;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
-  margin-top: 0.9rem;
 `
 
 export const PostListItem = ({

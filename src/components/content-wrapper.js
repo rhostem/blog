@@ -11,7 +11,7 @@ export const ContentWrapper = styled.div`
   padding-right: ${rhythm(3 / 4)};
   margin: 0 auto;
 
-  @media ${media.largerThanTablet} {
+  @media ${media.largerThanMobile} {
     width: ${sizes.mainWidthDesktop};
     padding-left: ${rhythm(1)};
     padding-right: ${rhythm(1)};

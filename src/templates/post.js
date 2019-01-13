@@ -11,14 +11,22 @@ import qs from 'qs'
 import { css } from 'styled-components'
 import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
+import * as R from 'ramda'
+import { PageTitleComp } from '../components/PageTitle'
+import { media } from '../styles'
 
-const PostTitle = styled.h1`
+const PostTitle = styled(PageTitleComp)`
   text-align: left;
   margin-bottom: ${rhythm(0.5)};
+  font-size: 1.8rem;
+
+  @media ${media.largerThanMobile} {
+    font-size: 2.2rem;
+  }
 `
 
 const PostSubTitle = styled.p`
-  margin-top: 1rem;
+  margin: ${rhythm(0.5)} 0;
   font-size: 1.2rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.54);
@@ -73,6 +81,12 @@ class PostTemplate extends Component {
     this.state = {}
   }
 
+  get postUrl() {
+    return `${this.props.data.site.siteMetadata.url}${getPostRoute(
+      R.path(['data', 'markdownRemark', 'frontmatter', 'path'], this.props)
+    )}`
+  }
+
   getScriptSrcInPost() {
     const scripts = []
     const scriptRegex = /<script[^>].*<\/script>/gi
@@ -95,11 +109,10 @@ class PostTemplate extends Component {
   }
 
   handleShareFB = () => {
-    const { siteMetadata } = this.props.data.site
     FB.ui(
       {
         method: 'share',
-        href: `${siteMetadata.siteUrl}${this.props.location.pathname}`,
+        href: this.postUrl,
       },
       function(response) {}
     )
@@ -117,14 +130,12 @@ class PostTemplate extends Component {
     const { frontmatter = {}, excerpt } = markdownRemark
     const { siteMetadata = {} } = site
     const tags = frontmatter.tags || []
-    const postUrl = getPostRoute(frontmatter.path)
+    const postUrl = this.postUrl
     const title = `${frontmatter.title}`
     const description = `${
       frontmatter.subTitle ? `${frontmatter.subTitle} - ` : ''
     }${excerpt}`
     const mainImage = getMainImageFromRemark(markdownRemark.html)
-
-    console.log(`postUrl`, postUrl)
 
     return (
       <Layout>

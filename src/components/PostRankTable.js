@@ -35,14 +35,14 @@ export default ({
       <tbody>
         {postList.map((post: PostRankData, index) => {
           return (
-            <tr key={index}>
-              <td>
-                <PostTitle to={post.route}>
-                  {titleMap[post.route] || post.route}
-                </PostTitle>
-              </td>
-              <td>{post.pageView}</td>
-            </tr>
+            titleMap[post.route] && (
+              <tr key={index}>
+                <td>
+                  <PostTitle to={post.route}>{titleMap[post.route]}</PostTitle>
+                </td>
+                <td>{post.pageView}</td>
+              </tr>
+            )
           )
         })}
       </tbody>

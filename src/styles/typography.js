@@ -262,7 +262,7 @@ const MyTypography = {
         },
       },
       // Increase base font-size for desktop.
-      [`@media ${media.largerThanTablet}`]: {
+      [`@media ${media.largerThanMobile}`]: {
         html: {
           fontSize: `${(18 / 16) * 100}%`,
         },

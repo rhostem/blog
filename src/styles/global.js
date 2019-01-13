@@ -36,6 +36,11 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+
+  .footnote-ref {
+    margin: 0 0.2em;
+  }
+
   /**
    * Github-like theme for Prism.js
    * @author Luke Askew http://github.com/lukeaskew
