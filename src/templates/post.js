@@ -117,12 +117,14 @@ class PostTemplate extends Component {
     const { frontmatter = {}, excerpt } = markdownRemark
     const { siteMetadata = {} } = site
     const tags = frontmatter.tags || []
-    const postUrl = getPostRoute(frontmatter)
+    const postUrl = getPostRoute(frontmatter.path)
     const title = `${frontmatter.title}`
     const description = `${
       frontmatter.subTitle ? `${frontmatter.subTitle} - ` : ''
     }${excerpt}`
     const mainImage = getMainImageFromRemark(markdownRemark.html)
+
+    console.log(`postUrl`, postUrl)
 
     return (
       <Layout>

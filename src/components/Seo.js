@@ -50,6 +50,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           },
         ]
 
+        // 키워드 추가
         if (keywords.length) {
           metaTags.push({
             name: `keywords`,
@@ -62,7 +63,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           })
         }
 
-        // 전달받은 메타 태그가 있을 때
+        // 전달받은 메타 태그가 있을 때 기본 메타태그의 중복을 제거하고 추가한다
         if (meta.length) {
           const metaNames = meta.map(m => m.name)
           metaTags = R.concat(
@@ -71,8 +72,6 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
             meta
           )
         }
-
-        console.log(`metaTags`, metaTags)
 
         return (
           <Helmet
