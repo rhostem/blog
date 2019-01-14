@@ -5,6 +5,14 @@ import Head from 'components/Head'
 import Layout from 'components/Layout'
 import PostList from '../components/PostLIst'
 import PageTitle from '../components/PageTitle'
+import styled from 'styled-components'
+
+const TagCount = styled.span`
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  padding-bottom: 1rem;
+  margin-left: 1.5rem;
+`
 
 class PostTemplate extends Component {
   constructor(props) {
@@ -15,12 +23,14 @@ class PostTemplate extends Component {
   render() {
     const postEdges = this.props.data.allMarkdownRemark.edges
     const { tag } = this.props.pageContext
+    const title = `${tag}`
     return (
       <Layout>
-        <SEO title={tag} />
+        <SEO title={title} />
         <Head />
         <PageTitle>
-          {tag} - {postEdges.length}개의 글
+          {title}
+          <TagCount>{postEdges.length}개의 글</TagCount>
         </PageTitle>
 
         <PostList isInfiniteScroll={true} postEdges={postEdges} />

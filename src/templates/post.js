@@ -12,10 +12,10 @@ import { css } from 'styled-components'
 import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 import * as R from 'ramda'
-import { PageTitleComp } from '../components/PageTitle'
+import PageTitle from '../components/PageTitle'
 import { media } from '../styles'
 
-const PostTitle = styled(PageTitleComp)`
+const PostTitle = styled(PageTitle)`
   text-align: left;
   margin-bottom: ${rhythm(0.5)};
   font-size: 1.8rem;
