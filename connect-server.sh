@@ -1,1 +1,0 @@
-ssh -i ~/.ssh/lightsail_private.pem ubuntu@52.78.50.81;
