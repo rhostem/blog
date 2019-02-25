@@ -93,28 +93,25 @@ function Footer() {
           <span> All rights reserved</span>
         </CopyRight>
         <PoweredBy>
-          powered by{' '}
+          <span>powered by&nbsp;</span>
           <a
             href="https://www.gatsbyjs.org/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Gatsby
           </a>
-          ,{' '}
+          <span>,&nbsp;</span>
           <a
             href="https://www.contentful.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             Contentful
           </a>
-          ,{' '}
+          <span>,&nbsp;</span>
           <a
             href="https://circleci.com/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             CircleCI
           </a>
         </PoweredBy>

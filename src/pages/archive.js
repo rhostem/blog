@@ -117,6 +117,7 @@ const IndexPage = () => (
       render={data => {
         const postList = data.allMarkdownRemark.edges.map(edge => edge.node)
         const postByYear = getPostByYear(postList)
+
         return (
           <div>
             <PageTitle>연도별 포스트</PageTitle>
@@ -126,8 +127,7 @@ const IndexPage = () => (
                 {item.posts.map(post => (
                   <PostTitleLink
                     key={post.id}
-                    to={getPostRoute(post.frontmatter.path)}
-                  >
+                    to={getPostRoute(post.frontmatter.path)}>
                     {post.frontmatter.title}
                   </PostTitleLink>
                 ))}

@@ -104,8 +104,7 @@ class SearchResult extends Component<Props> {
                         'is-highlighted':
                           index + this.props.postStartIndex ===
                           this.props.highlightedResultIdx,
-                      })}
-                    >
+                      })}>
                       {route.data.title}
                     </RouteLink>
                   ))}
@@ -122,8 +121,7 @@ class SearchResult extends Component<Props> {
                         'is-highlighted':
                           index + this.props.tagStartIndex ===
                           this.props.highlightedResultIdx,
-                      })}
-                    >
+                      })}>
                       {tagRoute.name}
                     </RouteLink>
                   ))}

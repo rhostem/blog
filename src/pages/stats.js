@@ -159,8 +159,7 @@ class StatsRoute extends React.Component<Props, State> {
                     <Tab
                       key={tab}
                       onClick={() => this.handleChangeTab(tab)}
-                      isSelected={tab === this.state.currentTab}
-                    >
+                      isSelected={tab === this.state.currentTab}>
                       {this.tabNameMap[tab]}
                     </Tab>
                   ))}

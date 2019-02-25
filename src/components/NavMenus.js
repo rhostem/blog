@@ -194,8 +194,7 @@ export default class NavMenus extends Component<Props, State> {
             {state => (
               <div>
                 <MobileMenuContent
-                  style={{ ...mobileMenuContentTransition[state] }}
-                >
+                  style={{ ...mobileMenuContentTransition[state] }}>
                   {/* 모바일 메뉴 닫기 버튼 */}
                   <MobilMenuCloseBtnWrap>
                     <MobilMenuCloseBtn onClick={this.props.onClickMenuBtn}>
@@ -207,15 +206,13 @@ export default class NavMenus extends Component<Props, State> {
                       <MobileMenuLink
                         key={menu.to}
                         to={menu.to}
-                        onClick={this.props.onClickMenuBtn}
-                      >
+                        onClick={this.props.onClickMenuBtn}>
                         <span
                           style={{
                             display: 'inline-block',
                             minWidth: '1.4rem',
                             marginRight: '0.5rem',
-                          }}
-                        >
+                          }}>
                           {menu.icon()}
                         </span>
                         {menu.text}
@@ -232,8 +229,7 @@ export default class NavMenus extends Component<Props, State> {
             appear
             mountOnEnter
             unmountOnExit
-            timeout={300}
-          >
+            timeout={300}>
             {state => (
               <MobileMenuMask
                 onClick={this.props.onClickMenuBtn}

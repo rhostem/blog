@@ -90,8 +90,7 @@ const MapRect = props => {
         fontSize={fontSize}
         width={width}
         height={height}
-        onClick={handleClick}
-      >
+        onClick={handleClick}>
         <tspan>{trimmedName}</tspan>
       </text>
     </g>
@@ -203,8 +202,7 @@ class TagsTreeMap extends React.Component {
           data={this.state.tags}
           dataKey="count"
           content={MapRect}
-          isAnimationActive={false}
-        >
+          isAnimationActive={false}>
           {/* <Tooltip content={<TagMapToolTip />} /> */}
         </Treemap>
       </Wrapper>
