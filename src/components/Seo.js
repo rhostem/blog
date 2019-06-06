@@ -63,12 +63,15 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           })
         }
 
-        // 전달받은 메타 태그가 있을 때 기본 메타태그의 중복을 제거하고 추가한다
-        if (meta.length) {
-          const metaNames = meta.map(m => m.name)
+        // SEO 컴포넌트에 직접 전달받은 메타 태그는 중복을 제거하고 추가한다.
+        if (meta.length > 0) {
+          const metaNamesToAdd = meta.map(m => m.name)
+
           metaTags = R.concat(
-            // defaultMeta에서 중복 제거
-            R.filter(m => R.not(R.includes(m.name, metaNames)))(metaTags),
+            // metaTags에서 SEO 컴포넌트에 직접 전달된
+            R.filter(currentMeta =>
+              R.not(R.includes(currentMeta.name, metaNamesToAdd))
+            )(metaTags),
             meta
           )
         }
