@@ -8,7 +8,9 @@ const path = require(`path`)
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
 const createPaginatedPages = require('gatsby-paginate')
-const cheerio = require('cheerio')
+const algoliasearch = require('algoliasearch')
+const striptags = require('striptags')
+const { trimText } = require('./static/js/searchUtil')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -41,11 +43,14 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
+    // 포스트 데이터 객체로 구성된 배열.
+    const postEdges = result.data.allMarkdownRemark.edges
+
     /**
      * create pages of each post
      */
     const blogTemplate = path.resolve(`./src/templates/post.js`)
-    result.data.allMarkdownRemark.edges.forEach(edge => {
+    postEdges.forEach(edge => {
       createPage({
         path: getPostRoute(edge.node.frontmatter.path),
         component: blogTemplate,
@@ -58,7 +63,7 @@ exports.createPages = ({ graphql, actions }) => {
     /**
      * TODO: html에서 첫번째 이미지를 찾고, 있으면 메인이미지로 사용한다
      */
-    // const edgesWithMainImage = result.data.allMarkdownRemark.edges.map(edge => {
+    // const edgesWithMainImage = postEdges.map(edge => {
     //   const $ = cheerio.load(`<div>${edge.node.html}</div>`)
     //   const images = $('span[class="gatsby-resp-image-wrapper"]')
     //   if (images.length > 0) {
@@ -72,7 +77,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     createPaginatedPages({
       // edges: edgesWithMainImage,  // TODO:
-      edges: result.data.allMarkdownRemark.edges,
+      edges: postEdges,
       createPage: createPage,
       pageTemplate: 'src/templates/index.js',
       pageLength: 10, // This is optional and defaults to 10 if not used
@@ -87,7 +92,7 @@ exports.createPages = ({ graphql, actions }) => {
       R.uniq,
       R.flatten,
       R.map(edge => edge.node.frontmatter.tags)
-    )(result.data.allMarkdownRemark.edges)
+    )(postEdges)
 
     const tagTemplate = path.resolve(`./src/templates/tag.js`)
     tags.forEach(tag => {
@@ -99,5 +104,64 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+
+    console.log(`process.env.NODE_ENV`, process.env.NODE_ENV)
+    if (process.env.NODE_ENV === 'production') {
+      uploadPostToAlgolia(postEdges)
+    }
   })
+}
+
+/**
+ * upload post data to algolia for instant search
+ */
+function uploadPostToAlgolia(postEdges = []) {
+  const client = algoliasearch(
+    process.env.ALGOLIA_APPLICATION_ID,
+    process.env.ALGOLIA_ADMIN_KEY
+  )
+
+  const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
+
+  // 검색에 필요한 데이터 정리
+  const postObjects = postEdges.map(edge => {
+    const { node } = edge
+    const { id, html, timeToRead, frontmatter } = node
+    const { path, title, subTitle, date, tags } = frontmatter
+
+    const body = R.pipe(
+      striptags,
+      trimText,
+      t => t.slice(0, 3500) // community plan 10kb 제한 때문에 본문을 잘라낸다.
+    )(html)
+
+    return {
+      objectID: id,
+      body,
+      title,
+      subTitle,
+      date,
+      tags,
+      timeToRead,
+      path,
+    }
+  })
+
+  index.addObjects(postObjects, (err, content) => {
+    if (err) {
+      console.error(err)
+    }
+  })
+
+  index.setSettings(
+    {
+      searchableAttributes: ['body', 'title', 'subTitle', 'tags'],
+      customRanking: [`desc(date)`],
+    },
+    (err, content) => {
+      if (err) {
+        console.error(err)
+      }
+    }
+  )
 }
