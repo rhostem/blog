@@ -105,7 +105,7 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
 
-    console.log(`process.env.NODE_ENV`, process.env.NODE_ENV)
+    // 빌드할 때만 algolia에 레코드를 업데이트한다
     if (process.env.NODE_ENV === 'production') {
       uploadPostToAlgolia(postEdges)
     }
@@ -129,25 +129,47 @@ function uploadPostToAlgolia(postEdges = []) {
     const { id, html, timeToRead, frontmatter } = node
     const { path, title, subTitle, date, tags } = frontmatter
 
-    const body = R.pipe(
-      striptags,
-      trimText,
-      t => t.slice(0, 3500) // community plan 10kb 제한 때문에 본문을 잘라낸다.
-    )(html)
+    /**
+     * 레코드의 크기 제한이 10kb라서 포스트 전체를 하나의 레코드에 담을 수 없다.
+     * html을 </p> 태그로 분리한 후 5개 단락을 합쳐서 1개의 레코드에 저장하도록 한다.
+     *
+     * 참조) https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/how-to/indexing-long-documents/
+     */
+    const paragraphs = html.split(`</p>`)
+    const bodies = []
 
-    return {
-      objectID: id,
-      body,
-      title,
-      subTitle,
-      date,
-      tags,
-      timeToRead,
-      path,
+    while (paragraphs.length > 0) {
+      const chunks = paragraphs.splice(0, 5)
+      bodies.push(
+        chunks
+          .filter(c => !!c)
+          .map(chunk =>
+            R.pipe(
+              striptags,
+              trimText
+            )(chunk)
+          )
+          .join(' ')
+      )
     }
+
+    return bodies.map((body, index) => {
+      return {
+        objectID: `${id}_${index}`,
+        body,
+        title,
+        subTitle,
+        date,
+        tags,
+        timeToRead,
+        path,
+      }
+    })
   })
 
-  index.addObjects(postObjects, (err, content) => {
+  const flattendObjects = R.flatten(postObjects)
+
+  index.addObjects(flattendObjects, (err, content) => {
     if (err) {
       console.error(err)
     }
@@ -156,7 +178,8 @@ function uploadPostToAlgolia(postEdges = []) {
   index.setSettings(
     {
       searchableAttributes: ['body', 'title', 'subTitle', 'tags'],
-      customRanking: [`desc(date)`],
+      attributeForDistinct: 'title',
+      distinct: true,
     },
     (err, content) => {
       if (err) {
