@@ -10,7 +10,7 @@ const R = require('ramda')
 const createPaginatedPages = require('gatsby-paginate')
 const algoliasearch = require('algoliasearch')
 const striptags = require('striptags')
-const { trimText } = require('./static/js/searchUtil')
+const decodeHTML = require('./src/utils/decodeHtml')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -115,7 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
 /**
  * upload post data to algolia for instant search
  */
-function uploadPostToAlgolia(postEdges = []) {
+async function uploadPostToAlgolia(postEdges = []) {
   const client = algoliasearch(
     process.env.ALGOLIA_APPLICATION_ID,
     process.env.ALGOLIA_ADMIN_KEY
@@ -146,7 +146,7 @@ function uploadPostToAlgolia(postEdges = []) {
           .map(chunk =>
             R.pipe(
               striptags,
-              trimText
+              decodeHTML
             )(chunk)
           )
           .join(' ')
