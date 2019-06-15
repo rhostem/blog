@@ -11,6 +11,9 @@ const createPaginatedPages = require('gatsby-paginate')
 const algoliasearch = require('algoliasearch')
 const striptags = require('striptags')
 const decodeHTML = require('./src/utils/decodeHtml')
+const axios = require('axios')
+const { format, subYears } = require('date-fns')
+const siteConfig = require('./site-config')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -76,12 +79,12 @@ exports.createPages = ({ graphql, actions }) => {
     // })
 
     createPaginatedPages({
-      // edges: edgesWithMainImage,  // TODO:
+      // edges: edgesWithMainImage,
       edges: postEdges,
       createPage: createPage,
       pageTemplate: 'src/templates/index.js',
       pageLength: 10, // This is optional and defaults to 10 if not used
-      pathPrefix: '', // This is optional and defaults to an empty string if not used
+      pathPrefix: siteConfig.pathPrefix, // This is optional and defaults to an empty string if not used
       context: {}, // This is optional and defaults to an empty object if not used
     })
 
@@ -106,8 +109,8 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // 빌드할 때만 algolia에 레코드를 업데이트한다
+    addPostIndicesToAlgolia(postEdges)
     if (process.env.NODE_ENV === 'production') {
-      uploadPostToAlgolia(postEdges)
     }
   })
 }
@@ -115,7 +118,7 @@ exports.createPages = ({ graphql, actions }) => {
 /**
  * upload post data to algolia for instant search
  */
-async function uploadPostToAlgolia(postEdges = []) {
+async function addPostIndicesToAlgolia(postEdges = []) {
   const client = algoliasearch(
     process.env.ALGOLIA_APPLICATION_ID,
     process.env.ALGOLIA_ADMIN_KEY
@@ -123,11 +126,26 @@ async function uploadPostToAlgolia(postEdges = []) {
 
   const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
 
+  const { data: pageViews } = await axios.get(
+    `https://blogapi.rhostem.com/api/ga/post_pageviews`,
+    {
+      params: {
+        startDate: format(subYears(new Date(), 1), 'YYYY-MM-DD'),
+        endDate: format(new Date(), 'YYYY-MM-DD'),
+      },
+    }
+  )
+
   // 검색에 필요한 데이터 정리
   const postObjects = postEdges.map(edge => {
     const { node } = edge
     const { id, html, timeToRead, frontmatter } = node
     const { path, title, subTitle, date, tags } = frontmatter
+
+    const pageView = R.pipe(
+      data => data.find(p => p.page === getPostRoute(path)),
+      R.prop('count')
+    )(pageViews)
 
     /**
      * 레코드의 크기 제한이 10kb라서 포스트 전체를 하나의 레코드에 담을 수 없다.
@@ -163,6 +181,7 @@ async function uploadPostToAlgolia(postEdges = []) {
         tags,
         timeToRead,
         path,
+        pageView,
       }
     })
   })
@@ -180,6 +199,7 @@ async function uploadPostToAlgolia(postEdges = []) {
       searchableAttributes: ['body', 'title', 'subTitle', 'tags'],
       attributeForDistinct: 'title',
       distinct: true,
+      customRanking: ['desc(pageView)'],
     },
     (err, content) => {
       if (err) {
