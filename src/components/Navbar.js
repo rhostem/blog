@@ -1,10 +1,19 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { colors, sizes } from '../styles'
+import { colors, sizes, media } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 // import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
+import algoliasearch from 'algoliasearch/lite'
+import { InstantSearch } from 'react-instantsearch-dom'
+import AlgoliaAutocomplete from 'components/AlgoliaAutocomplete'
+import { debounce } from 'throttle-debounce'
+
+const searchClient = algoliasearch(
+  process.env.ALGOLIA_APPLICATION_ID,
+  process.env.ALGOLIA_ADMIN_KEY
+)
 
 const Wrap = styled.nav`
   position: fixed;
@@ -25,7 +34,7 @@ const SiteTitle = styled.div`
   margin-right: auto;
   color: #fff;
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: 'Roboto', sans-serif;
   line-height: ${sizes.topNavHeight};
   letter-spacing: -1px;
@@ -49,6 +58,19 @@ class Navbar extends React.Component {
     this.setState({ isMobileMenuVisible: !this.state.isMobileMenuVisible })
   }
 
+  handleChangeSearchInput = e => {
+    const { value } = e.target
+    this.setState({ searchInput: value })
+    this.updateCurrentRefinement(value)
+  }
+
+  updateCurrentRefinement = debounce(400, value => {
+    console.log(`value`, value)
+    this.setState({ currentRefinement: value })
+  })
+
+  componentDidMount() {}
+
   render() {
     return (
       <Wrap>
@@ -70,6 +92,12 @@ class Navbar extends React.Component {
             />
           </MenuArea>
         </NavbarCotent>
+
+        <div id="searchbox">
+          <InstantSearch indexName="posts" searchClient={searchClient}>
+            <AlgoliaAutocomplete defaultRefinement="" />
+          </InstantSearch>
+        </div>
       </Wrap>
     )
   }

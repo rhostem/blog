@@ -22,7 +22,7 @@ const DesktopMenuItem = styled(Link)`
   float: left;
   line-height: ${sizes.topNavHeight};
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 400;
   color: #fff;
 
