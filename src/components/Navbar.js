@@ -11,11 +11,6 @@ import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
 import siteConfig from '../../site-config'
 
-const searchClient = algoliasearch(
-  siteConfig.ALGOLIA_APPLICATION_ID,
-  siteConfig.ALGOLIA_ADMIN_KEY
-)
-
 const Wrap = styled.nav`
   position: fixed;
   z-index: 1;
@@ -58,6 +53,13 @@ class Navbar extends React.Component {
     this.state = {
       isMobileMenuVisible: false,
     }
+
+    console.log(`siteConfig`, siteConfig)
+
+    this.searchClient = algoliasearch(
+      siteConfig.ALGOLIA_APPLICATION_ID,
+      siteConfig.ALGOLIA_ADMIN_KEY
+    )
   }
 
   handleClickMenuButton = e => {
@@ -86,7 +88,7 @@ class Navbar extends React.Component {
           </Link>
 
           <SearchBox>
-            <InstantSearch indexName="posts" searchClient={searchClient}>
+            <InstantSearch indexName="posts" searchClient={this.searchClient}>
               <NavbarAlgoliaSearch defaultRefinement="" />
             </InstantSearch>
           </SearchBox>
