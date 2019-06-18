@@ -10,6 +10,11 @@ import { InstantSearch } from 'react-instantsearch-dom'
 import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
 
+console.log(
+  `process.env.ALGOLIA_APPLICATION_ID`,
+  process.env.ALGOLIA_APPLICATION_ID
+)
+
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APPLICATION_ID,
   process.env.ALGOLIA_ADMIN_KEY
