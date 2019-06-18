@@ -109,8 +109,8 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // 빌드할 때만 algolia에 레코드를 업데이트한다
-    addPostIndicesToAlgolia(postEdges)
     if (process.env.NODE_ENV === 'production') {
+      addPostIndicesToAlgolia(postEdges)
     }
   })
 }
@@ -119,6 +119,12 @@ exports.createPages = ({ graphql, actions }) => {
  * upload post data to algolia for instant search
  */
 async function addPostIndicesToAlgolia(postEdges = []) {
+  console.log(
+    `process.env.ALGOLIA_APPLICATION_ID,process.env.ALGOLIA_ADMIN_KEY`,
+    process.env.ALGOLIA_APPLICATION_ID,
+    process.env.ALGOLIA_ADMIN_KEY
+  )
+
   const client = algoliasearch(
     process.env.ALGOLIA_APPLICATION_ID,
     process.env.ALGOLIA_ADMIN_KEY
