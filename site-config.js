@@ -9,4 +9,8 @@ module.exports = {
   githubUrl: 'https://www.github.com/rhostem',
   siteRss: '/rss.xml',
   googleAnalyticsID: 'UA-83587837-3',
+
+  ALGOLIA_ADMIN_KEY: process.env.ALGOLIA_ADMIN_KEY,
+  ALGOLIA_APPLICATION_ID: process.env.ALGOLIA_APPLICATION_ID,
+  ALGOLIA_INDEX_NAME: process.env.ALGOLIA_INDEX_NAME,
 }

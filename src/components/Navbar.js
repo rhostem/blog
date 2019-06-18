@@ -9,15 +9,11 @@ import algoliasearch from 'algoliasearch/lite'
 import { InstantSearch } from 'react-instantsearch-dom'
 import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
-
-console.log(
-  `process.env.ALGOLIA_APPLICATION_ID`,
-  process.env.ALGOLIA_APPLICATION_ID
-)
+import siteConfig from '../../site-config'
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APPLICATION_ID,
-  process.env.ALGOLIA_ADMIN_KEY
+  siteConfig.ALGOLIA_APPLICATION_ID,
+  siteConfig.ALGOLIA_ADMIN_KEY
 )
 
 const Wrap = styled.nav`
