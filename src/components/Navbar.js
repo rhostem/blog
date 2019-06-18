@@ -9,7 +9,6 @@ import algoliasearch from 'algoliasearch/lite'
 import { InstantSearch } from 'react-instantsearch-dom'
 import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
-import siteConfig from '../../site-config'
 
 const Wrap = styled.nav`
   position: fixed;
@@ -54,11 +53,6 @@ class Navbar extends React.Component {
       isMobileMenuVisible: false,
     }
 
-    console.log(
-      `process.env.GATSBY_ALGOLIA_APPLICATION_ID`,
-      process.env.GATSBY_ALGOLIA_APPLICATION_ID
-    )
-
     this.searchClient = algoliasearch(
       process.env.GATSBY_ALGOLIA_APPLICATION_ID,
       process.env.GATSBY_ALGOLIA_API_KEY
@@ -76,7 +70,6 @@ class Navbar extends React.Component {
   }
 
   updateCurrentRefinement = debounce(400, value => {
-    console.log(`value`, value)
     this.setState({ currentRefinement: value })
   })
 

@@ -14,8 +14,6 @@ const SITE_URL = removeTailSlash(
   `${SITE_CONFIG.siteUrl}${SITE_CONFIG.pathPrefix}`
 )
 
-console.log(`SITE_URL`, SITE_URL)
-
 module.exports = {
   pathPrefix: SITE_CONFIG.pathPrefix,
   siteMetadata: {

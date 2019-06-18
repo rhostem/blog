@@ -119,12 +119,6 @@ exports.createPages = ({ graphql, actions }) => {
  * upload post data to algolia for instant search
  */
 async function addPostIndicesToAlgolia(postEdges = []) {
-  console.log(
-    `process.env.ALGOLIA_APPLICATION_ID,process.env.ALGOLIA_ADMIN_KEY`,
-    process.env.GATSBY_ALGOLIA_APPLICATION_ID,
-    process.env.GATSBY_ALGOLIA_ADMIN_KEY
-  )
-
   const client = algoliasearch(
     process.env.GATSBY_ALGOLIA_APPLICATION_ID,
     process.env.GATSBY_ALGOLIA_ADMIN_KEY
