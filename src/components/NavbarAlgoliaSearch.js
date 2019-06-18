@@ -58,7 +58,6 @@ const SearchIcon = styled('i')`
   left: 0;
   color: #fff;
   font-size: 0.8rem;
-  font-weight: 100;
 `
 
 const HitList = styled.ul`
