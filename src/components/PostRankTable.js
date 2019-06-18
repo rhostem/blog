@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { setHeightLimitAndEllipsis } from '../styles/mixins/setHeightLimit'
+import { setHeightLimitAndEllipsis } from '../styles/mixin/setHeightLimit'
 import Link from 'gatsby-link'
 
 export type PostRankData = {

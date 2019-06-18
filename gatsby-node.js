@@ -8,7 +8,12 @@ const path = require(`path`)
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
 const createPaginatedPages = require('gatsby-paginate')
-const cheerio = require('cheerio')
+const algoliasearch = require('algoliasearch')
+const striptags = require('striptags')
+const decodeHTML = require('./src/utils/decodeHtml')
+const axios = require('axios')
+const { format, subYears } = require('date-fns')
+const siteConfig = require('./site-config')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -41,11 +46,14 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors
     }
 
+    // 포스트 데이터 객체로 구성된 배열.
+    const postEdges = result.data.allMarkdownRemark.edges
+
     /**
      * create pages of each post
      */
     const blogTemplate = path.resolve(`./src/templates/post.js`)
-    result.data.allMarkdownRemark.edges.forEach(edge => {
+    postEdges.forEach(edge => {
       createPage({
         path: getPostRoute(edge.node.frontmatter.path),
         component: blogTemplate,
@@ -58,7 +66,7 @@ exports.createPages = ({ graphql, actions }) => {
     /**
      * TODO: html에서 첫번째 이미지를 찾고, 있으면 메인이미지로 사용한다
      */
-    // const edgesWithMainImage = result.data.allMarkdownRemark.edges.map(edge => {
+    // const edgesWithMainImage = postEdges.map(edge => {
     //   const $ = cheerio.load(`<div>${edge.node.html}</div>`)
     //   const images = $('span[class="gatsby-resp-image-wrapper"]')
     //   if (images.length > 0) {
@@ -71,12 +79,12 @@ exports.createPages = ({ graphql, actions }) => {
     // })
 
     createPaginatedPages({
-      // edges: edgesWithMainImage,  // TODO:
-      edges: result.data.allMarkdownRemark.edges,
+      // edges: edgesWithMainImage,
+      edges: postEdges,
       createPage: createPage,
       pageTemplate: 'src/templates/index.js',
       pageLength: 10, // This is optional and defaults to 10 if not used
-      pathPrefix: '', // This is optional and defaults to an empty string if not used
+      pathPrefix: siteConfig.pathPrefix, // This is optional and defaults to an empty string if not used
       context: {}, // This is optional and defaults to an empty object if not used
     })
 
@@ -87,7 +95,7 @@ exports.createPages = ({ graphql, actions }) => {
       R.uniq,
       R.flatten,
       R.map(edge => edge.node.frontmatter.tags)
-    )(result.data.allMarkdownRemark.edges)
+    )(postEdges)
 
     const tagTemplate = path.resolve(`./src/templates/tag.js`)
     tags.forEach(tag => {
@@ -99,5 +107,104 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+
+    // 빌드할 때만 algolia에 레코드를 업데이트한다
+    addPostIndicesToAlgolia(postEdges)
+    if (process.env.NODE_ENV === 'production') {
+    }
   })
+}
+
+/**
+ * upload post data to algolia for instant search
+ */
+async function addPostIndicesToAlgolia(postEdges = []) {
+  const client = algoliasearch(
+    process.env.ALGOLIA_APPLICATION_ID,
+    process.env.ALGOLIA_ADMIN_KEY
+  )
+
+  const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
+
+  const { data: pageViews } = await axios.get(
+    `https://blogapi.rhostem.com/api/ga/post_pageviews`,
+    {
+      params: {
+        startDate: format(subYears(new Date(), 1), 'YYYY-MM-DD'),
+        endDate: format(new Date(), 'YYYY-MM-DD'),
+      },
+    }
+  )
+
+  // 검색에 필요한 데이터 정리
+  const postObjects = postEdges.map(edge => {
+    const { node } = edge
+    const { id, html, timeToRead, frontmatter } = node
+    const { path, title, subTitle, date, tags } = frontmatter
+
+    const pageView = R.pipe(
+      data => data.find(p => p.page === getPostRoute(path)),
+      R.prop('count')
+    )(pageViews)
+
+    /**
+     * 레코드의 크기 제한이 10kb라서 포스트 전체를 하나의 레코드에 담을 수 없다.
+     * html을 </p> 태그로 분리한 후 5개 단락을 합쳐서 1개의 레코드에 저장하도록 한다.
+     *
+     * 참조) https://www.algolia.com/doc/guides/sending-and-managing-data/prepare-your-data/how-to/indexing-long-documents/
+     */
+    const paragraphs = html.split(`</p>`)
+    const bodies = []
+
+    while (paragraphs.length > 0) {
+      const chunks = paragraphs.splice(0, 5)
+      bodies.push(
+        chunks
+          .filter(c => !!c)
+          .map(chunk =>
+            R.pipe(
+              striptags,
+              decodeHTML
+            )(chunk)
+          )
+          .join(' ')
+      )
+    }
+
+    return bodies.map((body, index) => {
+      return {
+        objectID: `${id}_${index}`,
+        body,
+        title,
+        subTitle,
+        date,
+        tags,
+        timeToRead,
+        path,
+        pageView,
+      }
+    })
+  })
+
+  const flattendObjects = R.flatten(postObjects)
+
+  index.addObjects(flattendObjects, (err, content) => {
+    if (err) {
+      console.error(err)
+    }
+  })
+
+  index.setSettings(
+    {
+      searchableAttributes: ['body', 'title', 'subTitle', 'tags'],
+      attributeForDistinct: 'title',
+      distinct: true,
+      customRanking: ['desc(pageView)'],
+    },
+    (err, content) => {
+      if (err) {
+        console.error(err)
+      }
+    }
+  )
 }

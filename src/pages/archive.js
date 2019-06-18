@@ -7,7 +7,7 @@ import SEO from 'components/Seo'
 import Head from 'components/Head'
 import { getPostRoute } from 'utils/routeResolver'
 import styled from 'styled-components'
-import { mixins, colors } from 'styles'
+import { mixin, colors } from 'styles'
 import { rhythm } from 'styles/typography'
 import format from 'date-fns/format'
 import PageTitle from '../components/PageTitle'
@@ -25,7 +25,7 @@ const YearTitle = styled.h2`
   font-weight: 400;
 
   &::before {
-    ${mixins.centeredY()};
+    ${mixin.centeredY()};
     content: ' ';
     left: 0;
     width: 4px;

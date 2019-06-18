@@ -14,19 +14,21 @@
     root.searchUtil = factory()
   }
 })(this, function() {
+  const pathPrefix = '/' // TODO: 시스템 환경변수로 등록
+
   return {
     /**
      * 포스트 경로
      */
     getPostRoute: function(path) {
-      return `posts/${path}`
+      return `${pathPrefix}posts/${path}`
     },
     /**
      * 태그 경로
      * 태그 문자열의 공백 문자는 underscore로 대체한다.
      */
     getTagRoute: function(tag) {
-      return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
+      return `${pathPrefix}tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
     },
   }
 })

@@ -20,7 +20,7 @@ const PostTitle = styled(PageTitle)`
   margin-bottom: ${rhythm(0.5)};
   font-size: 1.8rem;
 
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     font-size: 2.2rem;
   }
 `

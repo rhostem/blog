@@ -12,6 +12,20 @@
   "plugins": [
     "add-module-exports",
     "transform-flow-strip-types",
-    "babel-plugin-styled-components"
+    "babel-plugin-styled-components",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "components": "./src/components",
+          "images": "./src/images",
+          "js": "./src/js",
+          "styles": "./src/styles",
+          "utils": "./src/utils",
+          "templates": "./src/templates"
+        }
+      }
+    ]
   ]
 }

@@ -4,7 +4,7 @@ import SEO from '../components/Seo'
 import Head from '../components/Head'
 import PostList from '../components/PostLIst'
 import styled, { css } from 'styled-components'
-import { mixins } from '../styles'
+import { mixin } from '../styles'
 import { rhythm } from '../styles/typography'
 import ReactPaginate from 'react-paginate'
 import { navigateTo } from 'gatsby-link'
@@ -16,7 +16,7 @@ const currentPageStyle = css`
     position: relative;
     color: ${activePageColor};
     &::after {
-      ${mixins.centeredX()}
+      ${mixin.centeredX()}
       content: ' ';
       width: 50%;
       top: 80%;

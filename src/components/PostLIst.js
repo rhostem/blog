@@ -1,11 +1,10 @@
 import Link from 'gatsby-link'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { rhythm } from '../styles/typography'
 import { wordWrap } from 'polished'
 import { media } from '../styles'
 import styled from 'styled-components'
-import { setHeightLimitAndEllipsis } from '../styles/mixins/setHeightLimit'
+import { setHeightLimitAndEllipsis } from '../styles/mixin/setHeightLimit'
 import format from 'date-fns/format'
 import { throttle } from 'throttle-debounce'
 import { getBodyHeight } from '../utils/getBodyHeight'
@@ -14,7 +13,7 @@ import * as R from 'ramda'
 
 export const PostListWrap = styled.div`
   width: 100%;
-  margin: ${rhythm(2)} auto;
+  margin: ${rhythm(4)} auto ${rhythm(2)};
 `
 
 const PostLink = styled(Link)`
@@ -35,7 +34,7 @@ const PostTitle = styled.h2`
   line-height: 1.4;
   margin: 0;
   font-size: 1.2rem;
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     font-size: 1.4rem;
   }
 `

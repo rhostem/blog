@@ -6,15 +6,14 @@ import Link from 'gatsby-link'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
 import styled from 'styled-components'
-import { mixins, colors, media } from 'styles'
-import { rhythm } from 'styles/typography'
-import PageTitle from '../components/PageTitle'
-import { getTagRoute } from '../utils/routeResolver'
+import { colors, media } from 'styles'
+import PageTitle from 'components/PageTitle'
+import { getTagRoute } from 'utils/routeResolver'
 
 const Wrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     grid-template-columns: 1fr 1fr 1fr;
   }
   grid-row-gap: 0.5rem;

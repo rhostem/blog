@@ -9,5 +9,9 @@
     "statusBar.background": "#4c67d5",
     "statusBarItem.hoverBackground": "#758adf",
     "statusBar.foreground": "#e7e7e7"
-  }
+  },
+  "files.exclude": {
+    "**/public": true
+  },
+  "editor.renderLineHighlight": "all"
 }
