@@ -20,7 +20,7 @@ const Wrap = styled.div`
   box-shadow: 1px 1px 5px rgba(46, 46, 46, 0.3);
   background-color: #fff;
 
-  @media ${media.largetThanMobile} {
+  ${media.overMobile} {
     width: 450px;
     right: 0;
   }

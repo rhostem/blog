@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { colors, sizes, media } from '../styles'
+import { colors, sizes } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 // import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
 import algoliasearch from 'algoliasearch/lite'
 import { InstantSearch } from 'react-instantsearch-dom'
-import AlgoliaAutocomplete from 'components/AlgoliaAutocomplete'
+import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
 
 const searchClient = algoliasearch(
@@ -28,6 +28,7 @@ const Wrap = styled.nav`
 export const NavbarCotent = styled(ContentWrapper)`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `
 
 const SiteTitle = styled.div`
@@ -40,8 +41,12 @@ const SiteTitle = styled.div`
   letter-spacing: -1px;
 `
 
+const SearchBox = styled.div`
+  margin-right: auto;
+`
+
 const MenuArea = styled.div`
-  margin-left: auto;
+  margin-left: 1rem;
   list-style: none;
   padding-left: 0;
 `
@@ -79,12 +84,12 @@ class Navbar extends React.Component {
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
 
+          <SearchBox>
+            <InstantSearch indexName="posts" searchClient={searchClient}>
+              <NavbarAlgoliaSearch defaultRefinement="" />
+            </InstantSearch>
+          </SearchBox>
           <MenuArea>
-            {/* 검색 */}
-            {/* <NavbarSearchWrap>
-              <NavbarSearch />
-            </NavbarSearchWrap> */}
-
             {/* 메뉴 */}
             <NavMenus
               isMobileMenuVisible={this.state.isMobileMenuVisible}
@@ -92,12 +97,6 @@ class Navbar extends React.Component {
             />
           </MenuArea>
         </NavbarCotent>
-
-        <div id="searchbox">
-          <InstantSearch indexName="posts" searchClient={searchClient}>
-            <AlgoliaAutocomplete defaultRefinement="" />
-          </InstantSearch>
-        </div>
       </Wrap>
     )
   }

@@ -13,7 +13,7 @@ const Wrap = styled.div`
 
 const DesktopMenus = styled.div`
   display: none;
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     display: block;
   }
 `
@@ -38,14 +38,15 @@ const DesktopMenuItem = styled(Link)`
 const VisibleOnMobile = styled.div`
   display: block;
 
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     display: none;
   }
 `
 
 const MenuButton = styled.button`
   display: block;
-  padding: 1rem 0.5rem;
+  padding: 1rem 1rem;
+  margin-right: -1rem;
   border: none;
   background: none;
   outline: none;
@@ -178,7 +179,7 @@ export default class NavMenus extends Component<Props, State> {
         <DesktopMenus>
           {MENU_LIST.map(menu => (
             <DesktopMenuItem to={menu.to} key={menu.to}>
-              {menu.icon()}
+              {/* {menu.icon()} */}
               {menu.text}
             </DesktopMenuItem>
           ))}

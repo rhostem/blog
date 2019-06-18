@@ -1,7 +1,9 @@
 import * as centered from './centered'
 import * as setHeightLimit from './setHeightLimit'
+import textEllipsis from './textEllipsis'
 
-export const mixins = {
+export default {
   ...centered,
   ...setHeightLimit,
+  textEllipsis,
 }

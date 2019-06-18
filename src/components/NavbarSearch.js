@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { debounce } from 'throttle-debounce'
 import styled from 'styled-components'
-import { centeredY } from '../styles/mixins'
+import { centeredY } from '../styles/mixin'
 import SearchResult from './SearchResult'
 import media from '../styles/media'
 import SearchService from '../service/SearchService'
@@ -31,7 +31,7 @@ const SearchInput = styled.input`
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  @media ${media.largetThanMobile} {
+  ${media.overMobile} {
     width: 180px;
     &:focus {
       width: 180px;

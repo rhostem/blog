@@ -20,7 +20,7 @@ const FooterWrap = styled.footer`
 const FooterContent = styled(ContentWrapper)`
   font-weight: 400;
   font-size: 0.7rem;
-  @media ${media.largetThanMobile} {
+  ${media.overMobile} {
     font-size: 0.75rem;
   }
 `
@@ -40,7 +40,7 @@ const FooterLinks = styled.div`
   text-align: center;
   font-size: 1rem;
 
-  @media ${media.largerThanMobile} {
+  ${media.overMobile} {
     font-size: 1rem;
   }
 
