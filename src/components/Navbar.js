@@ -54,11 +54,14 @@ class Navbar extends React.Component {
       isMobileMenuVisible: false,
     }
 
-    console.log(`siteConfig`, siteConfig)
+    console.log(
+      `process.env.GATSBY_ALGOLIA_APPLICATION_ID`,
+      process.env.GATSBY_ALGOLIA_APPLICATION_ID
+    )
 
     this.searchClient = algoliasearch(
-      siteConfig.ALGOLIA_APPLICATION_ID,
-      siteConfig.ALGOLIA_ADMIN_KEY
+      process.env.GATSBY_ALGOLIA_APPLICATION_ID,
+      process.env.GATSBY_ALGOLIA_API_KEY
     )
   }
 

@@ -121,13 +121,13 @@ exports.createPages = ({ graphql, actions }) => {
 async function addPostIndicesToAlgolia(postEdges = []) {
   console.log(
     `process.env.ALGOLIA_APPLICATION_ID,process.env.ALGOLIA_ADMIN_KEY`,
-    process.env.ALGOLIA_APPLICATION_ID,
-    process.env.ALGOLIA_ADMIN_KEY
+    process.env.GATSBY_ALGOLIA_APPLICATION_ID,
+    process.env.GATSBY_ALGOLIA_ADMIN_KEY
   )
 
   const client = algoliasearch(
-    process.env.ALGOLIA_APPLICATION_ID,
-    process.env.ALGOLIA_ADMIN_KEY
+    process.env.GATSBY_ALGOLIA_APPLICATION_ID,
+    process.env.GATSBY_ALGOLIA_ADMIN_KEY
   )
 
   const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
