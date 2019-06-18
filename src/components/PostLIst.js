@@ -13,7 +13,7 @@ import * as R from 'ramda'
 
 export const PostListWrap = styled.div`
   width: 100%;
-  margin: ${rhythm(4)} auto ${rhythm(2)};
+  margin: ${rhythm(2)} auto;
 `
 
 const PostLink = styled(Link)`

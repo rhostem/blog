@@ -9,10 +9,7 @@ require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
-const removeTailSlash = s => s.replace(/(.+)(\/$)/, `$1`)
-const SITE_URL = removeTailSlash(
-  `${SITE_CONFIG.siteUrl}${SITE_CONFIG.pathPrefix}`
-)
+const SITE_URL = `${SITE_CONFIG.siteUrl}${SITE_CONFIG.pathPrefix}`
 
 module.exports = {
   pathPrefix: SITE_CONFIG.pathPrefix,
@@ -30,7 +27,7 @@ module.exports = {
       feed_url: `${SITE_URL}${SITE_CONFIG.siteRss}`,
       title: SITE_CONFIG.title,
       description: SITE_CONFIG.description,
-      image_url: `${SITE_URL}/icons/icon-512x512.png`,
+      image_url: `${SITE_URL}icons/icon-512x512.png`,
       author: SITE_CONFIG.author,
       copyright: SITE_CONFIG.copyright,
     },
