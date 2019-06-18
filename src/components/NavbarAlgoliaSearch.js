@@ -66,7 +66,7 @@ const HitList = styled.ul`
   top: 35px;
   right: 0;
   display: inline-block;
-  width: 300px;
+  width: 288px;
   padding: 1.2rem 0 0.6rem;
   list-style-type: none;
   font-size: 0.8rem;
