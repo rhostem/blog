@@ -106,6 +106,22 @@ export const GlobalStyle = createGlobalStyle`
     background: none;
   }
 
+
+  /* prevent zoom on mobile */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    select,
+    textarea,
+    input {
+      font-size: 16px;
+    }
+
+    select:focus,
+    textarea:focus,
+    input:focus {
+      font-size: 16px;
+    }
+  }
+
   .token.comment,
   .token.prolog,
   .token.doctype,
