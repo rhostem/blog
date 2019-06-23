@@ -13,7 +13,7 @@ import { getTagRoute } from 'utils/routeResolver'
 const Wrap = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  ${media.overMobile} {
+  ${media.OVER_MOBILE} {
     grid-template-columns: 1fr 1fr 1fr;
   }
   grid-row-gap: 0.5rem;

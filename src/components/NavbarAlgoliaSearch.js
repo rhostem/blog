@@ -19,8 +19,12 @@ const Wrap = styled.div`
 
   &:hover,
   &.isFocsued {
-    width: 150px;
-    ${media.overTablet} {
+    width: 90px;
+    ${media.OVER_IPHONE5} {
+      width: 150px;
+    }
+
+    ${media.OVER_TABLET} {
       width: 200px;
     }
 
@@ -63,12 +67,13 @@ const SearchIcon = styled('i')`
 
 const HitList = styled.ul`
   background: #fff;
-  position: absolute;
-  top: 35px;
-  right: 0;
+  position: fixed;
+  top: 48px;
+  left: 18px;
   display: inline-block;
-  width: 288px;
+  width: calc(100vw - 36px);
   padding: 1.2rem 0 0.6rem;
+  margin: 0;
   list-style-type: none;
   font-size: 0.8rem;
   border: 1px solid #d9d9d9;
@@ -76,9 +81,11 @@ const HitList = styled.ul`
   border-radius: 4px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 
-  ${media.overTablet} {
+  ${media.OVER_TABLET} {
+    position: absolute;
     width: 400px;
     right: initial;
+    top: 35px;
     left: -30px;
   }
 
@@ -86,7 +93,7 @@ const HitList = styled.ul`
     display: block;
     position: absolute;
     top: -7px;
-    right: 30px;
+    right: 80px;
     background: white;
     content: '';
     background-color: transparent;
@@ -96,7 +103,8 @@ const HitList = styled.ul`
     border-right: calc(15px / 2) solid transparent;
     border-bottom: 7px solid white;
 
-    ${media.overTablet} {
+    ${media.OVER_TABLET} {
+      right: initial;
       left: 30px;
     }
   }

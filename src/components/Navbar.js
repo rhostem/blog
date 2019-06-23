@@ -30,10 +30,10 @@ const SiteTitle = styled.div`
   margin-right: auto;
   color: #fff;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: 'Roboto', sans-serif;
   line-height: ${sizes.topNavHeight};
-  letter-spacing: -1px;
+  letter-spacing: 0;
 `
 
 const SearchBox = styled.div`
@@ -82,7 +82,6 @@ class Navbar extends React.Component {
           <Link to={'/'}>
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
-
           <SearchBox>
             <InstantSearch indexName="posts" searchClient={this.searchClient}>
               <NavbarAlgoliaSearch defaultRefinement="" />

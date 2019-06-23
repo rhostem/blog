@@ -34,7 +34,7 @@ const PostTitle = styled.h2`
   line-height: 1.4;
   margin: 0;
   font-size: 1.2rem;
-  ${media.overMobile} {
+  ${media.OVER_MOBILE} {
     font-size: 1.4rem;
   }
 `

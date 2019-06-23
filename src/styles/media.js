@@ -1,25 +1,26 @@
 /**
  * 디바이스의 촤대 크기
  */
-export const deviceMaxWidth = {
-  mobile: '480px',
-  tablet: '1024px',
-  desktop: '1600px',
-  largeDesktop: '1920px',
+export const breakPoint = {
+  IPHONE5: '320px',
+  MOBILE: '480px',
+  TABLET: '1024px',
+  DESKTOP: '1600px',
+  LARGEDESKTOP: '1920px',
 }
 
 export const media = {
-  iPhone5: `@media (max-width: 321px)`, // iPhone5보다 같거나 작은 사이즈에서 적용됨
-
   // media querys for mobile first
-  overMobile: `@media (min-width: ${deviceMaxWidth.mobile})`,
-  overTablet: `@media (min-width: ${deviceMaxWidth.tablet})`,
-  overDesktop: `@media (min-width: ${deviceMaxWidth.desktop})`,
+  OVER_IPHONE5: `@media (min-width: calc(${breakPoint.IPHONE5} + 1px))`,
+  OVER_MOBILE: `@media (min-width: calc(${breakPoint.MOBILE} + 1px))`,
+  OVER_TABLET: `@media (min-width: calc(${breakPoint.TABLET} + 1px))`,
+  OVER_DESKTOP: `@media (min-width: calc(${breakPoint.DESKTOP} + 1px))`,
 
   // media querys for desktop first.
-  underLargeDesktop: `@media (max-width: ${deviceMaxWidth.largeDesktop})`,
-  underDesktop: `@media (max-width: ${deviceMaxWidth.desktop})`,
-  underTablet: `@media (max-width: ${deviceMaxWidth.tablet})`,
+  UNDER_LARGE_DESKTOP: `@media (max-width: ${breakPoint.LARGEDESKTOP})`,
+  UNDER_DESKTOP: `@media (max-width: ${breakPoint.DESKTOP})`,
+  UNDER_TABLET: `@media (max-width: ${breakPoint.TABLET})`,
+  UNDER_IPHONE5: `@media (max-width: ${breakPoint.IPHONE5})`,
 }
 
 export default media

@@ -13,7 +13,7 @@ const Wrap = styled.div`
 
 const DesktopMenus = styled.div`
   display: none;
-  ${media.overMobile} {
+  ${media.OVER_MOBILE} {
     display: block;
   }
 `
@@ -38,7 +38,7 @@ const DesktopMenuItem = styled(Link)`
 const VisibleOnMobile = styled.div`
   display: block;
 
-  ${media.overMobile} {
+  ${media.OVER_MOBILE} {
     display: none;
   }
 `
