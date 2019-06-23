@@ -83,7 +83,9 @@ class Navbar extends React.Component {
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
           <SearchBox>
-            <InstantSearch indexName="posts" searchClient={this.searchClient}>
+            <InstantSearch
+              indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
+              searchClient={this.searchClient}>
               <NavbarAlgoliaSearch defaultRefinement="" />
             </InstantSearch>
           </SearchBox>
