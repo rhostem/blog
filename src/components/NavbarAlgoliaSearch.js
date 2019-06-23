@@ -17,6 +17,7 @@ const Wrap = styled.div`
   transition: width 0.2s ease-out;
   margin-left: 1.5rem;
 
+  &:hover,
   &.isFocsued {
     width: 150px;
     ${media.overTablet} {
@@ -152,6 +153,8 @@ class NavbarAlgoiaSearch extends Component {
       isResultReady: false,
       isFocused: false,
     }
+
+    this.inputRef = React.createRef()
   }
 
   defaultHits = []
@@ -197,15 +200,21 @@ class NavbarAlgoiaSearch extends Component {
     )
   }
 
+  setFocusOnInputEl = () => {
+    this.inputRef.current.focus()
+  }
+
   render() {
     return (
       <Wrap
         className={cn({
           isFocsued: this.state.isFocused || !!this.state.search,
-        })}>
+        })}
+        onClick={this.setFocusOnInputEl}>
         <SearchIcon className="fa fa-search" />
         <input
           // placeholder="검색"
+          ref={this.inputRef}
           type="search"
           value={this.state.search}
           onChange={this.handleChangeSearch}
