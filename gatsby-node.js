@@ -124,7 +124,7 @@ async function addPostIndicesToAlgolia(postEdges = []) {
     process.env.GATSBY_ALGOLIA_ADMIN_KEY
   )
 
-  const index = client.initIndex(process.env.ALGOLIA_INDEX_NAME)
+  const index = client.initIndex(process.env.GATSBY_ALGOLIA_INDEX_NAME)
 
   const { data: pageViews } = await axios.get(
     `https://blogapi.rhostem.com/api/ga/post_pageviews`,
