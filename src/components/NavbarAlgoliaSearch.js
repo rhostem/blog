@@ -13,21 +13,26 @@ const { getPostRoute } = require('utils/routeResolver')
 const Wrap = styled.div`
   line-height: 1.1;
   position: relative;
-  width: 60px;
   transition: width 0.2s ease-out;
   margin-left: 1.5rem;
+  width: 90px;
+
+  ${media.OVER_IPHONE5} {
+    width: 150px;
+  }
+
+  /* 태블릿 사이즈 이상에서는 밑줄이 늘어나는 트랜지션 적용하기 위해 기본 사이즈 작게 */
+  ${media.OVER_TABLET} {
+    width: 60px;
+  }
 
   &:hover,
   &.isFocsued {
-    width: 90px;
-    ${media.OVER_IPHONE5} {
-      width: 150px;
-    }
-
     ${media.OVER_TABLET} {
       width: 200px;
     }
 
+    /* 밑줄 */
     &::after {
       content: ' ';
       width: 100%;
@@ -217,9 +222,8 @@ class NavbarAlgoiaSearch extends Component {
       <Wrap
         className={cn({
           isFocsued: this.state.isFocused || !!this.state.search,
-        })}
-        onClick={this.setFocusOnInputEl}>
-        <SearchIcon className="fa fa-search" />
+        })}>
+        <SearchIcon className="fa fa-search" onClick={this.setFocusOnInputEl} />
         <input
           // placeholder="검색"
           ref={this.inputRef}
