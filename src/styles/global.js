@@ -106,22 +106,6 @@ export const GlobalStyle = createGlobalStyle`
     background: none;
   }
 
-
-  /* prevent zoom on mobile */
-  @media screen and (-webkit-min-device-pixel-ratio:0) {
-    select,
-    textarea,
-    input {
-      font-size: 16px;
-    }
-
-    select:focus,
-    textarea:focus,
-    input:focus {
-      font-size: 16px;
-    }
-  }
-
   .token.comment,
   .token.prolog,
   .token.doctype,
@@ -163,4 +147,20 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 0.7;
   }
 
+
+  /* prevent zoom on mobile */
+  input[type='text']:focus,
+  input[type='number']:focus,
+  textarea:focus {
+    font-size: 16px;
+  }
+
+  /* disable auto-zoom on iphone input field focus */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    select:focus,
+    textarea:focus,
+    input:focus {
+      font-size: 16px;
+    }
+  }
 `

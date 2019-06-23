@@ -46,7 +46,6 @@ const Wrap = styled.div`
   }
 
   & > input {
-    font-size: 0.8rem;
     height: 24px;
     display: inline-flex;
     flex: 1;
