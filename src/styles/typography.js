@@ -40,33 +40,36 @@ const MyTypography = {
         textDecoration: `none`,
       },
       h1: {
-        lineHeight: '1.4',
+        lineHeight: '1.6',
         marginTop: rhythm(4),
         marginBottom: rhythm(1.5),
       },
       h2: {
         lineHeight: '1.4',
-        marginTop: rhythm(3.5),
+        fontSize: '2rem',
+        marginTop: rhythm(3),
         marginBottom: rhythm(1.5),
       },
       h3: {
         lineHeight: '1.4',
-        marginTop: rhythm(2.5),
-        marginBottom: rhythm(1.5),
-      },
-      h4: {
-        fontSize: '1rem',
+        fontSize: '1.6rem',
         marginTop: rhythm(2),
         marginBottom: rhythm(1),
       },
+      h4: {
+        fontSize: '1.4rem',
+        marginTop: rhythm(1.5),
+        marginBottom: rhythm(1),
+      },
       h5: {
-        fontSize: '1rem',
-        marginTop: rhythm(2),
+        fontSize: '1.2rem',
+        fontWeight: 500,
+        marginTop: rhythm(1),
         marginBottom: rhythm(1),
       },
       h6: {
         fontSize: '1rem',
-        marginTop: rhythm(2),
+        marginTop: rhythm(1),
         marginBottom: rhythm(1),
       },
       blockquote: {

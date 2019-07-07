@@ -35,7 +35,7 @@ const PostTitle = styled.h2`
   margin: 0;
   font-size: 1.2rem;
   ${media.OVER_MOBILE} {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 `
 const PostSubTitle = styled.h3`

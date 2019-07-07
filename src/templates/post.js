@@ -19,9 +19,10 @@ const PostTitle = styled(PageTitle)`
   text-align: left;
   margin-bottom: ${rhythm(0.5)};
   font-size: 1.8rem;
+  /* line-height: 1.2; */
 
   ${media.OVER_MOBILE} {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 `
 
