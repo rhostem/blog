@@ -74,7 +74,7 @@ export const PostListItem = ({
       <PostTitle>{title}</PostTitle>
       {subTitle && <PostSubTitle>{subTitle}</PostSubTitle>}
       <Info>
-        {format(new Date(date), 'YYYY.MM.DD')} &middot; {timeToRead} min read
+        {format(new Date(date), 'YYYY.MM.DD')} &middot; {timeToRead} min to read
       </Info>
     </PostLink>
   )

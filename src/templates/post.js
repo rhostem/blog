@@ -185,7 +185,7 @@ class PostTemplate extends Component {
         )}
 
         <PostInfo>
-          {frontmatter.date} &middot; 읽기 {markdownRemark.timeToRead}분
+          {frontmatter.date} &middot; {markdownRemark.timeToRead} min to read
         </PostInfo>
 
         <TagsWrapper>

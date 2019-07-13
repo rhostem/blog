@@ -3,7 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-
 const path = require(`path`)
 const { getPostRoute, getTagRoute } = require('./src/utils/routeResolver')
 const R = require('ramda')
@@ -13,7 +12,7 @@ const striptags = require('striptags')
 const decodeHTML = require('./src/utils/decodeHtml')
 const axios = require('axios')
 const { format, subYears } = require('date-fns')
-const siteConfig = require('./site-config')
+// const siteConfig = require('./site-config')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -94,8 +93,11 @@ exports.createPages = ({ graphql, actions }) => {
     const tags = R.compose(
       R.uniq,
       R.flatten,
+      R.filter(v => R.not(R.isNil(v))),
       R.map(edge => edge.node.frontmatter.tags)
     )(postEdges)
+
+    console.log(`tags`, tags)
 
     const tagTemplate = path.resolve(`./src/templates/tag.js`)
     tags.forEach(tag => {

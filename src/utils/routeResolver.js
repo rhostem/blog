@@ -29,7 +29,7 @@
       if (!!tag) {
         return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
       } else {
-        return ``
+        return `tags`
       }
     },
   }
