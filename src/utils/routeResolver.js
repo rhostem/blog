@@ -26,7 +26,11 @@
      * 태그 문자열의 공백 문자는 underscore로 대체한다.
      */
     getTagRoute: function(tag) {
-      return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
+      if (!!tag) {
+        return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
+      } else {
+        return ``
+      }
     },
   }
 })
