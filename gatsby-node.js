@@ -97,8 +97,6 @@ exports.createPages = ({ graphql, actions }) => {
       R.map(edge => edge.node.frontmatter.tags)
     )(postEdges)
 
-    console.log(`tags`, tags)
-
     const tagTemplate = path.resolve(`./src/templates/tag.js`)
     tags.forEach(tag => {
       createPage({

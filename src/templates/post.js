@@ -76,6 +76,9 @@ const ShareButtons = styled.div`
   margin: 2.5rem 0;
 `
 
+/**
+ *
+ */
 class PostTemplate extends Component {
   constructor(props) {
     super(props)
