@@ -116,6 +116,7 @@ async function addPostIndicesToAlgolia({
       attributeForDistinct: 'title',
       distinct: true,
       customRanking: ['desc(pageView)'],
+      hitsPerPage: 5,
     },
     (err, content) => {
       if (err) {

@@ -5,10 +5,8 @@ import { colors, sizes } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 // import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
-import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch } from 'react-instantsearch-dom'
-import NavbarAlgoliaSearch from 'components/NavbarAlgoliaSearch'
 import { debounce } from 'throttle-debounce'
+import CustomInstantSearch from './search/CustomInstantSearch'
 
 const Wrap = styled.nav`
   position: fixed;
@@ -36,10 +34,6 @@ const SiteTitle = styled.div`
   letter-spacing: 0;
 `
 
-const SearchBox = styled.div`
-  margin-right: auto;
-`
-
 const MenuArea = styled.div`
   margin-left: 1rem;
   list-style: none;
@@ -52,11 +46,6 @@ class Navbar extends React.Component {
     this.state = {
       isMobileMenuVisible: false,
     }
-
-    this.searchClient = algoliasearch(
-      process.env.GATSBY_ALGOLIA_APPLICATION_ID,
-      process.env.GATSBY_ALGOLIA_API_KEY
-    )
   }
 
   handleClickMenuButton = e => {
@@ -82,13 +71,9 @@ class Navbar extends React.Component {
           <Link to={'/'}>
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
-          <SearchBox>
-            <InstantSearch
-              indexName={process.env.GATSBY_ALGOLIA_INDEX_NAME}
-              searchClient={this.searchClient}>
-              <NavbarAlgoliaSearch defaultRefinement="" />
-            </InstantSearch>
-          </SearchBox>
+
+          <CustomInstantSearch defaultRefinement="umd" />
+
           <MenuArea>
             {/* 메뉴 */}
             <NavMenus

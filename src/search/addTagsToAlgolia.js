@@ -27,6 +27,7 @@ function addTagsToAlgolia(allTags = ['name']) {
       searchableAttributes: ['tag'],
       attributeForDistinct: 'tag',
       distinct: true,
+      hitsPerPage: 5,
     },
     (err, content) => {
       if (err) {
