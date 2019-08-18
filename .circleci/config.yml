@@ -53,12 +53,12 @@ workflows:
           filters:
             branches:
               ignore:
-                # - develop
+                - develop
                 - /feature-.*/
       - deploy-master:
           requires:
             - build
           filters:
             branches:
-              only: develop
+              only: master
 
