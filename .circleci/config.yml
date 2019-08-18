@@ -47,7 +47,7 @@ jobs:
           name: DEPLOY_HOST
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avh ssh /tmp/workspace/public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog --delete
+              rsync -avh /tmp/workspace/public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog --delete
             else
               echo "Not master branch, dry run only"
             fi
