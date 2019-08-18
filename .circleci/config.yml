@@ -24,7 +24,7 @@ jobs:
 
   deploy-master:
     docker: # run the steps with Docker
-      - image: circleci/node:8
+      - image: circleci/node:10
     working_directory: ~/my-project
     steps:
       - add_ssh_keys:
