@@ -2,12 +2,13 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/node:10.16
+      - image: circleci/node:10
+    working_directory: ~/my-project
     steps:
       - checkout
       - run:
           name: update npm
-          command: 'sudo npm install -g npm@latest'
+          command: 'sudo npm install -g npm'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -20,6 +21,12 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+
+  deploy-master:
+    docker: # run the steps with Docker
+      - image: circleci/node:8
+    working_directory: ~/my-project
+    steps:
       - add_ssh_keys:
           fingerprints:
             - 'e3:80:b0:a8:8e:21:16:53:d5:db:1f:96:38:ef:b9:96'
@@ -40,9 +47,18 @@ jobs:
 
 workflows:
   version: 2
-  deploy-master:
+  build-deploy:
     jobs:
       - build:
           filters:
             branches:
+              ignore:
+                - develop
+                - /feature-.*/
+      - deploy-master:
+          requires:
+            - build
+          filters:
+            branches:
               only: master
+

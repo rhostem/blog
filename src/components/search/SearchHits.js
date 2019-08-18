@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { connectHits, Highlight } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import cn from 'classnames'
-import media from 'styles/media'
 import Link from 'gatsby-link'
 import textEllipsis from 'styles/mixin/textEllipsis'
 
@@ -84,7 +83,6 @@ function SearchHits({
   getLinkUrl,
   renderHit,
   isFirst = false,
-  currentSearch = '',
 }) {
   return (
     (isFirst || hits.length > 0) && (

@@ -90,11 +90,9 @@ export default function CustomInstantSearch() {
         <SearchBox defaultRefinement={''} onChange={v => setCurrentSearch(v)} />
 
         {isFocused && !!currentSearch && (
-          // {true && (
           <HitsWrapper>
             <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}>
               <SearchHits
-                currentSearch={currentSearch}
                 isFirst
                 header={'Posts'}
                 attribute="title"
@@ -103,7 +101,6 @@ export default function CustomInstantSearch() {
             </Index>
             <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_TAGS}>
               <SearchHits
-                currentSearch={currentSearch}
                 header={'Tags'}
                 attribute="tag"
                 getLinkUrl={hit => getTagRoute(hit.tag)}
