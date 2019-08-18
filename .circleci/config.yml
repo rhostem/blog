@@ -17,7 +17,7 @@ jobs:
           name: Build
           command: npm run build
       # 빌드 결과를 워크스페이스에 유지
-      - persist_to_workspace
+      - persist_to_workspace:
           root: /temp/build
           paths:
             - ./public
@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Install rsync
           command: sudo apt-get update && sudo apt-get install rsync
-      - attach_workspace
+      - attach_workspace:
           at: /temp/build
       - deploy:
           name: deploy
