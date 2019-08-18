@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker: # run the steps with Docker
-      - image: circleci/node:8
+      - image: circleci/node:10
     working_directory: ~/my-project
     steps:
       - checkout
