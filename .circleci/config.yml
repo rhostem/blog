@@ -47,12 +47,6 @@ jobs:
 
 workflows:
   version: 2
-  deploy-master:
-    jobs:
-      - build:
-          filters:
-            branches:
-              only: develop
   build-deploy:
     jobs:
       - build:
@@ -66,5 +60,5 @@ workflows:
             - build
           filters:
             branches:
-              only: master
+              only: develop
 
