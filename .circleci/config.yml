@@ -42,12 +42,12 @@ jobs:
           name: Install rsync
           command: sudo apt-get update && sudo apt-get install rsync
       - attach_workspace:
-          at: ~/blog/public
+          at: /tmp/workspace
       - deploy:
-          name: deploy
+          name: DEPLOY_HOST
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avh --delete ssh ./public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
+              rsync -avh ssh /tmp/workspace/public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog --delete
             else
               echo "Not master branch, dry run only"
             fi
