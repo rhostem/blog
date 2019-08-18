@@ -9,7 +9,7 @@ jobs:
           name: update npm
           command: 'sudo npm install -g npm'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-node-10-{{ checksum "package.json" }}
       - run:
           name: Install node modules
           command: npm install
@@ -22,7 +22,7 @@ jobs:
           paths:
             - ./public
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-node-10-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
