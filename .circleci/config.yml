@@ -3,29 +3,34 @@ jobs:
   build:
     docker: # run the steps with Docker
       - image: circleci/node:10
-    working_directory: ~/my-project
+    working_directory: ~/blog
     steps:
       - checkout
       - run:
           name: update npm
           command: 'sudo npm install -g npm'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-node-10-{{ checksum "package.json" }}
       - run:
           name: Install node modules
           command: npm install
       - run:
           name: Build
           command: npm run build
+      # 빌드 결과를 워크스페이스에 유지
+      - persist_to_workspace:
+          root: ~/blog
+          paths:
+            - public
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-node-10-{{ checksum "package.json" }}
           paths:
             - ./node_modules
 
   deploy-master:
     docker: # run the steps with Docker
-      - image: circleci/node:8
-    working_directory: ~/my-project
+      - image: circleci/node:10
+    working_directory: ~/blog
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -36,11 +41,13 @@ jobs:
       - run:
           name: Install rsync
           command: sudo apt-get update && sudo apt-get install rsync
+      - attach_workspace:
+          at: ~/blog/public
       - deploy:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avce ssh ./public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
+              rsync -avce ssh ~/blog/public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
             else
               echo "Not master branch, dry run only"
             fi
