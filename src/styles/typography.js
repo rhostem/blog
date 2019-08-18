@@ -40,13 +40,14 @@ const MyTypography = {
         textDecoration: `none`,
       },
       h1: {
-        lineHeight: '1.6',
         marginTop: rhythm(4),
         marginBottom: rhythm(1.5),
+        fontSize: '2.2rem',
+        lineHeight: '1.4',
       },
       h2: {
         lineHeight: '1.4',
-        fontSize: '2rem',
+        fontSize: '1.8rem',
         marginTop: rhythm(3),
         marginBottom: rhythm(1.5),
       },
@@ -254,7 +255,7 @@ const MyTypography = {
         content: `" " url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20class='i-external'%20viewBox='0%200%2032%2032'%20width='14'%20height='14'%20fill='none'%20stroke='%23${linkHoverRaw}'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='9.38%'%3E%3Cpath%20d='M14%209%20L3%209%203%2029%2023%2029%2023%2018%20M18%204%20L28%204%2028%2014%20M28%204%20L14%2018'/%3E%3C/svg%3E")`,
       },
       // Increase base font-size for tablet.
-      [`@media ${media.OVER_MOBILE}`]: {
+      [`${media.OVER_MOBILE}`]: {
         html: {
           color: 'red',
           fontSize: `${(17.5 / 16) * 100}%`,
@@ -265,24 +266,24 @@ const MyTypography = {
         },
       },
       // Increase base font-size for desktop.
-      [`@media ${media.OVER_MOBILE}`]: {
+      [`${media.OVER_MOBILE}`]: {
         html: {
           fontSize: `${(18 / 16) * 100}%`,
         },
         h1: {
-          fontSize: rhythm(1.4),
+          fontSize: '2.2rem',
         },
         h2: {
-          fontSize: rhythm(1.2),
+          fontSize: '1.8rem',
         },
         h3: {
-          fontSize: rhythm(1),
+          fontSize: '1.6rem',
         },
         h4: {
-          fontSize: rhythm(0.8),
+          fontSize: '1.4rem',
         },
         h5: {
-          fontSize: '1rem',
+          fontSize: '1.2rem',
         },
         h6: {
           fontSize: '1rem',

@@ -13,17 +13,10 @@ import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 import * as R from 'ramda'
 import PageTitle from '../components/PageTitle'
-import { media } from '../styles'
 
 const PostTitle = styled(PageTitle)`
   text-align: left;
   margin-bottom: ${rhythm(0.5)};
-  font-size: 1.8rem;
-  /* line-height: 1.2; */
-
-  ${media.OVER_MOBILE} {
-    font-size: 2.5rem;
-  }
 `
 
 const PostSubTitle = styled.p`

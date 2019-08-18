@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { rhythm } from '../styles/typography'
 
 export const PageTitle = styled.h1`
-  font-size: 2.2rem;
   font-weight: 700;
   padding-bottom: 0.2em;
   margin-top: ${rhythm(2)};
