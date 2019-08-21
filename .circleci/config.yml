@@ -60,7 +60,6 @@ workflows:
           filters:
             branches:
               ignore:
-                - develop
                 - /feature-.*/
       - deploy-master:
           requires:
