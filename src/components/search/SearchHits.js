@@ -118,4 +118,4 @@ function SearchHits({
   )
 }
 
-export default connectStateResults(connectHits(SearchHits))
+export default connectHits(connectStateResults(SearchHits))

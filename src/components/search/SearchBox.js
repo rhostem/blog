@@ -5,10 +5,14 @@ import media from 'styles/media'
 import mixin from 'styles/mixin'
 
 const Wrap = styled.div`
-  width: 45vw;
+  width: 38vw;
   padding: 2px 5px;
   border-radius: 4px;
   background: #eee2;
+
+  ${media.UNDER_MOBILE_SMALL} {
+    width: 35vw;
+  }
 
   ${media.OVER_MOBILE} {
     width: 250px;

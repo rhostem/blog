@@ -73,6 +73,8 @@ function CustomInstantSearch() {
     [setIsFocused]
   )
 
+  const handleChange = useCallback(v => setCurrentSearch(v), [])
+
   useEffect(() => {
     return () => {
       // handleFocusOut이 unmount 후에 실행될 수 있다.
@@ -86,7 +88,8 @@ function CustomInstantSearch() {
       <InstantSearch
         indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}
         searchClient={searchClient}>
-        <SearchBox defaultRefinement={''} onChange={v => setCurrentSearch(v)} />
+        <SearchBox defaultRefinement={''} onChange={handleChange} />
+
         {isFocused && !!currentSearch && (
           <HitsWrapper>
             <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}>
