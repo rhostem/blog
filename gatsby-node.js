@@ -106,7 +106,11 @@ exports.createPages = ({ graphql, actions }) => {
     })
 
     // 빌드할 때만 algolia에 레코드를 업데이트한다
-    if (process.env.NODE_ENV === 'production') {
+    if (
+      process.env.NODE_ENV === 'production' &&
+      process.env.BRANCH === 'master'
+    ) {
+      console.log('is master branch!')
       addPostsToAlgolia({ postEdges, allTags })
       addTagsToAlgolia(allTags)
     }
