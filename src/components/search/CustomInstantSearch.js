@@ -51,10 +51,9 @@ const searchClient = {
   },
 }
 
-export default function CustomInstantSearch() {
+function CustomInstantSearch() {
   const [isFocused, setIsFocused] = useState(false)
   const [currentSearch, setCurrentSearch] = useState('')
-
   const focusTimeoutRef = useRef()
 
   const handleFocusOut = useCallback(
@@ -88,7 +87,6 @@ export default function CustomInstantSearch() {
         indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}
         searchClient={searchClient}>
         <SearchBox defaultRefinement={''} onChange={v => setCurrentSearch(v)} />
-
         {isFocused && !!currentSearch && (
           <HitsWrapper>
             <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}>
@@ -112,3 +110,5 @@ export default function CustomInstantSearch() {
     </Wrap>
   )
 }
+
+export default CustomInstantSearch

@@ -1,5 +1,10 @@
 import React from 'react'
-import { connectHits, Highlight } from 'react-instantsearch-dom'
+import _ from 'lodash'
+import {
+  connectHits,
+  Highlight,
+  connectStateResults,
+} from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import cn from 'classnames'
 import Link from 'gatsby-link'
@@ -83,6 +88,7 @@ function SearchHits({
   getLinkUrl,
   renderHit,
   isFirst = false,
+  error = { statusCode: null, message: null, name: '' },
 }) {
   return (
     (isFirst || hits.length > 0) && (
@@ -91,23 +97,25 @@ function SearchHits({
         <HitList>
           {hits.length === 0 && (
             <NoResults>
-              <span>No results </span>
+              <span>{_.get(error, 'message') || 'No results'}</span>
+              <span>&nbsp;</span>
               <span role="img" aria-label="emoji">
                 😵
               </span>
             </NoResults>
           )}
-          {hits.map(hit => (
-            <li key={hit.objectID}>
-              <Link to={getLinkUrl(hit)}>
-                <Highlight hit={hit} attribute={attribute} />
-              </Link>
-            </li>
-          ))}
+          {hits.map.length > 0 &&
+            hits.map(hit => (
+              <li key={hit.objectID}>
+                <Link to={getLinkUrl(hit)}>
+                  <Highlight hit={hit} attribute={attribute} />
+                </Link>
+              </li>
+            ))}
         </HitList>
       </>
     )
   )
 }
 
-export default connectHits(SearchHits)
+export default connectStateResults(connectHits(SearchHits))
