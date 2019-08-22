@@ -10,9 +10,6 @@
     ]
   ],
   "plugins": [
-    "add-module-exports",
-    "transform-flow-strip-types",
-    "babel-plugin-styled-components",
     [
       "module-resolver",
       {
@@ -26,6 +23,9 @@
           "templates": "./src/templates"
         }
       }
-    ]
+    ],
+    "add-module-exports",
+    "transform-flow-strip-types",
+    "babel-plugin-styled-components",
   ]
 }

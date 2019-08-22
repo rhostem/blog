@@ -1,4 +1,5 @@
 import React from 'react'
+import * as R from 'ramda'
 import _ from 'lodash'
 import {
   connectHits,
@@ -42,7 +43,7 @@ const HitHeader = styled.div`
 const HitList = styled.ul`
   list-style-type: none;
   margin: 0;
-  padding: 0.8rem 0;
+  padding: 0.8rem;
 
   & li {
     margin-bottom: 0;
@@ -79,43 +80,68 @@ const NoResults = styled.div`
   text-align: center;
   font-size: 0.9rem;
   color: #37393f;
+  padding: 1em;
 `
 
-function SearchHits({
-  hits,
-  header,
-  attribute,
-  getLinkUrl,
-  renderHit,
-  isFirst = false,
-  error = { statusCode: null, message: null, name: '' },
-}) {
+const NoResultMessage = ({ errorMessage }) => {
   return (
-    (isFirst || hits.length > 0) && (
+    <NoResults>
+      <span>{errorMessage || 'No results'}</span>
+      <span>&nbsp;</span>
+      <span role="img" aria-label="emoji">
+        😵
+      </span>
+    </NoResults>
+  )
+}
+
+function SearchHits({
+  isFocusedOnInput = false,
+  heading,
+  attribute, // 하이라이팅 속성
+  getLinkUrl,
+  isFirst = false,
+
+  // connectHits
+  hits,
+
+  // connectStateResults
+  error = { statusCode: null, message: null, name: '' },
+  searchState = { page: 1, query: '' },
+  searching = false,
+}) {
+  const isResultVisible = isFocusedOnInput && (isFirst || !!searchState.query)
+  const isNoResultVisible = hits.length === 0 && isFirst && !!searchState.query
+
+  return (
+    isResultVisible && (
       <>
-        <HitHeader className={cn({ isFirst: isFirst })}>{header}</HitHeader>
-        <HitList>
-          {hits.length === 0 && (
-            <NoResults>
-              <span>{_.get(error, 'message') || 'No results'}</span>
-              <span>&nbsp;</span>
-              <span role="img" aria-label="emoji">
-                😵
-              </span>
-            </NoResults>
-          )}
-          {hits.map.length > 0 &&
-            hits.map(hit => (
-              <li key={hit.objectID}>
-                <Link to={getLinkUrl(hit)}>
-                  <Highlight hit={hit} attribute={attribute} />
-                </Link>
-              </li>
-            ))}
-        </HitList>
+        {isNoResultVisible ? (
+          <NoResultMessage errorMessage={_.get(error, 'message')} />
+        ) : (
+          hits.length > 0 && (
+            <div>
+              <HitHeader className={cn({ isFirst: isFirst })}>
+                {heading}
+              </HitHeader>
+              <HitList>
+                {hits.map(hit => (
+                  <li key={hit.objectID}>
+                    <Link to={getLinkUrl(hit)}>
+                      <Highlight hit={hit} attribute={attribute} />
+                    </Link>
+                  </li>
+                ))}
+              </HitList>
+            </div>
+          )
+        )}
       </>
     )
   )
 }
 
-export default connectHits(connectStateResults(SearchHits))
+export default R.compose(
+  connectHits,
+  connectStateResults
+)(SearchHits)

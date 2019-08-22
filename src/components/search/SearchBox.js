@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { connectAutoComplete } from 'react-instantsearch-dom'
+import React from 'react'
+import _ from 'lodash'
+import { connectSearchBox, connectStateResults } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import media from 'styles/media'
 import mixin from 'styles/mixin'
@@ -49,33 +50,24 @@ const SearchIcon = styled('i')`
  */
 function SearchBox({
   refine = () => {}, // 검색 실행
-  defaultRefinement = '',
   currentRefinement = '',
   isSearchStalled = '',
-  onChange = v => {},
-  onKeyDown = keycode => {},
+  onChangeCurrentSearch = v => {},
 }) {
-  const [input, setInput] = useState(defaultRefinement)
+  // 검색 실행
+  const debouncedRefine = _.debounce(refine, 400)
 
   const handleChange = e => {
     const { value } = e.target
-    setInput(value)
-    onChange(value)
-    // invokeRefine(value)
-    refine(value)
+    debouncedRefine(value)
   }
 
   return (
     <Wrap>
       <SearchIcon className="fa fa-search" />
-      <SearchInput
-        type="text"
-        value={input}
-        onChange={handleChange}
-        onKeyUp={e => onKeyDown(e.key)}
-      />
+      <SearchInput type="search" onChange={handleChange} />
     </Wrap>
   )
 }
 
-export default connectAutoComplete(SearchBox)
+export default connectSearchBox(connectStateResults(SearchBox))
