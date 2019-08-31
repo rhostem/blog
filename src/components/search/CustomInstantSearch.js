@@ -51,9 +51,13 @@ const searchClient = {
   },
 }
 
+/**
+ * custom algolia React instantsearch
+ *
+ * https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react/
+ */
 function CustomInstantSearch() {
   const [isFocused, setIsFocused] = useState(false)
-  const [currentSearch, setCurrentSearch] = useState('')
   const focusTimeoutRef = useRef()
 
   const handleFocusOut = useCallback(
@@ -73,8 +77,6 @@ function CustomInstantSearch() {
     [setIsFocused]
   )
 
-  const handleChange = useCallback(v => setCurrentSearch(v), [])
-
   useEffect(() => {
     return () => {
       // handleFocusOut이 unmount 후에 실행될 수 있다.
@@ -88,27 +90,27 @@ function CustomInstantSearch() {
       <InstantSearch
         indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}
         searchClient={searchClient}>
-        <SearchBox defaultRefinement={''} onChange={handleChange} />
+        <SearchBox defaultRefinement={''} />
 
-        {isFocused && !!currentSearch && (
-          <HitsWrapper>
-            <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}>
-              <SearchHits
-                isFirst
-                header={'Posts'}
-                attribute="title"
-                getLinkUrl={hit => getPostRoute(hit.path)}
-              />
-            </Index>
-            <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_TAGS}>
-              <SearchHits
-                header={'Tags'}
-                attribute="tag"
-                getLinkUrl={hit => getTagRoute(hit.tag)}
-              />
-            </Index>
-          </HitsWrapper>
-        )}
+        <HitsWrapper>
+          <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_POSTS}>
+            <SearchHits
+              isFirst
+              isFocusedOnInput={isFocused}
+              heading={'Posts'}
+              attribute="title"
+              getLinkUrl={hit => getPostRoute(hit.path)}
+            />
+          </Index>
+          <Index indexName={process.env.GATSBY_ALGOLIA_INDEX_TAGS}>
+            <SearchHits
+              heading={'Tags'}
+              attribute="tag"
+              isFocusedOnInput={isFocused}
+              getLinkUrl={hit => getTagRoute(hit.tag)}
+            />
+          </Index>
+        </HitsWrapper>
       </InstantSearch>
     </Wrap>
   )
