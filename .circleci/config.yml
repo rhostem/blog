@@ -3,7 +3,6 @@ jobs:
   build:
     docker: # run the steps with Docker
       - image: circleci/node:10
-    working_directory: ~/blog
     steps:
       - checkout
       - run:
@@ -17,11 +16,6 @@ jobs:
       - run:
           name: Build
           command: npm run build
-      # 빌드 결과를 워크스페이스에 유지
-      - persist_to_workspace:
-          root: ~/blog
-          paths:
-            - public
       - save_cache:
           key: dependency-cache-node-10-{{ checksum "package.json" }}
           paths:
@@ -36,10 +30,10 @@ jobs:
           name: Install rsync
           command: sudo apt-get update && sudo apt-get install rsync
       - deploy:
-          name: DEPLOY_HOST
+          name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avh /tmp/workspace/public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog --delete
+              rsync -avce ssh ./public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
             else
               echo "Not master branch, dry run only"
             fi
