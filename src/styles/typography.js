@@ -163,8 +163,6 @@ const MyTypography = {
         fontFeatureSettings: `"clig" 0, "calt" 0`,
         paddingTop: `0.1em`,
         paddingBottom: `0.1em`,
-        backgroundColor: `#f8f8f8`,
-        // backgroundColor: `#fef9ec`,
         borderRadius: `2px`,
         fontSize: '0.85em',
       },
@@ -180,22 +178,22 @@ const MyTypography = {
       },
       // Highlighted code blocks in Markdown via gatsby-remark-prismjs.
       '.gatsby-highlight': {
-        backgroundColor: `rgba(0,0,0, 0.04)`,
-        borderRadius: `.15rem`,
         marginTop: `0`,
         marginBottom: rhythm(3 / 4),
         padding: rhythm(3 / 4),
         overflow: `auto`,
       },
       ".gatsby-highlight pre[class*='language-']": {
-        backgroundColor: `transparent`,
-        borderRadius: 0,
+        borderRadius: `.15rem`,
         margin: 0,
-        padding: 0,
         overflow: `initial`,
         float: `left`,
-        minWidth: `100%`,
+        width: `100%`,
         textShadow: `none`,
+        overflowX: 'scroll',
+      },
+      ".gatsby-highlight pre[class*='language-'] tt,code": {
+        background: 'none',
       },
       '.gatsby-highlight-code-line': {
         background: `#fff2cc`,

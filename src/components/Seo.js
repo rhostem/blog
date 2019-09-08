@@ -51,7 +51,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
         ]
 
         // 키워드 추가
-        if (keywords.length) {
+        if (keywords && keywords.length) {
           metaTags.push({
             name: `keywords`,
             content: keywords.concat(DEFAULT_KEYWORDS).join(`, `),
