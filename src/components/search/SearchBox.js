@@ -4,6 +4,7 @@ import { connectSearchBox, connectStateResults } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import media from 'styles/media'
 import mixin from 'styles/mixin'
+import * as R from 'ramda'
 
 const Wrap = styled.div`
   width: 38vw;
@@ -70,4 +71,7 @@ function SearchBox({
   )
 }
 
-export default connectSearchBox(connectStateResults(SearchBox))
+export default R.compose(
+  connectSearchBox,
+  connectStateResults
+)(SearchBox)

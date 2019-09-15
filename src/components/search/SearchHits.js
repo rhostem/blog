@@ -110,7 +110,7 @@ function SearchHits({
   searchState = { page: 1, query: '' },
   searching = false,
 }) {
-  const isResultVisible = isFocusedOnInput && (isFirst || !!searchState.query)
+  const isResultVisible = !searching && isFocusedOnInput && !!searchState.query
   const isNoResultVisible = hits.length === 0 && isFirst && !!searchState.query
 
   return (

@@ -5,10 +5,8 @@ import SearchBox from './SearchBox'
 import styled from 'styled-components'
 import SearchHits, { indicatorHeight } from './SearchHits'
 import media from 'styles/media'
-const { getPostRoute, getTagRoute } = require('utils/routeResolver')
 
-// 입력이 없는 상태에서 검색을 실행하지 않게 한다
-let doNotLoadOnInit = true
+const { getPostRoute, getTagRoute } = require('utils/routeResolver')
 
 const Wrap = styled.div`
   position: relative;
@@ -43,11 +41,14 @@ const algoliaClient = algoliasearch(
 const searchClient = {
   search(requests) {
     // 입력이 없는 상태에서 검색을 실행하지 않게 한다
-    if (doNotLoadOnInit) {
-      doNotLoadOnInit = false
-      return
+    const isEmtpyQuery = requests.every(request => !request.params.query)
+
+    if (!isEmtpyQuery) {
+      return algoliaClient.search(requests)
+    } else {
+      // return empty promise
+      return new Promise(res => {}, rej => {})
     }
-    return algoliaClient.search(requests)
   },
 }
 
@@ -65,7 +66,7 @@ function CustomInstantSearch() {
       // 링크 클릭 후 blur 처리할 수 있도록 딜레이
       focusTimeoutRef.current = setTimeout(() => {
         setIsFocused(false)
-      }, 300)
+      }, 200)
     },
     [setIsFocused]
   )

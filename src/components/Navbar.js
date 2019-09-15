@@ -72,7 +72,7 @@ class Navbar extends React.Component {
             <SiteTitle>blog.rhostem.com</SiteTitle>
           </Link>
 
-          <CustomInstantSearch defaultRefinement="umd" />
+          <CustomInstantSearch defaultRefinement={null} />
 
           <MenuArea>
             {/* 메뉴 */}
