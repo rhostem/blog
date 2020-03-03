@@ -21,6 +21,15 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
             content: metaDescription,
           },
           {
+            property: `og:url`,
+            content: 'https://blog.rhostem.com',
+          },
+
+          {
+            property: `og:type`,
+            content: 'website',
+          },
+          {
             property: `og:title`,
             content: title,
           },
@@ -29,9 +38,10 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
             content: metaDescription,
           },
           {
-            property: `og:type`,
-            content: `website`,
+            property: `og:image`,
+            content: '/icons/rhostem-profile.jpeg',
           },
+
           {
             name: `twitter:card`,
             content: `summary`,
@@ -47,6 +57,10 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           {
             name: `twitter:description`,
             content: metaDescription,
+          },
+          {
+            name: `twitter:image`,
+            content: '/icons/rhostem-profile.jpeg',
           },
         ]
 
