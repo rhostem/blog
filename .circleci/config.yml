@@ -1,6 +1,9 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - master
     docker: # run the steps with Docker
       - image: circleci/node:10
     steps:
