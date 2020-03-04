@@ -40,30 +40,33 @@ const MyTypography = {
         textDecoration: `none`,
       },
       h1: {
-        marginTop: rhythm(4),
-        marginBottom: rhythm(1.5),
         fontSize: '2.2rem',
         lineHeight: '1.4',
+        marginTop: rhythm(4),
+        marginBottom: rhythm(1.5),
+        wordBreak: 'keep-all',
       },
       h2: {
+        fontSize: '2rem',
         lineHeight: '1.4',
-        fontSize: '1.8rem',
         marginTop: rhythm(3),
         marginBottom: rhythm(1.5),
+        wordBreak: 'keep-all',
       },
       h3: {
-        lineHeight: '1.4',
         fontSize: '1.6rem',
+        lineHeight: '1.4',
         marginTop: rhythm(2),
         marginBottom: rhythm(1),
+        wordBreak: 'keep-all',
       },
       h4: {
-        fontSize: '1.4rem',
+        fontSize: '1.2rem',
         marginTop: rhythm(1.5),
         marginBottom: rhythm(1),
       },
       h5: {
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         fontWeight: 500,
         marginTop: rhythm(1),
         marginBottom: rhythm(1),
@@ -267,24 +270,6 @@ const MyTypography = {
       [`${media.OVER_MOBILE}`]: {
         html: {
           fontSize: `${(18 / 16) * 100}%`,
-        },
-        h1: {
-          fontSize: '2.2rem',
-        },
-        h2: {
-          fontSize: '1.8rem',
-        },
-        h3: {
-          fontSize: '1.6rem',
-        },
-        h4: {
-          fontSize: '1.4rem',
-        },
-        h5: {
-          fontSize: '1.2rem',
-        },
-        h6: {
-          fontSize: '1rem',
         },
       },
     }
