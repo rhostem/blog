@@ -109,7 +109,7 @@ const MyTypography = {
       },
       'p > img + em': {
         ...scale(0 / 5),
-        fontSize: '0.85em',
+        fontSize: '0.9em',
         lineHeight: 1.4,
         display: `block`,
         textAlign: `right`,
@@ -166,7 +166,7 @@ const MyTypography = {
         paddingTop: `0.1em`,
         paddingBottom: `0.1em`,
         borderRadius: `2px`,
-        fontSize: '0.85em',
+        fontSize: '0.9em',
         wordBreak: 'keep-all',
         display: 'inline-block',
         paddingLeft: '0.5em',

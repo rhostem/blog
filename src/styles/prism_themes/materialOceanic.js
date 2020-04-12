@@ -14,7 +14,7 @@ export const materialOceanic = css`
     color: #c3cee3;
     background: #263238;
     font-family: Menlo, Roboto Mono, monospace;
-    font-size: 0.85em;
+    font-size: 0.9em;
     line-height: 1.4em;
 
     -moz-tab-size: 4;
