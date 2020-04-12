@@ -77,17 +77,16 @@ const MyTypography = {
         marginBottom: rhythm(1),
       },
       blockquote: {
-        borderLeft: `3px solid hsla(${baseHsl},0.6)`,
-        color: `hsla(${baseHsl},0.6)`,
-        fontStyle: `italic`,
+        borderLeft: `3px solid #4568dc`,
+        background: `#f5f5f5`,
         marginLeft: rhythm(-3 / 4),
         marginRight: rhythm(-3 / 4),
         marginTop: rhythm(2),
         marginBottom: rhythm(2),
-        paddingLeft: rhythm(1),
-        paddingRight: rhythm(3 / 4),
-        paddingTop: 0,
-        paddingBottom: 0,
+        padding: `${rhythm(5 / 4)} ${rhythm(3 / 4)}`,
+      },
+      'blockquote > p:first-child': {
+        marginTop: 0,
       },
       hr: {
         background: `${colors.smoke}`,
