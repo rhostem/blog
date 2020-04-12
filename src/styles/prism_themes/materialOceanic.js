@@ -27,13 +27,6 @@ export const materialOceanic = css`
     hyphens: none;
   }
 
-  code[class*='language-']::-moz-selection,
-  pre[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection,
-  pre[class*='language-'] ::-moz-selection {
-    background: #363636;
-  }
-
   code[class*='language-']::selection,
   pre[class*='language-']::selection,
   code[class*='language-'] ::selection,
@@ -60,6 +53,9 @@ export const materialOceanic = css`
     color: inherit;
     display: inline-block;
     padding: 0 0.3em !important;
+  }
+  code[class='language-text']::selection {
+    background: rgba(27, 31, 35, 0.15);
   }
 
   .language-css > code,
