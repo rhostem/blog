@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { fontFace } from 'polished'
-import { materialOceanic } from './primsTheme'
+import materialOceanic from 'styles/prism_themes/materialOceanic'
 
 export const GlobalStyle = createGlobalStyle`
   ${fontFace({
