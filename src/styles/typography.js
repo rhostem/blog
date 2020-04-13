@@ -112,7 +112,7 @@ const MyTypography = {
         fontSize: '0.9em',
         lineHeight: 1.4,
         display: `block`,
-        textAlign: `right`,
+        textAlign: `center`,
         marginBottom: rhythm(2),
         color: `${colors.light}`,
       },
