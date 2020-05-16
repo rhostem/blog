@@ -134,28 +134,36 @@ class PostTemplate extends Component {
     }${excerpt}`
     const mainImage = getMainImageFromRemark(markdownRemark.html)
 
+    let metaTags = [
+      { name: 'author', content: siteMetadata.author },
+      { name: 'description', content: description },
+      { itemProp: 'name', content: title },
+      { itemProp: 'description', content: description },
+      { property: 'og:type', content: 'article' },
+      { property: 'og:url', content: postUrl },
+      { property: 'og:title', content: title },
+      { property: 'og:description', content: description },
+      { name: 'twitter:card', content: 'summary_large_imag' },
+      { name: 'twitter:title', content: title },
+      { name: 'twitter:description', content: description },
+    ]
+
+    // 메인이미지가 있을 때만 이미지 관련 메타태그를 추가한다.
+    if (mainImage) {
+      metaTags = metaTags.concat([
+        { itemProp: 'image', content: mainImage },
+        { property: 'og:image', content: mainImage },
+        { name: 'twitter:image', content: mainImage },
+      ])
+    }
+
     return (
       <Layout>
         <SEO
           title={frontmatter.title}
           description={frontmatter.description}
           keywords={frontmatter.tags}
-          meta={[
-            { name: 'author', content: siteMetadata.author },
-            { name: 'description', content: description },
-            { itemProp: 'name', content: title },
-            { itemProp: 'description', content: description },
-            { itemProp: 'image', content: mainImage },
-            { property: 'og:type', content: 'article' },
-            { property: 'og:url', content: postUrl },
-            { property: 'og:title', content: title },
-            { property: 'og:description', content: description },
-            { property: 'og:image', content: mainImage },
-            { name: 'twitter:card', content: 'summary_large_imag' },
-            { name: 'twitter:title', content: title },
-            { name: 'twitter:description', content: description },
-            { name: 'twitter:image', content: mainImage },
-          ]}
+          meta={metaTags}
         />
         <Head>
           <link rel="canonical" href={postUrl} />
