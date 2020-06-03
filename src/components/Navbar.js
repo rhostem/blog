@@ -14,7 +14,7 @@ const Wrap = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to right, #4568dc, #b06ab3);
+  background: ${({ theme }) => theme.navbarBg};
   border-bottom: 1px solid ${colors.border};
 `
 
