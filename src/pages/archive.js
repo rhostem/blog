@@ -30,7 +30,7 @@ const YearTitle = styled.h2`
     left: 0;
     width: 4px;
     height: 100%;
-    background-color: ${colors.navbarMain};
+    background-color: #4568dc;
   }
 `
 
