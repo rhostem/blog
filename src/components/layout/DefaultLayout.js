@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import { sizes } from 'styles'
-import Navbar from './Navbar'
-import Footer from './Footer'
-import { ContentWrapper } from './content-wrapper'
+import Navbar from '../Navbar'
+import Footer from '../Footer'
+import { ContentWrapper } from '../content-wrapper'
 
 const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
 `
 
-const Layout = ({ children }) => (
+const DefaultLayout = ({ children }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -34,8 +34,8 @@ const Layout = ({ children }) => (
   />
 )
 
-Layout.propTypes = {
+DefaultLayout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default DefaultLayout

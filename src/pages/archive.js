@@ -1,7 +1,7 @@
 import React from 'react'
 import * as R from 'ramda'
 import { StaticQuery, graphql } from 'gatsby'
-import Layout from 'components/Layout'
+import Layout from 'components/layout/DefaultLayout'
 import Link from 'gatsby-link'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
