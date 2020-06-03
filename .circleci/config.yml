@@ -1,9 +1,6 @@
 version: 2
 jobs:
   build:
-    branches:
-      only:
-        - master
     docker: # run the steps with Docker
       - image: circleci/node:10
     steps:
@@ -36,7 +33,7 @@ jobs:
           name: deploy
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              rsync -avce ssh ./public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
+              rsync -arvh --delete-after --ignore-errors ./public/* ubuntu@${DEPLOY_HOST}:/home/ubuntu/www/blog
             else
               echo "Not master branch, dry run only"
             fi

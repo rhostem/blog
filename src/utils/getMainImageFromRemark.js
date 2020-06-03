@@ -4,5 +4,5 @@
 export const getMainImageFromRemark = (html = '') => {
   const pattern = /src\s*=\s*"(https?.+?[jpg|jpeg|png|gif])"/gs
   const result = pattern.exec(html)
-  return result ? result[1] : ''
+  return result ? result[1] : undefined
 }

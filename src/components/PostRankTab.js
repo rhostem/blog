@@ -13,4 +13,5 @@ export const Tab = styled.button`
   border-bottom: 3px solid
     ${({ isSelected }) => (isSelected ? colors.green : 'transparent')};
   outline: none;
+  background: #fff;
 `

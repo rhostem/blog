@@ -40,30 +40,33 @@ const MyTypography = {
         textDecoration: `none`,
       },
       h1: {
-        marginTop: rhythm(4),
-        marginBottom: rhythm(1.5),
         fontSize: '2.2rem',
         lineHeight: '1.4',
+        marginTop: rhythm(4),
+        marginBottom: rhythm(1.5),
+        wordBreak: 'keep-all',
       },
       h2: {
-        lineHeight: '1.4',
         fontSize: '1.8rem',
+        lineHeight: '1.4',
         marginTop: rhythm(3),
         marginBottom: rhythm(1.5),
+        wordBreak: 'keep-all',
       },
       h3: {
+        fontSize: '1.4rem',
         lineHeight: '1.4',
-        fontSize: '1.6rem',
         marginTop: rhythm(2),
         marginBottom: rhythm(1),
+        wordBreak: 'keep-all',
       },
       h4: {
-        fontSize: '1.4rem',
+        fontSize: '1.2rem',
         marginTop: rhythm(1.5),
         marginBottom: rhythm(1),
       },
       h5: {
-        fontSize: '1.2rem',
+        fontSize: '1rem',
         fontWeight: 500,
         marginTop: rhythm(1),
         marginBottom: rhythm(1),
@@ -74,17 +77,16 @@ const MyTypography = {
         marginBottom: rhythm(1),
       },
       blockquote: {
-        borderLeft: `3px solid hsla(${baseHsl},0.6)`,
-        color: `hsla(${baseHsl},0.6)`,
-        fontStyle: `italic`,
+        borderLeft: `3px solid #4568dc`,
+        background: `#f5f5f5`,
         marginLeft: rhythm(-3 / 4),
         marginRight: rhythm(-3 / 4),
         marginTop: rhythm(2),
         marginBottom: rhythm(2),
-        paddingLeft: rhythm(1),
-        paddingRight: rhythm(3 / 4),
-        paddingTop: 0,
-        paddingBottom: 0,
+        padding: `${rhythm(5 / 4)} ${rhythm(3 / 4)}`,
+      },
+      'blockquote > p:first-child': {
+        marginTop: 0,
       },
       hr: {
         background: `${colors.smoke}`,
@@ -107,10 +109,10 @@ const MyTypography = {
       },
       'p > img + em': {
         ...scale(0 / 5),
-        fontSize: '0.85em',
+        fontSize: '0.9em',
         lineHeight: 1.4,
         display: `block`,
-        textAlign: `right`,
+        textAlign: `center`,
         marginBottom: rhythm(2),
         color: `${colors.light}`,
       },
@@ -164,18 +166,22 @@ const MyTypography = {
         paddingTop: `0.1em`,
         paddingBottom: `0.1em`,
         borderRadius: `2px`,
-        fontSize: '0.85em',
+        fontSize: '0.9em',
+        wordBreak: 'keep-all',
+        display: 'inline-block',
+        paddingLeft: '0.5em',
+        paddingRight: '0.5em',
       },
-      // Add space before and after code/tt elements.
-      // @see https://github.com/KyleAMathews/typography.js/blob/66f78f0f4b8d2c5abf0262bcc1118610139c3b5f/packages/typography-plugin-code/src/index.js#L38-L46
-      'code:before,code:after,tt:before,tt:after': {
-        letterSpacing: `-0.2em`,
-        content: `"\u00A0"`,
-      },
-      // But don't add spaces if the code is inside a pre.
-      'pre code:before,pre code:after,pre tt:before,pre tt:after': {
-        content: `""`,
-      },
+      // // Add space before and after code/tt elements.
+      // // @see https://github.com/KyleAMathews/typography.js/blob/66f78f0f4b8d2c5abf0262bcc1118610139c3b5f/packages/typography-plugin-code/src/index.js#L38-L46
+      // 'code:before,code:after,tt:before,tt:after': {
+      //   letterSpacing: `-0.2em`,
+      //   content: `"\u00A0"`,
+      // },
+      // // But don't add spaces if the code is inside a pre.
+      // 'pre code:before,pre code:after,pre tt:before,pre tt:after': {
+      //   content: `""`,
+      // },
       // Highlighted code blocks in Markdown via gatsby-remark-prismjs.
       '.gatsby-highlight': {
         marginTop: `0`,
@@ -196,13 +202,14 @@ const MyTypography = {
         background: 'none',
       },
       '.gatsby-highlight-code-line': {
-        background: `#fff2cc`,
         display: `block`,
-        marginRight: rhythm(-3 / 4),
-        marginLeft: rhythm(-3 / 4),
-        paddingRight: rhythm(3 / 4),
-        paddingLeft: rhythm(2 / 4),
-        borderLeft: `${rhythm(1 / 4)} solid #ffd9b3`,
+        /* FIXME: 테마 변경하면서 하이라이터 임시 제거함 */
+        // background: `rgb(158, 113, 117, 0.5)`,
+        // marginRight: rhythm(-3 / 4),
+        // marginLeft: rhythm(-3 / 4),
+        // paddingRight: rhythm(3 / 4),
+        // paddingLeft: rhythm(2 / 4),
+        // borderLeft: `${rhythm(1 / 4)} solid #ffd9b3`,
       },
       // Fancy underline links in .post.
       '.post a:not(.gatsby-resp-image-link):not(.anchor), .link-underline': {
@@ -267,24 +274,6 @@ const MyTypography = {
       [`${media.OVER_MOBILE}`]: {
         html: {
           fontSize: `${(18 / 16) * 100}%`,
-        },
-        h1: {
-          fontSize: '2.2rem',
-        },
-        h2: {
-          fontSize: '1.8rem',
-        },
-        h3: {
-          fontSize: '1.6rem',
-        },
-        h4: {
-          fontSize: '1.4rem',
-        },
-        h5: {
-          fontSize: '1.2rem',
-        },
-        h6: {
-          fontSize: '1rem',
         },
       },
     }

@@ -147,6 +147,134 @@ export const prismDefault = css`
   }
 `
 
+export const prismGithub = css`
+  /**
+  * GHColors theme by Avi Aryan (http://aviaryan.in)
+  * Inspired by Github syntax coloring
+  */
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    color: #393a34;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    direction: ltr;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.3em;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  pre[class*='language-']::-moz-selection,
+  pre[class*='language-'] ::-moz-selection,
+  code[class*='language-']::-moz-selection,
+  code[class*='language-'] ::-moz-selection {
+    background: #b3d4fc;
+  }
+
+  pre[class*='language-']::selection,
+  pre[class*='language-'] ::selection,
+  code[class*='language-']::selection,
+  code[class*='language-'] ::selection {
+    background: #b3d4fc;
+  }
+
+  /* Code blocks */
+  pre[class*='language-'] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border: 1px solid #dddddd;
+    background-color: white;
+  }
+
+  :not(pre) > code[class*='language-'],
+  pre[class*='language-'] {
+    background: #f8f8f8;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*='language-'] {
+    padding: 0.2em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    background: #f8f8f8;
+    border: 1px solid #dddddd;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #999988;
+    font-style: italic;
+  }
+
+  .token.namespace {
+    opacity: 0.7;
+  }
+
+  .token.string,
+  .token.attr-value {
+    color: #e3116c;
+  }
+  .token.punctuation,
+  .token.operator {
+    color: #393a34; /* no highlight */
+  }
+
+  .token.entity,
+  .token.url,
+  .token.symbol,
+  .token.number,
+  .token.boolean,
+  .token.variable,
+  .token.constant,
+  .token.property,
+  .token.regex,
+  .token.inserted {
+    color: #36acaa;
+  }
+
+  .token.atrule,
+  .token.keyword,
+  .token.attr-name,
+  .language-autohotkey .token.selector {
+    color: #00a4db;
+  }
+
+  .token.function,
+  .token.deleted,
+  .language-autohotkey .token.tag {
+    color: #9a050f;
+  }
+
+  .token.tag,
+  .token.selector,
+  .language-autohotkey .token.keyword {
+    color: #00009f;
+  }
+
+  .token.important,
+  .token.function,
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+`
+
 export const prismDracula = css`
   /* PrismJS 1.14.0 http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+abap+actionscript+ada+apacheconf+apl+applescript+c+arff+asciidoc+asm6502+aspnet+autohotkey+autoit+bash+basic+batch+bison+brainfuck+bro+cpp+csharp+arduino+coffeescript+clojure+ruby+csp+css-extras+d+dart+diff+django+docker+eiffel+elixir+elm+markup-templating+erlang+fsharp+flow+fortran+gedcom+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+http+hpkp+hsts+ichigojam+icon+inform7+ini+io+j+java+jolie+json+julia+keyman+kotlin+latex+less+liquid+lisp+livescript+lolcode+lua+makefile+markdown+erb+matlab+mel+mizar+monkey+n4js+nasm+nginx+nim+nix+nsis+objectivec+ocaml+opencl+oz+parigp+parser+pascal+perl+php+php-extras+sql+powershell+processing+prolog+properties+protobuf+pug+puppet+pure+python+q+qore+r+jsx+typescript+renpy+reason+rest+rip+roboconf+crystal+rust+sas+sass+scss+scala+scheme+smalltalk+smarty+plsql+soy+stylus+swift+tcl+textile+twig+tsx+vbnet+velocity+verilog+vhdl+vim+visual-basic+wasm+wiki+xeora+xojo+yaml&plugins=line-numbers+toolbar+show-language */
 
@@ -547,258 +675,5 @@ export const prismDracula = css`
     color: inherit;
     text-decoration: none;
     background-color: var(--verde);
-  }
-`
-
-export const prismTomorrow = css`
-  /* PrismJS 1.17.1
-https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+typescript+jsx+tsx */
-  /**
- * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML
- * Based on https://github.com/chriskempson/tomorrow-theme
- * @author Rose Pritchard
- */
-
-  code[class*='language-'],
-  pre[class*='language-'] {
-    color: #ccc;
-    background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.5;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-  }
-
-  /* Code blocks */
-  pre[class*='language-'] {
-    padding: 1em;
-    margin: 0.5em 0;
-    overflow: auto;
-  }
-
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: #2d2d2d;
-  }
-
-  /* Inline code */
-  :not(pre) > code[class*='language-'] {
-    padding: 0.1em;
-    border-radius: 0.3em;
-    white-space: normal;
-  }
-
-  .token.comment,
-  .token.block-comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: #999;
-  }
-
-  .token.punctuation {
-    color: #ccc;
-  }
-
-  .token.tag,
-  .token.attr-name,
-  .token.namespace,
-  .token.deleted {
-    color: #e2777a;
-  }
-
-  .token.function-name {
-    color: #6196cc;
-  }
-
-  .token.boolean,
-  .token.number,
-  .token.function {
-    color: #f08d49;
-  }
-
-  .token.property,
-  .token.class-name,
-  .token.constant,
-  .token.symbol {
-    color: #f8c555;
-  }
-
-  .token.selector,
-  .token.important,
-  .token.atrule,
-  .token.keyword,
-  .token.builtin {
-    color: #cc99cd;
-  }
-
-  .token.string,
-  .token.char,
-  .token.attr-value,
-  .token.regex,
-  .token.variable {
-    color: #7ec699;
-  }
-
-  .token.operator,
-  .token.entity,
-  .token.url {
-    color: #67cdcc;
-  }
-
-  .token.important,
-  .token.bold {
-    font-weight: bold;
-  }
-  .token.italic {
-    font-style: italic;
-  }
-
-  .token.entity {
-    cursor: help;
-  }
-
-  .token.inserted {
-    color: green;
-  }
-`
-
-export const prismGithub = css`
-  /**
-  * GHColors theme by Avi Aryan (http://aviaryan.in)
-  * Inspired by Github syntax coloring
-  */
-
-  code[class*='language-'],
-  pre[class*='language-'] {
-    color: #393a34;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    direction: ltr;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    line-height: 1.3em;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-  }
-
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection,
-  code[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection {
-    background: #b3d4fc;
-  }
-
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection,
-  code[class*='language-']::selection,
-  code[class*='language-'] ::selection {
-    background: #b3d4fc;
-  }
-
-  /* Code blocks */
-  pre[class*='language-'] {
-    padding: 1em;
-    margin: 0.5em 0;
-    overflow: auto;
-    border: 1px solid #dddddd;
-    background-color: white;
-  }
-
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: #f8f8f8;
-  }
-
-  /* Inline code */
-  :not(pre) > code[class*='language-'] {
-    padding: 0.2em;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background: #f8f8f8;
-    border: 1px solid #dddddd;
-  }
-
-  .token.comment,
-  .token.prolog,
-  .token.doctype,
-  .token.cdata {
-    color: #999988;
-    font-style: italic;
-  }
-
-  .token.namespace {
-    opacity: 0.7;
-  }
-
-  .token.string,
-  .token.attr-value {
-    color: #e3116c;
-  }
-  .token.punctuation,
-  .token.operator {
-    color: #393a34; /* no highlight */
-  }
-
-  .token.entity,
-  .token.url,
-  .token.symbol,
-  .token.number,
-  .token.boolean,
-  .token.variable,
-  .token.constant,
-  .token.property,
-  .token.regex,
-  .token.inserted {
-    color: #36acaa;
-  }
-
-  .token.atrule,
-  .token.keyword,
-  .token.attr-name,
-  .language-autohotkey .token.selector {
-    color: #00a4db;
-  }
-
-  .token.function,
-  .token.deleted,
-  .language-autohotkey .token.tag {
-    color: #9a050f;
-  }
-
-  .token.tag,
-  .token.selector,
-  .language-autohotkey .token.keyword {
-    color: #00009f;
-  }
-
-  .token.important,
-  .token.function,
-  .token.bold {
-    font-weight: bold;
-  }
-
-  .token.italic {
-    font-style: italic;
   }
 `

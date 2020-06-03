@@ -9,7 +9,9 @@
     "activityBarBadge.foreground": "#15202b",
     "statusBar.background": "#4a67d6",
     "statusBarItem.hoverBackground": "#748adf",
-    "statusBar.foreground": "#e7e7e7"
+    "statusBar.foreground": "#e7e7e7",
+    "activityBar.activeBackground": "#748adf",
+    "statusBar.border": "#4a67d6"
   },
   "files.exclude": {
     "**/public": true
