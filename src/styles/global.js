@@ -8,6 +8,12 @@ export const GlobalStyle = createGlobalStyle`
     fontFilePath: '/fonts/menlo-regular',
   })}
 
+  h1, h2, h3 {
+    code {
+      word-break: break-all !important;
+    }
+  }
+
   .iframe-video-wrapper {
     position: relative;
     display: block;
