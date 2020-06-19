@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   code {
     display: inline !important; /* Function.prototype.call 처럼 긴 코드가 왔을 때 break-all을 적용하기 위함 */
-    word-break: break-all !important;
+    word-break: break-word !important;
   }
 
   .iframe-video-wrapper {
