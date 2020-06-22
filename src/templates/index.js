@@ -5,7 +5,6 @@ import Head from '../components/Head'
 import PostList from '../components/PostLIst'
 import styled, { css } from 'styled-components'
 import { mixin } from '../styles'
-import { rhythm } from '../styles/typography'
 import ReactPaginate from 'react-paginate'
 import { navigateTo } from 'gatsby-link'
 
@@ -28,7 +27,7 @@ const currentPageStyle = css`
 `
 
 const PaginationContainer = styled.div`
-  margin: ${rhythm(1)} auto;
+  margin: 1.4rem auto;
   position: relative;
   display: block;
 
@@ -45,7 +44,6 @@ const PaginationContainer = styled.div`
   & > ul > li {
     margin: 0;
     font-size: 0.8rem;
-    background-color: #fff;
     line-height: 1;
 
     &:hover {

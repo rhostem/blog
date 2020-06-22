@@ -5,7 +5,6 @@ import Head from 'components/Head'
 import Layout from 'components/layout/DefaultLayout'
 import styled from 'styled-components'
 import { clearFix } from 'polished'
-import { rhythm } from 'styles/typography'
 import Tags from '../components/Tags'
 import qs from 'qs'
 import { css } from 'styled-components'
@@ -16,11 +15,11 @@ import PageTitle from '../components/PageTitle'
 
 const PostTitle = styled(PageTitle)`
   text-align: left;
-  margin-bottom: ${rhythm(0.5)};
+  margin-bottom: 0.7rem;
 `
 
 const PostSubTitle = styled.p`
-  margin: ${rhythm(0.5)} 0;
+  margin: 0.7rem 0;
   font-size: 1.2rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.54);
@@ -32,12 +31,12 @@ const PostInfo = styled.div`
 `
 
 const TagsWrapper = styled.div`
-  margin-top: ${rhythm(1 / 2)};
+  margin-top: 0.7rem;
 `
 
 const Post = styled.article`
-  margin-top: ${rhythm(2)};
-  margin-bottom: ${rhythm(2)};
+  margin-top: 2.8rem;
+  margin-bottom: 2.8rem;
 `
 
 const ShareButtonStyle = css`
@@ -147,8 +146,6 @@ class PostTemplate extends Component {
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
     ]
-
-    console.log(`mainImage`, mainImage)
 
     // 메인이미지가 있을 때만 이미지 관련 메타태그를 추가한다.
     if (mainImage) {

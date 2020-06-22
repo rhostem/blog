@@ -15,7 +15,7 @@ const Wrap = styled.nav`
   left: 0;
   width: 100%;
   background: ${({ theme }) => theme.navbarBg};
-  border-bottom: 1px solid ${colors.border};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `
 
 export const NavbarCotent = styled(ContentWrapper)`

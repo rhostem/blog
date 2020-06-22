@@ -1,6 +1,11 @@
-const TEXT_RGB = '46, 46, 46, 0.95' // #2E2E2E
+import { themeNames } from '../../components/hooks/useDarkMode'
+
+console.log(`themeNames`, themeNames)
+
+const TEXT_RGB = '46, 46, 46' // #2E2E2E
 
 const lightTheme = {
+  name: 'LIGHT',
   colors: {
     navbarMain: '#4568dc',
     green: '#76b835',
@@ -16,6 +21,8 @@ const lightTheme = {
     body: '#fafafa',
     border: '#ebebeb',
   },
+  hrBackgroundImage:
+    'linear-gradient(90deg,rgba(34,34,34,.2), rgba(34,34,34,.75), rgba(34,34,34,.2))',
   navbarBg: 'linear-gradient(to right, #4568dc, #b06ab3)',
   navbarColor: '#fff',
 }

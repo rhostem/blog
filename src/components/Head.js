@@ -1,6 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { GlobalStyle } from '../styles/global'
+import { GlobalStyle } from '../styles/globalStyle'
 
 export default function Head({ children }) {
   return (

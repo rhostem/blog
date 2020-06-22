@@ -1,6 +1,5 @@
 import Link from 'gatsby-link'
 import React from 'react'
-import { rhythm } from '../styles/typography'
 import { wordWrap } from 'polished'
 import { media } from '../styles'
 import styled from 'styled-components'
@@ -13,15 +12,14 @@ import throttle from 'utils/throttle'
 
 export const PostListWrap = styled.div`
   width: 100%;
-  margin: ${rhythm(2)} auto;
+  margin: 2.8rem auto;
 `
 
 const PostLink = styled(Link)`
   display: block;
-  background-color: #fff;
   border-radius: 2px;
-  padding-bottom: ${rhythm(0.5)};
-  margin: ${rhythm(2)} 0;
+  padding-bottom: 0.7rem;
+  margin: 2.8rem 0;
 
   &:first-child {
     margin-top: 0;
@@ -43,7 +41,7 @@ const PostSubTitle = styled.h3`
   line-height: 1.4;
   font-weight: 400;
   margin: 0.5rem 0;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${({ theme }) => theme.colors.text};
   ${setHeightLimitAndEllipsis({
     line: 2,
   })};
@@ -54,7 +52,7 @@ const Info = styled.div`
   margin: 0.5rem 0;
   font-size: 0.8rem;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.8);
+  color: ${({ theme }) => theme.colors.text};
 `
 
 const MainImage = styled.div`

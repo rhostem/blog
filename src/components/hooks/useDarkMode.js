@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react'
 import lightTheme from 'styles/theme/light'
 import darkTheme from 'styles/theme/dark'
 
-const modes = {
+export const themeNames = {
   LIGHT: 'LIGHT',
   DARK: 'DARK',
 }
 
 export const useDarkMode = () => {
   // 기본은 다크모드
-  const [mode, setMode] = useState(modes.DARK)
+  const [mode, setMode] = useState(themeNames.DARK)
   const [theme, setTheme] = useState(darkTheme)
   const [isThemeInit, setIsThemeInit] = useState(false)
 
@@ -17,14 +17,14 @@ export const useDarkMode = () => {
   const changeMode = mode => {
     window.localStorage.setItem('theme', mode)
     setMode(mode)
-    setTheme(mode === modes.LIGHT ? lightTheme : darkTheme)
+    setTheme(mode === themeNames.LIGHT ? lightTheme : darkTheme)
   }
 
   const toggleTheme = () => {
-    if (mode === modes.LIGHT) {
-      changeMode(modes.DARK)
+    if (mode === themeNames.LIGHT) {
+      changeMode(themeNames.DARK)
     } else {
-      changeMode(modes.LIGHT)
+      changeMode(themeNames.LIGHT)
     }
   }
 
@@ -37,7 +37,7 @@ export const useDarkMode = () => {
     let localTheme = window.localStorage.getItem('theme')
 
     if (!localTheme) {
-      localTheme = isSystemDarkMode ? modes.DARK : modes.LIGHT
+      localTheme = isSystemDarkMode ? themeNames.DARK : themeNames.LIGHT
       window.localStorage.setItem('theme', localTheme)
     }
 

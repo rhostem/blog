@@ -7,21 +7,20 @@ import SEO from 'components/Seo'
 import Head from 'components/Head'
 import { getPostRoute } from 'utils/routeResolver'
 import styled from 'styled-components'
-import { mixin, colors } from 'styles'
-import { rhythm } from 'styles/typography'
+import { mixin } from 'styles'
 import format from 'date-fns/format'
 import PageTitle from '../components/PageTitle'
 
 const YearArchive = styled.ul`
-  margin: ${rhythm(2)} 0;
+  margin: 2.8rem 0;
   list-style-type: disc;
 `
 
 const YearTitle = styled.h2`
   position: relative;
   padding-left: 1rem;
-  margin-top: ${rhythm(1)};
-  margin-bottom: ${rhythm(1)};
+  margin-top: 1.4rem;
+  margin-bottom: 1.4rem;
   font-weight: 400;
 
   &::before {
@@ -38,7 +37,7 @@ const PostTitleLink = styled(Link)`
   position: relative;
   list-style: disc;
   display: block;
-  margin: ${rhythm(0.5)} 0 ${rhythm(0.5)} 0;
+  margin: 0.7rem 0 0.7rem 0;
   padding-left: 0.8rem;
 
   &::before {
@@ -54,7 +53,7 @@ const PostTitleLink = styled(Link)`
   }
 
   &:hover {
-    color: ${colors.linkHover};
+    color: ${({ theme }) => theme.colors.linkHover};
   }
 `
 

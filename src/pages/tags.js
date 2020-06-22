@@ -23,7 +23,7 @@ const Wrap = styled.div`
 
 const TagLink = styled(Link)`
   padding: 0.5em 0.6em;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.colors.text};
   transition: background-color 0.3s ease-in-out;
   margin-bottom: 0.2em;
   &:hover {
@@ -40,7 +40,7 @@ const HotTagLink = styled(TagLink)`
   font-weight: bold;
   & > span {
     display: inline-block;
-    border-bottom: 2px solid ${colors.green};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.green};
   }
 `
 

@@ -9,13 +9,14 @@ export default css`
   code[class*='language-'],
   pre[class*='language-'] {
     color: #393a34;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     direction: ltr;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
-    line-height: 1.3em;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;

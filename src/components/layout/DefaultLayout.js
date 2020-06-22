@@ -10,6 +10,7 @@ import { useDarkMode } from 'components/hooks/useDarkMode'
 
 const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
+  background-color: ${({ theme }) => theme.colors.body};
 `
 
 const DefaultLayout = ({ children }) => {
@@ -31,15 +32,10 @@ const DefaultLayout = ({ children }) => {
         <>
           <ThemeProvider theme={theme}>
             <Navbar />
-
-            <div
-              css={`
-                margin-top: 100px;
-              `}>
-              <button onClick={toggleTheme}>toggle theme</button>
-            </div>
-
             <Page>
+              <div>
+                <button onClick={toggleTheme}>toggle theme</button>
+              </div>
               <ContentWrapper>{children}</ContentWrapper>
               <Footer />
             </Page>

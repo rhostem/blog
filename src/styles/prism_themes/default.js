@@ -15,14 +15,14 @@ export default css`
     color: black;
     background: none;
     text-shadow: 0 1px white;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-    font-size: 1em;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    line-height: 1.5;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;
