@@ -10,7 +10,8 @@ import { useDarkMode } from 'components/hooks/useDarkMode'
 
 const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
-  background-color: ${({ theme }) => theme.colors.body};
+  background: ${({ theme }) => theme.colors.body};
+  transition: background 0.3s linear;
 `
 
 const DefaultLayout = ({ children }) => {

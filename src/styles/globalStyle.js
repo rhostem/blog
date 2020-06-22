@@ -29,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
     ${media.OVER_TABLET} {
       font-size: ${(18 / 16) * 100}%;
     }
-    line-height: ${sizes.baseLineHeight};;
   }
 
   body {
@@ -40,7 +39,6 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.link};
     border-color: ${({ theme }) => theme.colors.link};
     text-decoration: none;
-
   }
 
   hr {
@@ -71,6 +69,7 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     color: ${({ theme }) => theme.colors.black};
     font-weight: 700;
+
 
     & > code {
       word-break: break-word !important;
