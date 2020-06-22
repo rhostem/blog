@@ -39,7 +39,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           },
           {
             property: `og:image`,
-            content: '/icons/rhostem-profile.jpeg',
+            content: 'https://blog.rhostem.com/icons/rhostem-profile.jpeg',
           },
 
           {
@@ -60,7 +60,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           },
           {
             name: `twitter:image`,
-            content: '/icons/rhostem-profile.jpeg',
+            content: 'https://blog.rhostem.com/icons/rhostem-profile.jpeg',
           },
         ]
 
@@ -76,8 +76,6 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
             content: DEFAULT_KEYWORDS.join(', '),
           })
         }
-
-        console.log(`meta`, meta)
 
         // SEO 컴포넌트에 직접 전달받은 메타 태그는 중복을 제거하고 추가한다.
         if (meta.length > 0) {
