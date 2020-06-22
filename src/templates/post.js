@@ -143,10 +143,12 @@ class PostTemplate extends Component {
       { property: 'og:url', content: postUrl },
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { name: 'twitter:card', content: 'summary_large_imag' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
     ]
+
+    console.log(`mainImage`, mainImage)
 
     // 메인이미지가 있을 때만 이미지 관련 메타태그를 추가한다.
     if (mainImage) {

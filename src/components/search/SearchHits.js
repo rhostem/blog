@@ -1,6 +1,5 @@
 import React from 'react'
 import * as R from 'ramda'
-import _ from 'lodash'
 import {
   connectHits,
   Highlight,
@@ -117,7 +116,7 @@ function SearchHits({
     isResultVisible && (
       <>
         {isNoResultVisible ? (
-          <NoResultMessage errorMessage={_.get(error, 'message')} />
+          <NoResultMessage errorMessage={error.message} />
         ) : (
           hits.length > 0 && (
             <div>

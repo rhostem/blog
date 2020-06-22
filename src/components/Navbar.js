@@ -5,8 +5,8 @@ import { colors, sizes } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 // import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
-import { debounce } from 'throttle-debounce'
 import CustomInstantSearch from './search/CustomInstantSearch'
+import debounce from 'utils/debounce'
 
 const Wrap = styled.nav`
   position: fixed;

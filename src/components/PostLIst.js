@@ -6,10 +6,10 @@ import { media } from '../styles'
 import styled from 'styled-components'
 import { setHeightLimitAndEllipsis } from '../styles/mixin/setHeightLimit'
 import format from 'date-fns/format'
-import { throttle } from 'throttle-debounce'
 import { getBodyHeight } from '../utils/getBodyHeight'
 import { getPostRoute } from '../utils/routeResolver'
 import * as R from 'ramda'
+import throttle from 'utils/throttle'
 
 export const PostListWrap = styled.div`
   width: 100%;

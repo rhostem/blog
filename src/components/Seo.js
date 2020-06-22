@@ -1,8 +1,8 @@
 import React from 'react'
-import * as R from 'ramda'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { concat, not, isEmpty, filter, includes, isNil, compose } from 'ramda'
 
 export const DEFAULT_KEYWORDS = ['웹 개발', 'Front-end', '프론트엔드']
 
@@ -44,7 +44,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
 
           {
             name: `twitter:card`,
-            content: `summary`,
+            content: `summary_large_image`,
           },
           {
             name: `twitter:creator`,
@@ -65,7 +65,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
         ]
 
         // 키워드 추가
-        if (keywords && keywords.length) {
+        if (!isEmpty(keywords)) {
           metaTags.push({
             name: `keywords`,
             content: keywords.concat(DEFAULT_KEYWORDS).join(`, `),
@@ -77,14 +77,23 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           })
         }
 
+        console.log(`meta`, meta)
+
         // SEO 컴포넌트에 직접 전달받은 메타 태그는 중복을 제거하고 추가한다.
         if (meta.length > 0) {
-          const metaNamesToAdd = meta.map(m => m.name)
+          const metaNamesToAdd = meta
+            .map(m => m.name)
+            .filter(
+              compose(
+                not,
+                isNil
+              )
+            )
 
-          metaTags = R.concat(
+          metaTags = concat(
             // metaTags에서 SEO 컴포넌트에 직접 전달된
-            R.filter(currentMeta =>
-              R.not(R.includes(currentMeta.name, metaNamesToAdd))
+            filter(currentMeta =>
+              not(includes(currentMeta.name, metaNamesToAdd))
             )(metaTags),
             meta
           )
