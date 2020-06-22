@@ -29,8 +29,19 @@ export const useDarkMode = () => {
   }
 
   useEffect(() => {
-    const localTheme = window.localStorage.getItem('theme')
-    localTheme && changeMode(localTheme)
+    // 시스템 다크 모드 확인
+    const isSystemDarkMode =
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    let localTheme = window.localStorage.getItem('theme')
+
+    if (!localTheme) {
+      localTheme = isSystemDarkMode ? modes.DARK : modes.LIGHT
+      window.localStorage.setItem('theme', localTheme)
+    }
+
+    changeMode(localTheme)
     setIsThemeInit(true)
   }, [])
 
