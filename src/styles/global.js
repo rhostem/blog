@@ -8,6 +8,14 @@ export const GlobalStyle = createGlobalStyle`
     fontFilePath: '/fonts/menlo-regular',
   })}
 
+  /* 코드블럭 테마 */
+  ${materialOceanic}
+
+  code {
+    display: inline !important; /* Function.prototype.call 처럼 긴 코드가 왔을 때 break-all을 적용하기 위함 */
+    word-break: break-word !important;
+  }
+
   .iframe-video-wrapper {
     position: relative;
     display: block;
@@ -37,10 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-
   .footnote-ref {
     margin: 0 0.2em;
   }
-
-  ${materialOceanic}
 `
