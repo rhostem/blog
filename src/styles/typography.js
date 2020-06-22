@@ -1,5 +1,5 @@
 import Typography from 'typography'
-import { baseHsl, colors } from './colors'
+import { colors } from './colors'
 import { media } from './media'
 
 const linkRaw = colors.link.substr(1)
@@ -159,7 +159,6 @@ const MyTypography = {
       // Code highlighting.
       'tt, code': {
         fontFamily: `Menlo,"Space Mono",Consolas,"Roboto Mono","Droid Sans Mono","Liberation Mono",Courier,monospace`,
-        // Disable ligatures as they look funny w/ Space Mono as code.
         fontVariant: `none`,
         WebkitFontFeatureSettings: `"clig" 0, "calt" 0`,
         fontFeatureSettings: `"clig" 0, "calt" 0`,
@@ -172,17 +171,6 @@ const MyTypography = {
         paddingLeft: '0.5em',
         paddingRight: '0.5em',
       },
-      // // Add space before and after code/tt elements.
-      // // @see https://github.com/KyleAMathews/typography.js/blob/66f78f0f4b8d2c5abf0262bcc1118610139c3b5f/packages/typography-plugin-code/src/index.js#L38-L46
-      // 'code:before,code:after,tt:before,tt:after': {
-      //   letterSpacing: `-0.2em`,
-      //   content: `"\u00A0"`,
-      // },
-      // // But don't add spaces if the code is inside a pre.
-      // 'pre code:before,pre code:after,pre tt:before,pre tt:after': {
-      //   content: `""`,
-      // },
-      // Highlighted code blocks in Markdown via gatsby-remark-prismjs.
       '.gatsby-highlight': {
         marginTop: `0`,
         marginBottom: rhythm(3 / 4),
@@ -203,13 +191,6 @@ const MyTypography = {
       },
       '.gatsby-highlight-code-line': {
         display: `block`,
-        /* FIXME: 테마 변경하면서 하이라이터 임시 제거함 */
-        // background: `rgb(158, 113, 117, 0.5)`,
-        // marginRight: rhythm(-3 / 4),
-        // marginLeft: rhythm(-3 / 4),
-        // paddingRight: rhythm(3 / 4),
-        // paddingLeft: rhythm(2 / 4),
-        // borderLeft: `${rhythm(1 / 4)} solid #ffd9b3`,
       },
       // Fancy underline links in .post.
       '.post a:not(.gatsby-resp-image-link):not(.anchor), .link-underline': {
