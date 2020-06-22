@@ -1,8 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
 import { fontFace } from 'polished'
-import materialOceanic from 'styles/prism_themes/materialOceanic'
-import defaultTheme from 'styles/prism_themes/default'
-import github from 'styles/prism_themes/github'
 import media from 'styles/media'
 import { sizes } from 'styles/sizes'
 
@@ -13,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   })}
 
   /* 코드블럭 테마 */
-  ${({ theme }) => (theme.name === 'DARK' ? materialOceanic : defaultTheme)}
+  ${({ theme }) => theme.codeBlockTheme}
 
   * {
     font-size: inherit;
@@ -76,14 +73,12 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 700;
 
     & > code {
-      /* Function.prototype.call 처럼 긴 코드가 왔을 때 break-all을 적용하기 위함 */
-      display: inline !important;
       word-break: break-word !important;
     }
   }
 
   h1 {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
     line-height: 1.4;
     margin-top: 5.6rem;
     margin-bottom: 2.4rem;
@@ -168,18 +163,25 @@ export const GlobalStyle = createGlobalStyle`
   pre[class*='language-'] {
     font-family: Menlo, Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Courier, monospace;
     font-variant: none;
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
     font-size: 0.865rem;
   }
 
-  /* Code highlighting. */
-  tt, code {
-    padding-top: 0.1em;
-    padding-bottom: 0.1em;
-    border-radius: 2px;
+  /* 코드 블럭이 아닌 곳의 코드 하이라이팅 */
+  :not(pre) > code[class*='language-'] {
+    line-height: 1.4em;
+    border-radius: 0.3em;
     word-break: keep-all;
     display: inline-block;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+    background: ${({ theme }) => theme.codeBackground};
+    height: 1.7em;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9em;
+    padding: 0 0.3em;
   }
 
   /* Style gatsby-remark-images elements. */
@@ -340,4 +342,5 @@ export const GlobalStyle = createGlobalStyle`
   .footnote-ref {
     margin: 0 0.2em;
   }
+
 `

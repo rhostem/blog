@@ -68,6 +68,12 @@ const ShareButtons = styled.div`
   margin: 2.5rem 0;
 `
 
+const DisqusThread = styled.div`
+  padding: 0.5rem 1rem 1rem;
+  background: ${({ theme }) => theme.disqus.background};
+  border-radius: 10px;
+`
+
 /**
  *
  */
@@ -213,7 +219,7 @@ class PostTemplate extends Component {
           </ShareLink>
         </ShareButtons>
 
-        <div id="disqus_thread" />
+        <DisqusThread id="disqus_thread" />
       </Layout>
     )
   }

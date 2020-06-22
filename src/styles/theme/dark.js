@@ -1,4 +1,4 @@
-import { themeNames } from '../../components/hooks/useDarkMode'
+import materialOceanic from 'styles/prism_themes/materialOceanic'
 
 const TEXT_RGB_DARK = '215, 215, 215' // #D7D7D7
 
@@ -24,6 +24,12 @@ const darkTheme = {
   navbarBg:
     'linear-gradient(to right, #060606 0%, #2F2F2F 25%, #2F2F2F 75%, #060606 100%)',
   navbarColor: '#fff',
+  codeBlockTheme: materialOceanic,
+  codeBackground: '#263238',
+
+  disqus: {
+    background: '#F2F2F2',
+  },
 }
 
 export default darkTheme
