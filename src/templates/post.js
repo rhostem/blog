@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
-import Layout from 'components/Layout'
+import Layout from 'components/layout/DefaultLayout'
 import styled from 'styled-components'
 import { clearFix } from 'polished'
-import { rhythm } from 'styles/typography'
 import Tags from '../components/Tags'
 import qs from 'qs'
 import { css } from 'styled-components'
@@ -13,17 +12,22 @@ import { getPostRoute } from 'utils/routeResolver'
 import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 import * as R from 'ramda'
 import PageTitle from '../components/PageTitle'
+import { media } from 'styles/'
 
 const PostTitle = styled(PageTitle)`
   text-align: left;
-  margin-bottom: ${rhythm(0.5)};
+  margin-bottom: 0.7rem;
+  font-size: 1.6rem;
+  ${media.OVER_MOBILE} {
+    font-size: 2.1rem;
+  }
 `
 
 const PostSubTitle = styled.p`
-  margin: ${rhythm(0.5)} 0;
+  margin: 0.7rem 0;
   font-size: 1.2rem;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.54);
+  color: ${({ theme }) => theme.colors.text};
 `
 
 const PostInfo = styled.div`
@@ -32,12 +36,12 @@ const PostInfo = styled.div`
 `
 
 const TagsWrapper = styled.div`
-  margin-top: ${rhythm(1 / 2)};
+  margin-top: 0.7rem;
 `
 
 const Post = styled.article`
-  margin-top: ${rhythm(2)};
-  margin-bottom: ${rhythm(2)};
+  margin-top: 2.8rem;
+  margin-bottom: 2.8rem;
 `
 
 const ShareButtonStyle = css`
@@ -46,11 +50,11 @@ const ShareButtonStyle = css`
   padding: 0;
   margin: 0 0.75rem;
   transition: color 0.2s linear;
-  color: #88939d;
+  color: ${({ theme }) => theme.colors.link};
   background: none;
 
   &:hover {
-    color: #725ec1;
+    color: ${({ theme }) => theme.colors.linkHover};
     cursor: pointer;
   }
 `
@@ -67,6 +71,12 @@ const ShareButtons = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2.5rem 0;
+`
+
+const DisqusThread = styled.div`
+  padding: 0.5rem 1rem 1rem;
+  background: ${({ theme }) => theme.disqus.background};
+  border-radius: 10px;
 `
 
 /**
@@ -143,7 +153,7 @@ class PostTemplate extends Component {
       { property: 'og:url', content: postUrl },
       { property: 'og:title', content: title },
       { property: 'og:description', content: description },
-      { name: 'twitter:card', content: 'summary_large_imag' },
+      { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
     ]
@@ -214,7 +224,7 @@ class PostTemplate extends Component {
           </ShareLink>
         </ShareButtons>
 
-        <div id="disqus_thread" />
+        <DisqusThread id="disqus_thread" />
       </Layout>
     )
   }

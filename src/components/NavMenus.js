@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import { sizes, media } from '../styles'
 import { clearFix } from 'polished'
 import Transition from 'react-transition-group/Transition'
+import DarkmodeToggleButton from 'components/DarkmodeToggleButton'
 
 const Wrap = styled.div`
   ${clearFix()};
@@ -85,7 +86,15 @@ const MobileMenuContent = styled.div`
 
 const MobilMenuCloseBtnWrap = styled.div`
   display: flex;
+  align-items: center;
 `
+
+const DarkmodeButtonWrap = styled.div`
+  margin-right: auto;
+  margin-top: 1.25rem;
+  padding-left: 1.25rem;
+`
+
 const MobilMenuCloseBtn = styled.button`
   padding: 0.7rem 1rem;
   color: #fff;
@@ -93,6 +102,7 @@ const MobilMenuCloseBtn = styled.button`
   margin-right: 0.6rem;
   border: none;
   font-size: 1.2rem;
+  background: transparent;
   &:hover {
     cursor: pointer;
   }
@@ -104,6 +114,7 @@ const MobileMenuList = styled.ul`
   margin: 0;
   list-style: none;
   flex-direction: column;
+  padding-left: 0;
 `
 
 const MobileMenuLink = styled(Link)`
@@ -197,8 +208,8 @@ export default class NavMenus extends Component<Props, State> {
               <div>
                 <MobileMenuContent
                   style={{ ...mobileMenuContentTransition[state] }}>
-                  {/* 모바일 메뉴 닫기 버튼 */}
                   <MobilMenuCloseBtnWrap>
+                    {/* 모바일 메뉴 닫기 버튼 */}
                     <MobilMenuCloseBtn onClick={this.props.onClickMenuBtn}>
                       <i className="fa fa-arrow-right" aria-hidden="true" />
                     </MobilMenuCloseBtn>
@@ -221,6 +232,9 @@ export default class NavMenus extends Component<Props, State> {
                       </MobileMenuLink>
                     ))}
                   </MobileMenuList>
+                  <DarkmodeButtonWrap>
+                    <DarkmodeToggleButton />
+                  </DarkmodeButtonWrap>
                 </MobileMenuContent>
               </div>
             )}
