@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React from 'react'
 import { DarkModeContext, themeModes } from 'components/hooks/useDarkMode'
 import styled from 'styled-components'
 import { useContext } from 'react'
@@ -45,13 +45,13 @@ const ToggleThumb = styled.div`
   width: 24px;
   height: 24px;
   background: #fff;
-  left: ${({ mode }) =>
-    mode === themeModes.DARK ? 'calc(100% - 24px);' : '0'};
+  left: ${({ mode }) => (mode === 'DARK' ? 'calc(100% - 24px);' : '0')};
   transition: left 0.2s linear;
 `
 
 export default function DarkmodeToggleButton() {
   const { mode, toggleTheme } = useContext(DarkModeContext.Consumer)
+  console.log(`mode`, mode)
 
   return (
     <ToggleButton onClick={toggleTheme}>

@@ -17,15 +17,10 @@ import Head from 'components/Head'
 
 const SITE_CONFIG = require('../../site-config')
 
-// type PageView = {
-//   count: number,
-//   page: string,
-// }
-
-// type State = {
-//   postList: PostRankData[],
-//   pageViews: PageView[],
-// }
+type IPageView = {
+  count: number,
+  page: string,
+}
 
 const TableWrap = styled.div`
   min-height: 70vh;
@@ -45,7 +40,6 @@ export default function Stats() {
     [ALL]: '전체 기간',
   }
 
-  // const [postList, setPostList] = useState([])
   const [currentTab, setCurrentTab] = useState(tabs[0])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -98,7 +92,7 @@ export default function Stats() {
     () => {
       return Array.isArray(pageViews)
         ? pageViews
-            .map((pageView: PageView) => {
+            .map((pageView: IPageView) => {
               return {
                 title: pageView.page,
                 route: pageView.page,
