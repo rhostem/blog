@@ -48,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.black};
     background: ${({ theme }) => theme.colors.smoke};
     background-image: ${({ theme }) => theme.hrBackgroundImage};
+    border: none;
   }
 
   p {

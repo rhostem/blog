@@ -19,9 +19,8 @@ const lightTheme = {
     body: '#fff',
     border: '#ebebeb',
   },
-  hrBackgroundImage:
-    'linear-gradient(90deg,rgba(34,34,34,.2), rgba(34,34,34,.75), rgba(34,34,34,.2))',
-  navbarBg: 'linear-gradient(to right, #4568dc, #b06ab3)',
+  hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB},.2), rgba(${TEXT_RGB},.75), rgba(${TEXT_RGB},.2))`,
+  navbarBg: `linear-gradient(to right, #4568dc, #b06ab3)`,
   navbarColor: '#fff',
   codeBlockTheme: defaultTheme,
   codeBackground: '#f5f2f0', // 인라인 코드 배경. 코드 테마에 맞춰준다

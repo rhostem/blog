@@ -19,10 +19,8 @@ const darkTheme = {
     body: '#4A4A4D',
     border: '#353535',
   },
-  hrBackgroundImage:
-    'linear-gradient(90deg,rgba(34,34,34,.2), rgba(34,34,34,.75), rgba(34,34,34,.2))',
-  navbarBg:
-    'linear-gradient(to right, #060606 0%, #2F2F2F 25%, #2F2F2F 75%, #060606 100%)',
+  hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_DARK},.2), rgba(${TEXT_RGB_DARK},.75), rgba(${TEXT_RGB_DARK},.2))`,
+  navbarBg: `linear-gradient(to right, #060606 0%, #2F2F2F 25%, #2F2F2F 75%, #060606 100%)`,
   navbarColor: '#fff',
   codeBlockTheme: materialOceanic,
   codeBackground: '#263238',
