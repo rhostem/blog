@@ -97,17 +97,25 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     line-height: 1.4;
     margin-top: 4.2rem;
     margin-bottom: 2.4rem;
+
+    ${media.OVER_MOBILE} {
+      font-size: 1.8rem;
+    }
   }
 
   h3 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1.4;
     margin-top: 2.8rem;
     margin-bottom: 1.4rem;
+
+    ${media.OVER_MOBILE} {
+      font-size: 1.6rem;
+    }
   }
 
   h4 {
