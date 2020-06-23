@@ -12,10 +12,10 @@ export default css`
     word-break: normal;
     word-wrap: normal;
     color: #c3cee3;
-    background: #263238;
-    font-family: Menlo, Roboto Mono, monospace;
-    font-size: 0.9em;
-    line-height: 1.4em;
+    background: ${({ theme }) => theme.codeBackground};
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 
     -moz-tab-size: 4;
     -o-tab-size: 4;
@@ -25,13 +25,6 @@ export default css`
     -moz-hyphens: none;
     -ms-hyphens: none;
     hyphens: none;
-  }
-
-  code[class*='language-']::selection,
-  pre[class*='language-']::selection,
-  code[class*='language-'] ::selection,
-  pre[class*='language-'] ::selection {
-    background: #363636;
   }
 
   :not(pre) > code[class*='language-'] {
@@ -53,9 +46,6 @@ export default css`
     color: inherit;
     display: inline-block;
     padding: 0 0.3em !important;
-  }
-  code[class='language-text']::selection {
-    background: rgba(27, 31, 35, 0.15);
   }
 
   .language-css > code,

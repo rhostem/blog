@@ -32,7 +32,7 @@ const CircleSpinner = styled.div`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: #333;
+    background: ${({ theme }) => theme.loadingSpinner};
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
     animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
@@ -160,7 +160,7 @@ const CircleSpinner = styled.div`
   }
 `
 
-function LoadingSpinner({ isAbsolute }) {
+function LoadingSpinner({ isAbsolute = false }) {
   return (
     <CircleSpinner isAbsolute={isAbsolute}>
       <div className="sk-fading-circle">

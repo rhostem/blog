@@ -1,10 +1,10 @@
 import React from 'react'
-import _ from 'lodash'
 import { connectSearchBox, connectStateResults } from 'react-instantsearch-dom'
 import styled from 'styled-components'
 import media from 'styles/media'
 import mixin from 'styles/mixin'
 import * as R from 'ramda'
+import debounce from 'utils/debounce'
 
 const Wrap = styled.div`
   width: 38vw;
@@ -56,7 +56,7 @@ function SearchBox({
   onChangeCurrentSearch = v => {},
 }) {
   // 검색 실행
-  const debouncedRefine = _.debounce(refine, 400)
+  const debouncedRefine = debounce(400, refine)
 
   const handleChange = e => {
     const { value } = e.target

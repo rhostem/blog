@@ -1,16 +1,29 @@
-import React from 'react'
-import * as R from 'ramda'
+import React, { useCallback } from 'react'
+import {
+  flatten,
+  uniq,
+  countBy,
+  toLower,
+  compose,
+  sort,
+  map,
+  slice,
+  length,
+  path,
+  isNil,
+  filter,
+} from 'ramda'
 import { StaticQuery, graphql } from 'gatsby'
 import Layout from 'components/layout/DefaultLayout'
 import Link from 'gatsby-link'
 import SEO from 'components/Seo'
 import Head from 'components/Head'
 import styled from 'styled-components'
-import { colors, media } from 'styles'
+import { media } from 'styles'
 import PageTitle from 'components/PageTitle'
 import { getTagRoute } from 'utils/routeResolver'
 
-const Wrap = styled.div`
+const TagGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   ${media.OVER_MOBILE} {
@@ -19,11 +32,13 @@ const Wrap = styled.div`
   grid-row-gap: 0.5rem;
   grid-column-gap: 1rem;
   font-size: 1rem;
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
 `
 
 const TagLink = styled(Link)`
-  padding: 0.5em 0.6em;
-  color: ${colors.text};
+  padding: 0.5rem 0.6rem;
+  color: ${({ theme }) => theme.colors.text};
   transition: background-color 0.3s ease-in-out;
   margin-bottom: 0.2em;
   &:hover {
@@ -40,72 +55,81 @@ const HotTagLink = styled(TagLink)`
   font-weight: bold;
   & > span {
     display: inline-block;
-    border-bottom: 2px solid ${colors.green};
+    border-bottom: 2px solid ${({ theme }) => theme.colors.green};
   }
 `
 
-const TagsPage = () => (
-  <Layout>
-    <SEO title="" keywords={[]} />
-    <Head />
-    <StaticQuery
-      query={graphql`
-        query {
-          allMarkdownRemark(limit: 2000) {
-            edges {
-              node {
-                frontmatter {
-                  tags
+const TagsPage = () => {
+  const getTags = useCallback(allMarkdownRemark => {
+    const allTags = compose(
+      filter(t => !isNil(t)),
+      flatten,
+      map(edge => path(['node', 'frontmatter', 'tags'], edge))
+    )(allMarkdownRemark.edges)
+
+    const tagCountMap = countBy(t => toLower(t), allTags)
+    const allUniqTags = uniq(allTags)
+
+    const tags = compose(
+      sort((tagA, tagB) => tagB.count - tagA.count),
+      map(tag => ({
+        name: tag,
+        count: tagCountMap[toLower(tag)],
+      }))
+    )(allUniqTags)
+
+    const TOP_TAGS_LIMIT = 6
+
+    return {
+      topRankTags: slice(0, TOP_TAGS_LIMIT, tags),
+      restTags: slice(TOP_TAGS_LIMIT, length(tags), tags),
+    }
+  }, [])
+  return (
+    <Layout>
+      <SEO title="" keywords={[]} />
+      <Head />
+      <StaticQuery
+        query={graphql`
+          query {
+            allMarkdownRemark(limit: 2000) {
+              edges {
+                node {
+                  frontmatter {
+                    tags
+                  }
                 }
               }
             }
           }
-        }
-      `}
-      render={data => {
-        const { allMarkdownRemark } = data
-        const allTags = R.flatten(
-          allMarkdownRemark.edges.map(edge => edge.node.frontmatter.tags)
-        )
-        const allUniqTags = R.uniq(allTags)
-        const tagCountMap = R.countBy(t => R.toLower(t), allTags)
-
-        const tags = R.compose(
-          R.sort((tagA, tagB) => tagB.count - tagA.count),
-          R.map(tag => ({
-            name: tag,
-            count: tagCountMap[R.toLower(tag)],
-          }))
-        )(allUniqTags)
-
-        const topTagCount = 6
-        const topRankTags = R.slice(0, topTagCount, tags)
-        const restTags = R.slice(topTagCount, R.length(tags), tags)
-
-        return (
-          <div>
-            <PageTitle>태그</PageTitle>
-            <Wrap>
-              {topRankTags.map((tag, index) => {
-                return (
-                  <HotTagLink to={getTagRoute(tag.name)}>
-                    <span>{tag.name}</span>
-                  </HotTagLink>
-                )
-              })}
-              {restTags.map((tag, index) => {
-                return (
-                  <TagLink to={getTagRoute(tag.name)}>
-                    <span>{tag.name}</span>
-                  </TagLink>
-                )
-              })}
-            </Wrap>
-          </div>
-        )
-      }}
-    />
-  </Layout>
-)
+        `}
+        render={data => {
+          const { topRankTags, restTags } = getTags(data.allMarkdownRemark)
+          return (
+            <div>
+              <PageTitle>태그</PageTitle>
+              <TagGrid>
+                {topRankTags.map((tag, index) => {
+                  return (
+                    <HotTagLink to={getTagRoute(tag.name)}>
+                      <span>{tag.name}</span>
+                    </HotTagLink>
+                  )
+                })}
+                {restTags.map((tag, index) => {
+                  return (
+                    <TagLink to={getTagRoute(tag.name)}>
+                      <span>{tag.name}</span>
+                    </TagLink>
+                  )
+                })}
+              </TagGrid>
+            </div>
+          )
+        }}
+      />
+    </Layout>
+  )
+}
 
 export default TagsPage

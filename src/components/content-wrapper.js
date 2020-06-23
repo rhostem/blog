@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 import { media, sizes } from 'styles'
-import { rhythm } from 'styles/typography'
 
 /**
  * 페이지 컨텐츠
  */
 export const ContentWrapper = styled.div`
   position: relative;
-  padding-left: ${rhythm(3 / 4)};
-  padding-right: ${rhythm(3 / 4)};
+  width: 100%;
+  padding-left: 1.05rem;
+  padding-right: 1.05rem;
   margin: 0 auto;
 
   ${media.OVER_MOBILE} {
     width: ${sizes.mainWidthDesktop};
-    padding-left: ${rhythm(1)};
-    padding-right: ${rhythm(1)};
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
   }
 `

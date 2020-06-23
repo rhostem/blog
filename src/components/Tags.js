@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { clearFix } from 'polished'
 import Link from 'gatsby-link'
-import { rhythm } from '../styles/typography'
 import { getTagRoute } from '../../static/js/searchUtil'
 
 const Wrapper = styled.div`
@@ -18,13 +17,13 @@ const Tag = styled.span`
   padding: 0.25em 0.625em;
   margin-bottom: 0.35em;
   margin-left: 0.35em;
-  line-height: ${rhythm(1)};
-  color: rgba(0, 0, 0, 0.6);
-  background-color: rgba(0, 0, 0, 0.04);
+  line-height: 1.4rem;
+  color: ${({ theme }) => theme.colors.text};
+  background-color: ${({ theme }) => theme.colors.smoke};
   border-radius: 3px;
 
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: ${({ theme }) => theme.colors.calm};
   }
 `
 

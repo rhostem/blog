@@ -1,31 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import swr from 'swr'
 import { StaticQuery, graphql } from 'gatsby'
 import Layout from 'components/layout/DefaultLayout'
 import SEO from 'components/Seo'
-import Head from 'components/Head'
 import { getPostRoute } from 'utils/routeResolver'
 import styled from 'styled-components'
 import PageTitle from '../components/PageTitle'
-import PostRankTable, { PostRankData } from '../components/PostRankTable'
+import PostRankTable from '../components/PostRankTable'
 import axios from 'axios'
 import { TabWrapper, Tab } from '../components/PostRankTab'
 import LoadingSpinner from '../components/LoadingSpinner'
 import subDays from 'date-fns/sub_days'
 import format from 'date-fns/format'
+import makeFormUrlEncoded from 'utils/makeFormUrlEncoded'
+import Head from 'components/Head'
 
 const SITE_CONFIG = require('../../site-config')
 
-type PageView = {
-  count: number,
-  page: string,
-}
+// type PageView = {
+//   count: number,
+//   page: string,
+// }
 
-type Props = {}
-
-type State = {
-  postList: PostRankData[],
-  pageViews: PageView[],
-}
+// type State = {
+//   postList: PostRankData[],
+//   pageViews: PageView[],
+// }
 
 const TableWrap = styled.div`
   min-height: 70vh;
@@ -35,74 +35,68 @@ const WEEK = 'week'
 const MONTH = 'month'
 const YEAR = 'year'
 const ALL = 'ALL'
+const DATE_FORMAT = 'YYYY-MM-DD'
 
-class StatsRoute extends React.Component<Props, State> {
-  tabs = [MONTH, YEAR, ALL]
-  tabNameMap = {
+export default function Stats() {
+  const tabs = [MONTH, YEAR, ALL]
+  const tabNameMap = {
     [MONTH]: '지난 30일',
     [YEAR]: '지난 1년',
     [ALL]: '전체 기간',
   }
 
-  routeTitleMap = {}
-  defaultTab = this.tabs[0]
+  // const [postList, setPostList] = useState([])
+  const [currentTab, setCurrentTab] = useState(tabs[0])
+  const [isLoading, setIsLoading] = useState(false)
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentTab: this.defaultTab,
-      pageViews: [],
-      postList: [],
-      isLoadingData: true,
+  const handleChangeTab = useCallback(tab => {
+    setCurrentTab(tab)
+  }, [])
+
+  const startDate = useMemo(
+    () => {
+      let endDate = subDays(new Date(), 1) // 어제까지 조회
+      switch (currentTab) {
+        case WEEK:
+          return subDays(endDate, 7)
+        case MONTH:
+          return subDays(endDate, 30)
+        case YEAR:
+          return subDays(endDate, 365)
+        case ALL:
+          return new Date('2016-12-29') // 첫 포스트 업로드 날짜
+
+        default:
+          break
+      }
+    },
+    [currentTab]
+  )
+
+  const { data: pageViews, error } = swr(
+    `https://blogapi.rhostem.com/api/ga/post_pageviews?${makeFormUrlEncoded({
+      startDate: format(startDate, DATE_FORMAT),
+      endDate: format(new Date(), DATE_FORMAT),
+    })}`,
+    query => {
+      let timeout = setTimeout(() => {
+        setIsLoading(true)
+      }, 1000)
+
+      return axios
+        .get(query)
+        .then(res => res.data)
+        .finally(() => {
+          clearTimeout(timeout)
+          setIsLoading(false)
+        })
     }
-  }
+  )
 
-  componentDidMount() {
-    this.handleChangeTab()
-  }
-
-  handleChangeTab = (tab = this.defaultTab) => {
-    let startDate // 시작일은 탭에 따라 결정
-    let endDate = subDays(new Date(), 1) // 어제까지 조회
-    const DATE_FORMAT = 'YYYY-MM-DD'
-
-    this.setState({
-      currentTab: tab,
-      isLoadingData: true,
-    })
-
-    switch (tab) {
-      case WEEK:
-        startDate = subDays(endDate, 7)
-        break
-      case MONTH:
-        startDate = subDays(endDate, 30)
-        break
-      case YEAR:
-        startDate = subDays(endDate, 365)
-        break
-      case ALL:
-        startDate = new Date('2016-12-29') // 첫 포스트 업로드 날짜
-        break
-
-      default:
-        break
-    }
-
-    axios
-      .get(`https://blogapi.rhostem.com/api/ga/post_pageviews`, {
-        params: {
-          startDate: format(startDate, DATE_FORMAT),
-          endDate: format(endDate, DATE_FORMAT),
-        },
-      })
-      .then(res => {
-        const pageViews: PageView[] = res.data
-
-        this.setState({
-          isLoadingData: false,
-          pageViews,
-          postList: pageViews
+  const postList = useMemo(
+    () => {
+      return Array.isArray(pageViews)
+        ? pageViews
             .map((pageView: PageView) => {
               return {
                 title: pageView.page,
@@ -111,75 +105,70 @@ class StatsRoute extends React.Component<Props, State> {
               }
             })
             .filter(post => !!post.title)
-            .filter(post => post.pageView > 10),
-        })
-      })
-  }
+            .filter(post => post.pageView > 10)
+        : []
+    },
+    [pageViews]
+  )
 
-  render() {
-    return (
-      <Layout>
-        <SEO
-          title="인기 포스트"
-          description="Google analytics 데이터를 사용해 구성한 인기 페이지"
-        />
-        <Head />
-        <StaticQuery
-          query={graphql`
-            query {
-              allMarkdownRemark(
-                sort: { order: DESC, fields: [frontmatter___date] }
-              ) {
-                edges {
-                  node {
-                    id
-                    frontmatter {
-                      path
-                      title
-                    }
+  return (
+    <Layout>
+      <Head />
+      <SEO
+        title="인기 포스트"
+        description="Google analytics 데이터를 사용해 구성한 인기 페이지"
+      />
+
+      <StaticQuery
+        query={graphql`
+          query {
+            allMarkdownRemark(
+              sort: { order: DESC, fields: [frontmatter___date] }
+            ) {
+              edges {
+                node {
+                  id
+                  frontmatter {
+                    path
+                    title
                   }
                 }
               }
             }
-          `}
-          render={data => {
-            const titleMap = {}
-            data.allMarkdownRemark.edges.forEach(({ node }) => {
-              titleMap[
-                `${SITE_CONFIG.pathPrefix}${getPostRoute(
-                  node.frontmatter.path
-                )}`
-              ] = node.frontmatter.title
-            })
+          }
+        `}
+        render={data => {
+          const titleMap = {}
+          data.allMarkdownRemark.edges.forEach(({ node }) => {
+            titleMap[
+              `${SITE_CONFIG.pathPrefix}${getPostRoute(node.frontmatter.path)}`
+            ] = node.frontmatter.title
+          })
 
-            return (
-              <div>
-                <PageTitle>인기 포스트</PageTitle>
-                <TabWrapper>
-                  {this.tabs.map((tab, i) => (
-                    <Tab
-                      key={tab}
-                      onClick={() => this.handleChangeTab(tab)}
-                      isSelected={tab === this.state.currentTab}>
-                      {this.tabNameMap[tab]}
-                    </Tab>
-                  ))}
-                </TabWrapper>
+          return (
+            <div>
+              <PageTitle>인기 포스트</PageTitle>
+              <TabWrapper>
+                {tabs.map((tab, i) => (
+                  <Tab
+                    key={tab}
+                    onClick={() => handleChangeTab(tab)}
+                    isSelected={tab === currentTab}>
+                    {tabNameMap[tab]}
+                  </Tab>
+                ))}
+              </TabWrapper>
 
-                <TableWrap>
-                  {this.state.isLoadingData && <LoadingSpinner />}
-                  <PostRankTable
-                    titleMap={titleMap}
-                    postList={this.state.postList}
-                  />
-                </TableWrap>
-              </div>
-            )
-          }}
-        />
-      </Layout>
-    )
-  }
+              <TableWrap>
+                {isLoading && <LoadingSpinner />}
+                {!error && !isLoading && (
+                  <PostRankTable titleMap={titleMap} postList={postList} />
+                )}
+              </TableWrap>
+            </div>
+          )
+        }}
+      />
+    </Layout>
+  )
 }
-
-export default StatsRoute
