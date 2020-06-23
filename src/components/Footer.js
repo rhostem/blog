@@ -9,7 +9,7 @@ const FooterWrap = styled.footer`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: auto;
   padding: 1.5rem 0;
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   line-height: 1.4;

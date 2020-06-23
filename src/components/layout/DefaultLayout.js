@@ -12,6 +12,9 @@ const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
   background: ${({ theme }) => theme.colors.body};
   transition: background 0.3s linear;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `
 
 const DefaultLayout = ({ children }) => {

@@ -6,6 +6,7 @@ import { media, sizes } from 'styles'
  */
 export const ContentWrapper = styled.div`
   position: relative;
+  width: 100%;
   padding-left: 1.05rem;
   padding-right: 1.05rem;
   margin: 0 auto;
