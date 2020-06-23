@@ -17,6 +17,10 @@ const Page = styled.main`
   flex-direction: column;
 `
 
+const PageContents = styled(ContentWrapper)`
+  padding-bottom: 2rem;
+`
+
 const DefaultLayout = ({ children }) => {
   const { theme, mode, toggleTheme } = useDarkMode()
 
@@ -41,7 +45,7 @@ const DefaultLayout = ({ children }) => {
               }}>
               <Navbar toggleTheme={toggleTheme} />
               <Page>
-                <ContentWrapper>{children}</ContentWrapper>
+                <PageContents>{children}</PageContents>
                 <Footer />
               </Page>
             </DarkModeContext.Provider>

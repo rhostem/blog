@@ -14,7 +14,9 @@ export const DarkModeContext = React.createContext({
 
 export const useDarkMode = () => {
   // 기본은 다크모드
-  const [mode, setMode] = useState(themeModes.DARK)
+  const [mode, setMode] = useState(
+    typeof window === 'object' ? window.localStorage.getItem('theme') : null
+  )
   const [theme, setTheme] = useState(darkTheme)
 
   // 로컬스토리지에 저장
@@ -36,14 +38,14 @@ export const useDarkMode = () => {
   )
 
   useEffect(() => {
-    // 시스템 다크 모드 확인
-    const isSystemDarkMode =
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-
     let localTheme = window.localStorage.getItem('theme')
 
     if (!localTheme) {
+      // 시스템 다크 모드 확인
+      const isSystemDarkMode =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+
       localTheme = isSystemDarkMode ? themeModes.DARK : themeModes.LIGHT
       window.localStorage.setItem('theme', localTheme)
     }

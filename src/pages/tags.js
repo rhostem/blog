@@ -34,7 +34,6 @@ const TagGrid = styled.div`
   font-size: 1rem;
   margin-left: -0.6rem;
   margin-right: -0.6rem;
-  margin-bottom: 2rem;
 `
 
 const TagLink = styled(Link)`
