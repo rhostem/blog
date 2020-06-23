@@ -14,6 +14,7 @@ import PageTitle from '../components/PageTitle'
 const YearArchive = styled.ul`
   margin: 2.8rem 0;
   list-style-type: disc;
+  padding-left: 0;
 `
 
 const YearTitle = styled.h2`
@@ -28,8 +29,8 @@ const YearTitle = styled.h2`
     content: ' ';
     left: 0;
     width: 4px;
-    height: 100%;
-    background-color: #4568dc;
+    height: 0.9em;
+    background-color: ${({ theme }) => theme.colors.linkHover};
   }
 `
 
@@ -47,7 +48,7 @@ const PostTitleLink = styled(Link)`
     left: 0;
     width: 0.2rem;
     height: 0.2rem;
-    background-color: #4568dc;
+    background-color: ${({ theme }) => theme.colors.linkHover};
     opacity: 0.6;
     border-radius: 1px;
   }
