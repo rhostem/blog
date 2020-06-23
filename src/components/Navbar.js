@@ -3,10 +3,11 @@ import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { colors, sizes } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
-// import NavbarSearch from '../components/NavbarSearch'
 import NavMenus from './NavMenus'
 import CustomInstantSearch from './search/CustomInstantSearch'
 import debounce from 'utils/debounce'
+import DarkmodeToggleButton from 'components/DarkmodeToggleButton'
+import { centered, centeredY } from 'styles/mixin/centered'
 
 const Wrap = styled.nav`
   position: fixed;
@@ -41,6 +42,11 @@ const MenuArea = styled.div`
   padding-left: 0;
 `
 
+const DarkModeToggleWrap = styled.div`
+  ${centeredY()};
+  left: calc(100% + 1rem);
+`
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
@@ -66,6 +72,7 @@ class Navbar extends React.Component {
   componentDidMount() {}
 
   render() {
+    const { toggleTheme } = this.props
     return (
       <Wrap>
         <NavbarCotent>
@@ -82,6 +89,10 @@ class Navbar extends React.Component {
               onClickMenuBtn={this.handleClickMenuButton}
             />
           </MenuArea>
+
+          <DarkModeToggleWrap>
+            <DarkmodeToggleButton onClick={toggleTheme} />
+          </DarkModeToggleWrap>
         </NavbarCotent>
       </Wrap>
     )

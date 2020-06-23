@@ -44,6 +44,14 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  button {
+    outline: none;
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
   hr {
     margin: 3.5rem auto;
     width: 50%;

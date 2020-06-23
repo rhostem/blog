@@ -39,7 +39,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           },
           {
             property: `og:image`,
-            content: 'https://blog.rhostem.com/icons/rhostem-profile.jpeg',
+            content: 'https://blog.rhostem.com/images/rhostem-profile.jpeg',
           },
 
           {
@@ -60,7 +60,7 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
           },
           {
             name: `twitter:image`,
-            content: 'https://blog.rhostem.com/icons/rhostem-profile.jpeg',
+            content: 'https://blog.rhostem.com/images/rhostem-profile.jpeg',
           },
         ]
 
