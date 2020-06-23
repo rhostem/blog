@@ -198,6 +198,7 @@ export const GlobalStyle = createGlobalStyle`
       overflow: hidden;
     }
   }
+
   .gatsby-resp-image-link:hover {
     background: none;
     box-shadow: none;
@@ -276,13 +277,21 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit !important;
   }
 
-  /* Fancy external links in posts, borrowed from */
-  /* https://github.com/comfusion/after-dark/ */
-  /* @see https://github.com/comfusion/after-dark/blob/8fdbe2f480ac40315cf0e01cece785d2b5c4b0c3/layouts/partials/critical-theme.css#L36-L39 */
-  .post a[href*=//]:after {
+  /* 본문 내부 텍스트 링크 */
+  .post a:not(.gatsby-resp-image-link):not(.anchor),
+  .link-underline {
+    color: ${({ theme }) => theme.colors.link};
+    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
+      theme,
+    }) => theme.colors.link} 100%); /* 밑줄 */
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .post a[href*=//]:hover:after {
+  .post a:not(.gatsby-resp-image-link):not(.anchor):hover, .link-underline:hover {
+    color: ${({ theme }) => theme.colors.linkHover};
+    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
+      theme,
+    }) => theme.colors.linkHover} 100%);
   }
 
   .post .gatsby-resp-image-link {
@@ -292,35 +301,6 @@ export const GlobalStyle = createGlobalStyle`
     & + em  > a {
       color: ${({ theme }) => theme.colors.light};
     }
-  }
-
-  .post a:not(.gatsby-resp-image-link):not(.anchor),
-  .link-underline {
-    position: relative;
-    backgroundImage: linear-gradient(${({ theme }) => theme.colors.link},${({
-  theme,
-}) => theme.colors.link});
-    textShadow: 0.03em 0 ${({ theme }) => theme.colors.white}, -0.03em 0 ${({
-  theme,
-}) => theme.colors.white}, 0 0.03em ${({ theme }) =>
-  theme.colors.white}, 0 -0.03em ${({ theme }) =>
-  theme.colors.white}, 0.06em 0 ${({ theme }) =>
-  theme.colors.white}, -0.06em 0 ${({ theme }) =>
-  theme.colors.white}, 0.09em 0 ${({ theme }) =>
-  theme.colors.white}, -0.09em 0 ${({ theme }) =>
-  theme.colors.white}, 0.12em 0 ${({ theme }) =>
-  theme.colors.white}, -0.12em 0 ${({ theme }) =>
-  theme.colors.white}, 0.15em 0 ${({ theme }) =>
-  theme.colors.white}, -0.15em 0 ${({ theme }) => theme.colors.white};
-        transition: all 250ms cubic-bezier(0.4, 0; 0.2, 1);
-        backgroundPosition: 0 98%;
-        backgroundRepeat: repeat-x;
-        backgroundSize: 1px 1px;
-      }
-  .post a:not(.gatsby-resp-image-link):not(.anchor):hover, .link-underline:hover {
-    color: ${({ theme }) => theme.colors.linkHover};
-    background-image: linear-gradient(${({ theme }) =>
-      theme.colors.linkHover}, ${({ theme }) => theme.colors.linkHover});
   }
 
   .iframe-video-wrapper {

@@ -15,7 +15,7 @@ const darkTheme = {
     whiteSmoke: `rgba(${TEXT_RGB_DARK} ,0.02)`,
     white: `#fff`,
     link: `rgba(${TEXT_RGB_DARK}, 1)`,
-    linkHover: '#4568dc',
+    linkHover: '#0DBC79',
     body: '#4A4A4D',
     border: '#353535',
   },
