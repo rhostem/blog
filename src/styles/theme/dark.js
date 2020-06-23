@@ -23,7 +23,8 @@ const darkTheme = {
   navbarBg: `#282C35`,
   navbarColor: '#fff',
   codeBlockTheme: materialOceanic,
-  codeBackground: '#282C35',
+  codeBlock: '#282C35',
+  codeInline: 'rgba(40, 44, 53, 0.3)',
   loadingSpinner: '#EFEFEF',
   blockquoteBackground: `rgba(${TEXT_RGB_DARK}, 0.1)`,
   disqus: {

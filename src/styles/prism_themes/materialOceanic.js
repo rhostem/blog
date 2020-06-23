@@ -12,7 +12,7 @@ export default css`
     word-break: normal;
     word-wrap: normal;
     color: #c3cee3;
-    background: ${({ theme }) => theme.codeBackground};
+    background: ${({ theme }) => theme.codeBlock};
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;

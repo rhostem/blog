@@ -184,7 +184,7 @@ export const GlobalStyle = createGlobalStyle`
 
   code[class*='language-'],
   pre[class*='language-'] {
-    font-size: 0.865rem;
+    font-size: 0.9em;
   }
 
   /* 코드 블럭이 아닌 곳의 코드 하이라이팅 */
@@ -192,10 +192,10 @@ export const GlobalStyle = createGlobalStyle`
     display: inline-flex;
     line-height: 1.4em;
     border-radius: 0.3em;
-    background: ${({ theme }) => theme.codeBackground};
-    min-height: 1.7em;
+    background: ${({ theme }) => theme.codeInline};
+    min-height: 1.4em;
     align-items: center;
-    font-size: 0.9em;
+    font-size: 0.8em;
     padding: 0 0.3em;
   }
 

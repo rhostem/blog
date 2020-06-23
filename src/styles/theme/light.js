@@ -1,5 +1,4 @@
 import defaultTheme from 'styles/prism_themes/default'
-
 const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
 
 const lightTheme = {
@@ -23,7 +22,8 @@ const lightTheme = {
   navbarBg: `linear-gradient(to right, #4568dc, #b06ab3)`,
   navbarColor: '#fff',
   codeBlockTheme: defaultTheme,
-  codeBackground: '#f5f2f0', // 인라인 코드 배경. 코드 테마에 맞춰준다
+  codeBlock: '#f5f2f0', // 코드 블럭
+  codeInline: '#f5f2f0', // 인라인 코드
   loadingSpinner: '#333',
   blockquoteBackground: '#f5f5f5',
   disqus: {
