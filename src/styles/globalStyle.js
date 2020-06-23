@@ -42,6 +42,7 @@ export const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.link};
     border-color: ${({ theme }) => theme.colors.link};
     text-decoration: none;
+    word-break: break-all;
   }
 
   button {
@@ -93,7 +94,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.4;
     margin-top: 5.6rem;
     margin-bottom: 2.4rem;
-    word-break: keep-all;
   }
 
   h2 {
@@ -101,7 +101,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.4;
     margin-top: 4.2rem;
     margin-bottom: 2.4rem;
-    word-break: keep-all;
   }
 
   h3 {
@@ -109,7 +108,6 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.4;
     margin-top: 2.8rem;
     margin-bottom: 1.4rem;
-    word-break: keep-all;
   }
 
   h4 {
@@ -132,8 +130,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    border-left: 3px solid #4568dc;
-    background: #f5f5f5;
+    border-left: 3px solid ${({ theme }) => theme.colors.linkHover};
+    background: ${({ theme }) => theme.blockquoteBackground};
     margin-left: -0.1rem;
     margin-right: -0.1rem;
     margin-top: 2.8rem;
@@ -183,13 +181,11 @@ export const GlobalStyle = createGlobalStyle`
 
   /* 코드 블럭이 아닌 곳의 코드 하이라이팅 */
   :not(pre) > code[class*='language-'] {
+    display: inline-flex;
     line-height: 1.4em;
     border-radius: 0.3em;
-    word-break: keep-all;
-    display: inline-block;
     background: ${({ theme }) => theme.codeBackground};
-    height: 1.7em;
-    display: inline-flex;
+    min-height: 1.7em;
     align-items: center;
     font-size: 0.9em;
     padding: 0 0.3em;
@@ -276,6 +272,10 @@ export const GlobalStyle = createGlobalStyle`
   .post a.anchor {
     text-shadow: 0 !important;
     background-image: 0 !important;
+
+    svg {
+      fill: ${({ theme }) => theme.colors.text};
+    }
   }
 
   /* 코드 블럭 내부에서는 링크를 장식하지 않게 한다. */

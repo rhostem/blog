@@ -16,7 +16,7 @@ const darkTheme = {
     white: `#fff`,
     link: `rgba(${TEXT_RGB_DARK}, 1)`,
     linkHover: '#0DBC79',
-    body: '#4A4A4D',
+    body: '#4A4A4D', // 74, 74, 77
     border: `rgba(${TEXT_RGB_DARK}, 0.2)`,
   },
   hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_DARK},.2), rgba(${TEXT_RGB_DARK},.75), rgba(${TEXT_RGB_DARK},.2))`,
@@ -25,6 +25,7 @@ const darkTheme = {
   codeBlockTheme: materialOceanic,
   codeBackground: '#282C35',
   loadingSpinner: '#EFEFEF',
+  blockquoteBackground: `rgba(${TEXT_RGB_DARK}, 0.1)`,
   disqus: {
     background: '#F2F2F2',
   },

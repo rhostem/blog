@@ -8,19 +8,18 @@ import { mixin } from '../styles'
 import ReactPaginate from 'react-paginate'
 import { navigateTo } from 'gatsby-link'
 
-const activePageColor = '#76b835'
 const currentPageStyle = css`
   font-weight: 900;
   a {
     position: relative;
-    color: ${activePageColor};
+    color: ${({ theme }) => theme.colors.linkHover};
     &::after {
       ${mixin.centeredX()}
       content: ' ';
       width: 50%;
       top: 80%;
       height: 2px;
-      background-color: ${activePageColor};
+      background-color: ${({ theme }) => theme.colors.linkHover};
       border-radius: 2px;
     }
   }
@@ -64,7 +63,7 @@ const PaginationContainer = styled.div`
       outline: none;
 
       &:hover {
-        color: ${activePageColor};
+        color: ${({ theme }) => theme.colors.linkHover};
       }
     }
   }

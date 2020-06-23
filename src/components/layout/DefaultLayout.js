@@ -15,6 +15,7 @@ const Page = styled.main`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `
 
 const PageContents = styled(ContentWrapper)`

@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { colors, sizes } from '../styles'
+import { colors, sizes, media } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 import NavMenus from './NavMenus'
 import CustomInstantSearch from './search/CustomInstantSearch'
@@ -45,6 +45,11 @@ const MenuArea = styled.div`
 const DarkModeToggleWrap = styled.div`
   ${centeredY()};
   left: calc(100% + 1rem);
+  display: none;
+
+  ${media.OVER_MOBILE} {
+    display: block;
+  }
 `
 
 class Navbar extends React.Component {
