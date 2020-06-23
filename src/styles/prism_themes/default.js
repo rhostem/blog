@@ -34,22 +34,6 @@ export default css`
     hyphens: none;
   }
 
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection,
-  code[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection,
-  code[class*='language-']::selection,
-  code[class*='language-'] ::selection {
-    text-shadow: none;
-    background: #b3d4fc;
-  }
-
   @media print {
     code[class*='language-'],
     pre[class*='language-'] {

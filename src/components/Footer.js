@@ -11,7 +11,6 @@ const FooterWrap = styled.footer`
   width: 100%;
   margin-top: 2rem;
   padding: 1.5rem 0;
-  background-color: #fff;
   border-top: 1px solid ${({ theme }) => theme.colors.border};
   line-height: 1.4;
   text-align: center;

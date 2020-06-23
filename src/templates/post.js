@@ -45,11 +45,11 @@ const ShareButtonStyle = css`
   padding: 0;
   margin: 0 0.75rem;
   transition: color 0.2s linear;
-  color: #88939d;
+  color: ${({ theme }) => theme.colors.link};
   background: none;
 
   &:hover {
-    color: #725ec1;
+    color: ${({ theme }) => theme.colors.linkHover};
     cursor: pointer;
   }
 `

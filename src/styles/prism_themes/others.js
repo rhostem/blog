@@ -53,22 +53,6 @@ export const prismDracula = css`
     hyphens: none;
   }
 
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection,
-  code[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection {
-    text-shadow: none;
-    background-color: #5a5f80;
-  }
-
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection,
-  code[class*='language-']::selection,
-  code[class*='language-'] ::selection {
-    text-shadow: none;
-    background-color: #5a5f80;
-  }
-
   @media print {
     code[class*='language-'],
     pre[class*='language-'] {

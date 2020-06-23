@@ -24,7 +24,6 @@ const lightTheme = {
   navbarColor: '#fff',
   codeBlockTheme: defaultTheme,
   codeBackground: '#f5f2f0', // 인라인 코드 배경. 코드 테마에 맞춰준다
-
   disqus: {
     background: 'transparent',
   },

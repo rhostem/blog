@@ -2,8 +2,11 @@ import { createGlobalStyle } from 'styled-components'
 import { fontFace } from 'polished'
 import media from 'styles/media'
 import { sizes } from 'styles/sizes'
+import { normalize } from 'polished'
 
 export const GlobalStyle = createGlobalStyle`
+  ${normalize};
+
   ${fontFace({
     fontFamily: 'Menlo Regular',
     fontFilePath: '/fonts/menlo-regular',

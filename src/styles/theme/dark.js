@@ -20,11 +20,10 @@ const darkTheme = {
     border: '#353535',
   },
   hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_DARK},.2), rgba(${TEXT_RGB_DARK},.75), rgba(${TEXT_RGB_DARK},.2))`,
-  navbarBg: `linear-gradient(to right, #060606 0%, #2F2F2F 25%, #2F2F2F 75%, #060606 100%)`,
+  navbarBg: `#282C35`,
   navbarColor: '#fff',
   codeBlockTheme: materialOceanic,
-  codeBackground: '#263238',
-
+  codeBackground: '#282C35',
   disqus: {
     background: '#F2F2F2',
   },
