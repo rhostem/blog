@@ -73,21 +73,22 @@ export default function Stats() {
     [currentTab]
   )
 
+  const slowThresold = 300
   const { data: pageViews, error } = swr(
     `https://blogapi.rhostem.com/api/ga/post_pageviews?${makeFormUrlEncoded({
       startDate: format(startDate, DATE_FORMAT),
       endDate: format(new Date(), DATE_FORMAT),
     })}`,
     query => {
-      let timeout = setTimeout(() => {
+      let wait = setTimeout(() => {
         setIsLoading(true)
-      }, 1000)
+      }, slowThresold)
 
       return axios
         .get(query)
         .then(res => res.data)
         .finally(() => {
-          clearTimeout(timeout)
+          clearTimeout(wait)
           setIsLoading(false)
         })
     }
