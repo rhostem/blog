@@ -17,13 +17,14 @@ const lightTheme = {
     link: `#2e2e2e`,
     linkHover: '#4568dc',
     body: '#fff',
-    border: '#ebebeb',
+    border: `rgba(${TEXT_RGB_LIGHT}, 0.2)`,
   },
   hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_LIGHT},.2), rgba(${TEXT_RGB_LIGHT},.75), rgba(${TEXT_RGB_LIGHT},.2))`,
   navbarBg: `linear-gradient(to right, #4568dc, #b06ab3)`,
   navbarColor: '#fff',
   codeBlockTheme: defaultTheme,
   codeBackground: '#f5f2f0', // 인라인 코드 배경. 코드 테마에 맞춰준다
+  loadingSpinner: '#333',
   disqus: {
     background: 'transparent',
   },
