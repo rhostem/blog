@@ -78,7 +78,6 @@ const HitList = styled.ul`
 const NoResults = styled.div`
   text-align: center;
   font-size: 0.9rem;
-  color: #37393f;
   padding: 1em;
 `
 
@@ -116,7 +115,7 @@ function SearchHits({
     isResultVisible && (
       <>
         {isNoResultVisible ? (
-          <NoResultMessage errorMessage={error.message} />
+          <NoResultMessage errorMessage={error && error.message} />
         ) : (
           hits.length > 0 && (
             <div>
