@@ -1,5 +1,5 @@
 import React from 'react'
-import { DarkModeContext, themeModes } from 'components/hooks/useDarkMode'
+import { DarkModeContext } from 'components/hooks/useDarkMode'
 import styled from 'styled-components'
 import { useContext } from 'react'
 import { centeredY } from 'styles/mixin/centered'
@@ -51,7 +51,6 @@ const ToggleThumb = styled.div`
 
 export default function DarkmodeToggleButton() {
   const { mode, toggleTheme } = useContext(DarkModeContext.Consumer)
-  console.log(`mode`, mode)
 
   return (
     <ToggleButton onClick={toggleTheme}>

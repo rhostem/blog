@@ -12,10 +12,12 @@ export const DarkModeContext = React.createContext({
   toggleTheme: () => undefined,
 })
 
+const isBrowser = typeof window === 'object'
+
 export const useDarkMode = () => {
   // 기본은 다크모드
   const [mode, setMode] = useState(
-    typeof window === 'object' ? window.localStorage.getItem('theme') : null
+    isBrowser ? window.localStorage.getItem('theme') : null
   )
   const [theme, setTheme] = useState(darkTheme)
 

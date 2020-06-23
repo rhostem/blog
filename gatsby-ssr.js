@@ -5,11 +5,11 @@
  */
 
 // You can delete this file if you're not using it
-import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
+const React = require('react')
+const { renderToString } = require('react-dom/server')
+const { ServerStyleSheet, StyleSheetManager } = require('styled-components')
 
-const replaceRenderer = ({
+exports.replaceRenderer = ({
   bodyComponent,
   replaceBodyHTMLString,
   setHeadComponents,
@@ -27,5 +27,3 @@ const replaceRenderer = ({
   replaceBodyHTMLString(renderToString(<App />))
   setHeadComponents([sheet.getStyleElement()])
 }
-
-export default replaceRenderer
