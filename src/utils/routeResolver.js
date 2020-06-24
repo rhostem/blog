@@ -27,9 +27,9 @@
      */
     getTagRoute: function(tag) {
       if (!!tag) {
-        return `tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
+        return `/tag/${tag.replace(/\s+/g, '_').toLowerCase()}`
       } else {
-        return `tags`
+        return `/tags`
       }
     },
   }
