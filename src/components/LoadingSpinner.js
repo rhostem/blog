@@ -32,7 +32,7 @@ const CircleSpinner = styled.div`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background: ${({ theme }) => theme.loadingSpinner};
+    background: var(--loadingSpinner);
     border-radius: 100%;
     -webkit-animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;
     animation: sk-circleFadeDelay 1.2s infinite ease-in-out both;

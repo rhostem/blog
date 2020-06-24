@@ -10,7 +10,7 @@ import { useDarkMode, DarkModeContext } from 'components/hooks/useDarkMode'
 
 const Page = styled.main`
   padding-top: ${sizes.topNavHeight};
-  background: var(--bg);
+  background: var(--body);
   transition: background 0.3s linear;
   min-height: 100vh;
   display: flex;

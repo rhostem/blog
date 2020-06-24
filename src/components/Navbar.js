@@ -15,8 +15,8 @@ const Wrap = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  background: ${({ theme }) => theme.navbarBg};
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  background: var(--navbarBg);
+  border-bottom: 1px solid var(--border);
   transition: all 0.3s linear;
 `
 

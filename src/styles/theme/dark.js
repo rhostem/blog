@@ -19,7 +19,6 @@ const darkTheme = {
   hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_DARK},.2), rgba(${TEXT_RGB_DARK},.75), rgba(${TEXT_RGB_DARK},.2))`,
   navbarBg: `#282C35`,
   navbarColor: '#fff',
-  // codeBlockTheme: materialOceanic,
   codeBlock: '#282C35',
   codeInline: 'rgba(40, 44, 53, 0.3)',
   loadingSpinner: '#EFEFEF',

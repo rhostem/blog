@@ -18,12 +18,12 @@ const Tag = styled.span`
   margin-bottom: 0.35em;
   margin-left: 0.35em;
   line-height: 1.4rem;
-  color: ${({ theme }) => theme.text};
-  background-color: ${({ theme }) => theme.smoke};
+  color: var(--text);
+  background-color: var(--smoke);
   border-radius: 3px;
 
   &:hover {
-    background-color: ${({ theme }) => theme.calm};
+    background-color: var(--calm);
   }
 `
 

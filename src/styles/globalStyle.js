@@ -5,6 +5,9 @@ import { sizes } from 'styles/sizes'
 import { normalize } from 'polished'
 import materialOceanic from 'styles/prism_themes/materialOceanic'
 
+const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
+const TEXT_RGB_DARK = '215, 215, 215' // #D7D7D7
+
 export const GlobalStyle = createGlobalStyle`
   ${normalize};
 
@@ -14,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
   })}
 
   /* 코드블럭 테마 */
-  /* ${({ theme }) => theme.codeBlockTheme} */
+  /* var(--codeBlockTheme) */
   ${materialOceanic}
 
   * {
@@ -26,7 +29,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${sizes.baseFontSize};
     line-height: ${sizes.baseLineHeight};
     font-family:  Nanum Square, Roboto, Spectral, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
-    color: ${({ theme }) => theme.black};
 
     ${media.OVER_MOBILE} {
       font-size: ${(17 / 16) * 100}%;
@@ -37,21 +39,60 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    margin: 0;
-
     &.light {
-      --bg: #ffffff;
+      --navbarMain: #4568dc;
+      --green: #76b835;
+      --black: rgba(${TEXT_RGB_LIGHT} ,1);
+      --text: rgba(${TEXT_RGB_LIGHT} ,0.95);
+      --light: rgba(${TEXT_RGB_LIGHT} ,0.5);
+      --calm: rgba(${TEXT_RGB_LIGHT} ,0.2);
+      --smoke: rgba(${TEXT_RGB_LIGHT} ,0.1);
+      --whiteSmoke: rgba(${TEXT_RGB_LIGHT} ,0.02);
+      --white: #fff;
+      --link: #2e2e2e;
+      --linkHover: #4568dc;
+      --body: #fff;
+      --border: rgba(${TEXT_RGB_LIGHT}, 0.2);
+      --hrBackgroundImage: linear-gradient(90deg,rgba(${TEXT_RGB_LIGHT},.2), rgba($--{TEXT_RGB_LIGHT},.75), rgba(${TEXT_RGB_LIGHT},.2));
+      --navbarBg: linear-gradient(to right, #4568dc, #b06ab3);
+      --navbarColor: #fff;
+      --codeBlock: #f5f2f0;
+      --codeInline: #f5f2f0;
+      --loadingSpinner: #333;
+      --blockquoteBackground: #f5f5f5;
+      --disqusBackground: transparent;
     }
 
     &.dark {
-      --bg: #282c35;
+      --green: #76b835;
+      --black: rgba(${TEXT_RGB_DARK} ,1);
+      --text: rgba(${TEXT_RGB_DARK} ,0.9);
+      --light: rgba(${TEXT_RGB_DARK} ,0.5);
+      --calm: rgba(${TEXT_RGB_DARK} ,0.2);
+      --smoke: rgba(${TEXT_RGB_DARK} ,0.1);
+      --whiteSmoke: rgba(${TEXT_RGB_DARK} ,0.02);
+      --white: #fff;
+      --link: rgba(${TEXT_RGB_DARK}, 1);
+      --linkHover: #0DBC79;
+      --body: #4A4A4D;
+      --border: rgba(${TEXT_RGB_DARK}, 0.2);
+      --hrBackgroundImage: linear-gradient(90deg, rgba(${TEXT_RGB_DARK},.2), rgba(${TEXT_RGB_DARK},.75), rgba(${TEXT_RGB_DARK},.2));
+      --navbarBg: #282C35;
+      --navbarColor: #fff;
+      --codeBlock: #282C35;
+      --codeInline: rgba(40, 44, 53, 0.3);
+      --loadingSpinner: #EFEFEF;
+      --blockquoteBackground: rgba(${TEXT_RGB_DARK}, 0.1);
+      --disqusBackground: #F2F2F2;
     }
 
+    margin: 0;
+    color: var(--black);
   }
 
   a {
-    color: ${({ theme }) => theme.link};
-    border-color: ${({ theme }) => theme.link};
+    color: var(--link);
+    border-color: var(--link);
     text-decoration: none;
     word-break: break-all;
   }
@@ -68,9 +109,9 @@ export const GlobalStyle = createGlobalStyle`
     margin: 3.5rem auto;
     width: 50%;
     height: 1px;
-    color: ${({ theme }) => theme.black};
-    background: ${({ theme }) => theme.smoke};
-    background-image: ${({ theme }) => theme.hrBackgroundImage};
+    color: var(--black);
+    background: var(--smoke);
+    background-image: var(--hrBackgroundImage);
     border: none;
   }
 
@@ -85,13 +126,13 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1.4;  display: block;
         text-align: center;
         margin-bottom: 2.8rem;
-        color: ${({ theme }) => theme.light};
+        color: var(--light);
       }
     }
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: ${({ theme }) => theme.black};
+    color: var(--black);
     font-weight: 700;
 
 
@@ -149,8 +190,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    border-left: 3px solid ${({ theme }) => theme.linkHover};
-    background: ${({ theme }) => theme.blockquoteBackground};
+    border-left: 3px solid var(--linkHover);
+    background: var(--blockquoteBackground);
     margin-left: -0.1rem;
     margin-right: -0.1rem;
     margin-top: 2.8rem;
@@ -203,7 +244,7 @@ export const GlobalStyle = createGlobalStyle`
     display: inline-flex;
     line-height: 1.4em;
     border-radius: 0.3em;
-    background: ${({ theme }) => theme.codeInline};
+    background: var(--codeInline);
     min-height: 1.4em;
     align-items: center;
     font-size: 0.8em;
@@ -293,7 +334,7 @@ export const GlobalStyle = createGlobalStyle`
     background-image: 0 !important;
 
     svg {
-      fill: ${({ theme }) => theme.text};
+      fill: var(--text);
     }
   }
 
@@ -311,26 +352,22 @@ export const GlobalStyle = createGlobalStyle`
   /* 본문 내부 텍스트 링크 */
   .post a:not(.gatsby-resp-image-link):not(.anchor),
   .link-underline {
-    color: ${({ theme }) => theme.link};
-    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
-      theme,
-    }) => theme.link} 100%); /* 밑줄 */
+    color: var(--link);
+    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), var(--link) 100%); /* 밑줄 */
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .post a:not(.gatsby-resp-image-link):not(.anchor):hover, .link-underline:hover {
-    color: ${({ theme }) => theme.linkHover};
-    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
-      theme,
-    }) => theme.linkHover} 100%);
+    color: var(--linkHover);
+    background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), var(--linkHover) 100%);
   }
 
   .post .gatsby-resp-image-link {
     & + em {
-      color: ${({ theme }) => theme.light};
+      color: var(--light);
     }
     & + em  > a {
-      color: ${({ theme }) => theme.light};
+      color: var(--light);
     }
   }
 
