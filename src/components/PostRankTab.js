@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const TabWrapper = styled.div`
   margin-bottom: 1rem;
-  border-bottom: 3px solid ${({ theme }) => theme.colors.border};
+  border-bottom: 3px solid ${({ theme }) => theme.border};
 `
 
 export const Tab = styled.button`
@@ -11,7 +11,7 @@ export const Tab = styled.button`
   min-width: 6rem;
   padding: 0.5rem 1rem;
   border: none;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
   background: transparent;
   &::after {
     content: ' ';
@@ -21,6 +21,6 @@ export const Tab = styled.button`
     width: 100%;
     height: 2px;
     background: ${({ isSelected, theme }) =>
-      isSelected ? theme.colors.linkHover : 'transparent'};
+      isSelected ? theme.linkHover : 'transparent'};
   }
 `

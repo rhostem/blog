@@ -38,7 +38,7 @@ const TagGrid = styled.div`
 
 const TagLink = styled(Link)`
   padding: 0.5rem 0.6rem;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
   transition: background-color 0.3s ease-in-out;
   margin-bottom: 0.2em;
   &:hover {
@@ -55,7 +55,7 @@ const HotTagLink = styled(TagLink)`
   font-weight: bold;
   & > span {
     display: inline-block;
-    border-bottom: 2px solid ${({ theme }) => theme.colors.green};
+    border-bottom: 2px solid ${({ theme }) => theme.green};
   }
 `
 

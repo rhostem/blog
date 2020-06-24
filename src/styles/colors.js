@@ -1,7 +1,6 @@
 export const baseHsl = `291, 0%, 18%`
 export const colors = {
   baseHsl,
-  navbarMain: '#4568dc',
   green: '#76b835',
   black: `hsla(${baseHsl},1)`, // #2E2E2E
   text: `hsla(${baseHsl},0.95)`,

@@ -18,7 +18,7 @@ const HitsWrapper = styled.div`
   top: calc(100% + ${indicatorHeight});
   width: 70vw;
   right: 0;
-  background: ${({ theme }) => theme.colors.body};
+  background: ${({ theme }) => theme.body};
   border-radius: 4px;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   font-size: 0.8rem;

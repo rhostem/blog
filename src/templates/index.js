@@ -12,14 +12,14 @@ const currentPageStyle = css`
   font-weight: 900;
   a {
     position: relative;
-    color: ${({ theme }) => theme.colors.linkHover};
+    color: ${({ theme }) => theme.linkHover};
     &::after {
       ${mixin.centeredX()}
       content: ' ';
       width: 50%;
       top: 80%;
       height: 2px;
-      background-color: ${({ theme }) => theme.colors.linkHover};
+      background-color: ${({ theme }) => theme.linkHover};
       border-radius: 2px;
     }
   }
@@ -63,7 +63,7 @@ const PaginationContainer = styled.div`
       outline: none;
 
       &:hover {
-        color: ${({ theme }) => theme.colors.linkHover};
+        color: ${({ theme }) => theme.linkHover};
       }
     }
   }

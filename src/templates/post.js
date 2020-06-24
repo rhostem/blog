@@ -27,7 +27,7 @@ const PostSubTitle = styled.p`
   margin: 0.7rem 0;
   font-size: 1.2rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
 `
 
 const PostInfo = styled.div`
@@ -50,11 +50,11 @@ const ShareButtonStyle = css`
   padding: 0;
   margin: 0 0.75rem;
   transition: color 0.2s linear;
-  color: ${({ theme }) => theme.colors.link};
+  color: ${({ theme }) => theme.link};
   background: none;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.linkHover};
+    color: ${({ theme }) => theme.linkHover};
     cursor: pointer;
   }
 `
@@ -75,7 +75,7 @@ const ShareButtons = styled.div`
 
 const DisqusThread = styled.div`
   padding: 0.5rem 1rem 1rem;
-  background: ${({ theme }) => theme.disqus.background};
+  background: ${({ theme }) => theme.disqusBackground};
   border-radius: 10px;
 `
 

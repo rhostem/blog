@@ -41,7 +41,7 @@ const PostSubTitle = styled.h3`
   line-height: 1.4;
   font-weight: 400;
   margin: 0.5rem 0;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
   ${setHeightLimitAndEllipsis({
     line: 2,
   })};
@@ -52,7 +52,7 @@ const Info = styled.div`
   margin: 0.5rem 0;
   font-size: 0.8rem;
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
 `
 
 const MainImage = styled.div`

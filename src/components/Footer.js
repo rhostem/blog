@@ -11,7 +11,7 @@ const FooterWrap = styled.footer`
   width: 100%;
   margin-top: auto;
   padding: 1.5rem 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  border-top: 1px solid ${({ theme }) => theme.border};
   line-height: 1.4;
   text-align: center;
 `
@@ -30,7 +30,7 @@ const CopyRight = styled.div`
 
 const OwnerLink = styled.a`
   margin: 0.5rem auto;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
   text-decoration: underline;
 `
 
@@ -48,13 +48,13 @@ const FooterLinks = styled.div`
   }
 
   i {
-    color: ${({ theme }) => theme.colors.text};
+    color: ${({ theme }) => theme.text};
   }
 `
 
 const PoweredBy = styled.div`
   margin: 0.5rem auto;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.text};
 
   & > p {
     font-weight: 400;

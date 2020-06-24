@@ -30,7 +30,7 @@ const YearTitle = styled.h2`
     left: 0;
     width: 4px;
     height: 0.9em;
-    background-color: ${({ theme }) => theme.colors.linkHover};
+    background-color: ${({ theme }) => theme.linkHover};
   }
 `
 
@@ -48,13 +48,13 @@ const PostTitleLink = styled(Link)`
     left: 0;
     width: 0.2rem;
     height: 0.2rem;
-    background-color: ${({ theme }) => theme.colors.linkHover};
+    background-color: ${({ theme }) => theme.linkHover};
     opacity: 0.6;
     border-radius: 1px;
   }
 
   &:hover {
-    color: ${({ theme }) => theme.colors.linkHover};
+    color: ${({ theme }) => theme.linkHover};
   }
 `
 

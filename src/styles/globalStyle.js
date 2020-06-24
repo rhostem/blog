@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${sizes.baseFontSize};
     line-height: ${sizes.baseLineHeight};
     font-family:  Nanum Square, Roboto, Spectral, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.black};
 
     ${media.OVER_MOBILE} {
       font-size: ${(17 / 16) * 100}%;
@@ -39,8 +39,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${({ theme }) => theme.colors.link};
-    border-color: ${({ theme }) => theme.colors.link};
+    color: ${({ theme }) => theme.link};
+    border-color: ${({ theme }) => theme.link};
     text-decoration: none;
     word-break: break-all;
   }
@@ -57,8 +57,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 3.5rem auto;
     width: 50%;
     height: 1px;
-    color: ${({ theme }) => theme.colors.black};
-    background: ${({ theme }) => theme.colors.smoke};
+    color: ${({ theme }) => theme.black};
+    background: ${({ theme }) => theme.smoke};
     background-image: ${({ theme }) => theme.hrBackgroundImage};
     border: none;
   }
@@ -74,13 +74,13 @@ export const GlobalStyle = createGlobalStyle`
         line-height: 1.4;  display: block;
         text-align: center;
         margin-bottom: 2.8rem;
-        color: ${({ theme }) => theme.colors.light};
+        color: ${({ theme }) => theme.light};
       }
     }
   }
 
   h1, h2, h3, h4, h5, h6 {
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.black};
     font-weight: 700;
 
 
@@ -138,7 +138,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   blockquote {
-    border-left: 3px solid ${({ theme }) => theme.colors.linkHover};
+    border-left: 3px solid ${({ theme }) => theme.linkHover};
     background: ${({ theme }) => theme.blockquoteBackground};
     margin-left: -0.1rem;
     margin-right: -0.1rem;
@@ -282,7 +282,7 @@ export const GlobalStyle = createGlobalStyle`
     background-image: 0 !important;
 
     svg {
-      fill: ${({ theme }) => theme.colors.text};
+      fill: ${({ theme }) => theme.text};
     }
   }
 
@@ -300,26 +300,26 @@ export const GlobalStyle = createGlobalStyle`
   /* 본문 내부 텍스트 링크 */
   .post a:not(.gatsby-resp-image-link):not(.anchor),
   .link-underline {
-    color: ${({ theme }) => theme.colors.link};
+    color: ${({ theme }) => theme.link};
     background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
       theme,
-    }) => theme.colors.link} 100%); /* 밑줄 */
+    }) => theme.link} 100%); /* 밑줄 */
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .post a:not(.gatsby-resp-image-link):not(.anchor):hover, .link-underline:hover {
-    color: ${({ theme }) => theme.colors.linkHover};
+    color: ${({ theme }) => theme.linkHover};
     background-image: linear-gradient(to bottom, transparent, transparent calc(100% - 2px), ${({
       theme,
-    }) => theme.colors.linkHover} 100%);
+    }) => theme.linkHover} 100%);
   }
 
   .post .gatsby-resp-image-link {
     & + em {
-      color: ${({ theme }) => theme.colors.light};
+      color: ${({ theme }) => theme.light};
     }
     & + em  > a {
-      color: ${({ theme }) => theme.colors.light};
+      color: ${({ theme }) => theme.light};
     }
   }
 
