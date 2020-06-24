@@ -13,17 +13,9 @@ export default css`
     word-wrap: normal;
     color: #c3cee3;
     background: #282c35;
-    font-family: inherit;
-    font-size: inherit;
+    font-size: 0.9em;
     line-height: inherit;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
+    tab-size: 2;
     hyphens: none;
   }
 
@@ -40,12 +32,9 @@ export default css`
     padding: 1.25em 1em;
   }
 
-  /* NOTE: 본문 안의 코드 태그 */
   code[class='language-text'] {
-    background: rgba(27, 31, 35, 0.05);
     color: inherit;
     display: inline-block;
-    padding: 0 0.3em !important;
   }
 
   .language-css > code,

@@ -13,24 +13,16 @@ export default css`
   code[class*='language-'],
   pre[class*='language-'] {
     color: black;
-    background: none;
+    /* background: none; */
     text-shadow: 0 1px white;
-    font-family: inherit;
-    font-size: inherit;
+    font-size: 0.9em;
     line-height: inherit;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
+    tab-size: 2;
     hyphens: none;
   }
 

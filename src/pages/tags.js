@@ -41,9 +41,6 @@ const TagLink = styled(Link)`
   color: var(--text);
   transition: background-color 0.3s ease-in-out;
   margin-bottom: 0.2em;
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-  }
 
   & > span {
     padding-bottom: 0.1em;

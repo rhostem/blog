@@ -47,7 +47,6 @@ const VisibleOnMobile = styled.div`
 const MenuButton = styled.button`
   display: block;
   padding: 1rem 0.6rem;
-
   margin-right: -0.6rem;
   border: none;
   background: none;
