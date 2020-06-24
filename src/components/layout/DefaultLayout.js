@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import { StaticQuery, graphql } from 'gatsby'
 import { sizes } from 'styles'
 import Navbar from '../Navbar'
@@ -23,7 +23,7 @@ const PageContents = styled(ContentWrapper)`
 `
 
 const DefaultLayout = ({ children }) => {
-  const { theme, mode, toggleTheme } = useDarkMode()
+  const { mode, toggleTheme } = useDarkMode()
 
   return (
     <StaticQuery
@@ -38,19 +38,17 @@ const DefaultLayout = ({ children }) => {
       `}
       render={data => (
         <>
-          <ThemeProvider theme={theme}>
-            <DarkModeContext.Provider
-              value={{
-                mode,
-                toggleTheme,
-              }}>
-              <Navbar toggleTheme={toggleTheme} />
-              <Page>
-                <PageContents>{children}</PageContents>
-                <Footer />
-              </Page>
-            </DarkModeContext.Provider>
-          </ThemeProvider>
+          <DarkModeContext.Provider
+            value={{
+              mode,
+              toggleTheme,
+            }}>
+            <Navbar toggleTheme={toggleTheme} />
+            <Page>
+              <PageContents>{children}</PageContents>
+              <Footer />
+            </Page>
+          </DarkModeContext.Provider>
         </>
       )}
     />

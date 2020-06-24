@@ -52,14 +52,15 @@ const ToggleThumb = styled.div`
 
 export default function DarkmodeToggleButton() {
   const { mode, toggleTheme } = useContext(DarkModeContext)
-
   return (
-    <ToggleButton onClick={toggleTheme}>
-      <ToggleTrack>
-        <div className="moon" />
-        <div className="sun" />
-        <ToggleThumb mode={mode} style={{}} />
-      </ToggleTrack>
-    </ToggleButton>
+    mode && (
+      <ToggleButton onClick={toggleTheme}>
+        <ToggleTrack>
+          <div className="moon" />
+          <div className="sun" />
+          <ToggleThumb mode={mode} style={{}} />
+        </ToggleTrack>
+      </ToggleButton>
+    )
   )
 }

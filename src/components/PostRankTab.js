@@ -20,7 +20,7 @@ export const Tab = styled.button`
     left: 0;
     width: 100%;
     height: 2px;
-    background: ${({ isSelected, theme }) =>
-      isSelected ? theme.linkHover : 'transparent'};
+    background: ${({ isSelected }) =>
+      isSelected ? 'var(--linkHover)' : 'transparent'};
   }
 `

@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import lightTheme from 'styles/theme/light'
-import darkTheme from 'styles/theme/dark'
 
 export const themeModes = {
   LIGHT: 'light',
@@ -12,15 +10,18 @@ export const DarkModeContext = React.createContext({
   toggleTheme: () => undefined,
 })
 
+/**
+ * NOTE: html.js의 스크립트에 다크모드 관련 변수와 함수가 구현되어 있음.
+ */
 export const useDarkMode = () => {
   // 기본은 다크모드
-  const [mode, setMode] = useState()
-  const [theme, setTheme] = useState({})
+  const [mode, setMode] = useState(
+    typeof window === 'object' ? window.__theme : null
+  )
 
   // 로컬스토리지에 저장
   const changeTheme = newTheme => {
     setMode(newTheme)
-    setTheme(newTheme === themeModes.LIGHT ? lightTheme : darkTheme)
     window.__setPreferredTheme(newTheme)
   }
 
@@ -41,5 +42,5 @@ export const useDarkMode = () => {
     }
   }, [])
 
-  return { mode, theme, toggleTheme }
+  return { mode, toggleTheme }
 }
