@@ -23,7 +23,10 @@ export default class HTML extends React.Component {
 
                 var preferredTheme;
                 try {
-                  preferredTheme = localStorage.getItem('theme');
+                  var saved = localStorage.getItem('theme') // 대문자는 소문자로 변환
+                  if (saved) {
+                    preferredTheme = saved.toLowerCase()
+                  }
                 } catch (err) { }
 
                 window.__setPreferredTheme = function(newTheme) {
