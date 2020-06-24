@@ -135,9 +135,8 @@ export default function Stats() {
         render={data => {
           const titleMap = {}
           data.allMarkdownRemark.edges.forEach(({ node }) => {
-            titleMap[
-              `${SITE_CONFIG.pathPrefix}${getPostRoute(node.frontmatter.path)}`
-            ] = node.frontmatter.title
+            titleMap[getPostRoute(node.frontmatter.path)] =
+              node.frontmatter.title
           })
 
           return (

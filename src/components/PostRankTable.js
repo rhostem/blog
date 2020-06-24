@@ -75,6 +75,8 @@ export default ({
       </thead>
       <tbody>
         {postList.map((post: PostRankData, index) => {
+          console.log(`titleMap`, titleMap)
+
           return (
             titleMap[post.route] && (
               <tr key={index}>
