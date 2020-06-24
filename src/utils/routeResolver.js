@@ -19,7 +19,7 @@
      * 포스트 경로
      */
     getPostRoute: function(path) {
-      return `posts/${path}`
+      return `/posts/${path}`
     },
     /**
      * 태그 경로
