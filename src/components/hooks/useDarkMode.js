@@ -3,8 +3,8 @@ import lightTheme from 'styles/theme/light'
 import darkTheme from 'styles/theme/dark'
 
 export const themeModes = {
-  LIGHT: 'LIGHT',
-  DARK: 'DARK',
+  LIGHT: 'light',
+  DARK: 'dark',
 }
 
 export const DarkModeContext = React.createContext({
@@ -12,47 +12,33 @@ export const DarkModeContext = React.createContext({
   toggleTheme: () => undefined,
 })
 
-const isBrowser = typeof window === 'object'
-
 export const useDarkMode = () => {
   // 기본은 다크모드
-  const [mode, setMode] = useState(
-    isBrowser ? window.localStorage.getItem('theme') : null
-  )
-  const [theme, setTheme] = useState(darkTheme)
+  const [mode, setMode] = useState()
+  const [theme, setTheme] = useState({})
 
   // 로컬스토리지에 저장
-  const changeMode = mode => {
-    window.localStorage.setItem('theme', mode)
-    setMode(mode)
-    setTheme(mode === themeModes.LIGHT ? lightTheme : darkTheme)
+  const changeTheme = newTheme => {
+    setMode(newTheme)
+    setTheme(newTheme === themeModes.LIGHT ? lightTheme : darkTheme)
+    window.__setPreferredTheme(newTheme)
   }
 
   const toggleTheme = useCallback(
     () => {
       if (mode === themeModes.LIGHT) {
-        changeMode(themeModes.DARK)
+        changeTheme(themeModes.DARK)
       } else {
-        changeMode(themeModes.LIGHT)
+        changeTheme(themeModes.LIGHT)
       }
     },
     [mode]
   )
 
   useEffect(() => {
-    let localTheme = window.localStorage.getItem('theme')
-
-    if (!localTheme) {
-      // 시스템 다크 모드 확인
-      const isSystemDarkMode =
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches
-
-      localTheme = isSystemDarkMode ? themeModes.DARK : themeModes.LIGHT
-      window.localStorage.setItem('theme', localTheme)
+    if (typeof window === 'object') {
+      setMode(window.__theme)
     }
-
-    changeMode(localTheme)
   }, [])
 
   return { mode, theme, toggleTheme }

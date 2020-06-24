@@ -1,13 +1,13 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import styled from 'styled-components'
-import { colors, sizes, media } from '../styles'
+import { sizes, media } from '../styles'
 import { ContentWrapper } from '../components/content-wrapper'
 import NavMenus from './NavMenus'
 import CustomInstantSearch from './search/CustomInstantSearch'
 import debounce from 'utils/debounce'
 import DarkmodeToggleButton from 'components/DarkmodeToggleButton'
-import { centered, centeredY } from 'styles/mixin/centered'
+import { centeredY } from 'styles/mixin/centered'
 
 const Wrap = styled.nav`
   position: fixed;

@@ -20,12 +20,6 @@ export default class HTML extends React.Component {
               __html: `
               (function() {
                 window.__onThemeChange = function() {};
-                function setTheme(newTheme) {
-                  window.__theme = newTheme;
-                  preferredTheme = newTheme;
-                  document.body.className = newTheme;
-                  window.__onThemeChange(newTheme);
-                }
 
                 var preferredTheme;
                 try {
@@ -33,7 +27,11 @@ export default class HTML extends React.Component {
                 } catch (err) { }
 
                 window.__setPreferredTheme = function(newTheme) {
-                  setTheme(newTheme);
+                  window.__theme = newTheme;
+                  preferredTheme = newTheme;
+                  document.body.className = newTheme;
+                  window.__onThemeChange(newTheme);
+
                   try {
                     localStorage.setItem('theme', newTheme);
                   } catch (err) {}
@@ -44,7 +42,7 @@ export default class HTML extends React.Component {
                   window.__setPreferredTheme(e.matches ? 'dark' : 'light')
                 });
 
-                setTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
+                window.__setPreferredTheme(preferredTheme || (darkQuery.matches ? 'dark' : 'light'));
               })();
             `,
             }}

@@ -19,7 +19,7 @@ const lightTheme = {
   hrBackgroundImage: `linear-gradient(90deg,rgba(${TEXT_RGB_LIGHT},.2), rgba(${TEXT_RGB_LIGHT},.75), rgba(${TEXT_RGB_LIGHT},.2))`,
   navbarBg: `linear-gradient(to right, #4568dc, #b06ab3)`,
   navbarColor: '#fff',
-  codeBlockTheme: defaultTheme,
+  // codeBlockTheme: defaultTheme,
   codeBlock: '#f5f2f0', // 코드 블럭
   codeInline: '#f5f2f0', // 인라인 코드
   loadingSpinner: '#333',

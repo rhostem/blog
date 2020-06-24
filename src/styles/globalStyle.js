@@ -3,6 +3,7 @@ import { fontFace } from 'polished'
 import media from 'styles/media'
 import { sizes } from 'styles/sizes'
 import { normalize } from 'polished'
+import materialOceanic from 'styles/prism_themes/materialOceanic'
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize};
@@ -13,7 +14,8 @@ export const GlobalStyle = createGlobalStyle`
   })}
 
   /* 코드블럭 테마 */
-  ${({ theme }) => theme.codeBlockTheme}
+  /* ${({ theme }) => theme.codeBlockTheme} */
+  ${materialOceanic}
 
   * {
     font-size: inherit;
@@ -36,6 +38,15 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+
+    &.light {
+      --bg: #ffffff;
+    }
+
+    &.dark {
+      --bg: #282c35;
+    }
+
   }
 
   a {
