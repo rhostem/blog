@@ -14,7 +14,7 @@ export const indicatorHeight = '7px'
 
 const HitHeader = styled.div`
   background: #37393f;
-  color: #fff;
+  color: var(--navbarColor);
   padding: 5px 10px;
 
   &.isFirst {

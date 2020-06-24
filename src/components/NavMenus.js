@@ -25,7 +25,7 @@ const DesktopMenuItem = styled(Link)`
   margin-bottom: 0;
   font-size: 0.9rem;
   font-weight: 400;
-  color: #fff;
+  color: var(--navbarColor);
 
   &:not(:first-child) {
     margin-left: 1.25rem;
@@ -53,7 +53,7 @@ const MenuButton = styled.button`
   background: none;
   outline: none;
   font-weight: 100;
-  color: #fff;
+  color: var(--navbarColor);
 
   &:hover {
     cursor: pointer;
@@ -78,7 +78,7 @@ const MobileMenuContent = styled.div`
   width: 200px;
   height: 100vh;
   background-color: #21252f;
-  color: #fff;
+  color: var(--navbarColor);
   border-left: 1px solid #222;
   transition: all 0.4s ease-in-out;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.15);
@@ -97,7 +97,7 @@ const DarkmodeButtonWrap = styled.div`
 
 const MobilMenuCloseBtn = styled.button`
   padding: 0.7rem 1rem;
-  color: #fff;
+  color: var(--navbarColor);
   margin-left: auto;
   margin-right: 0.6rem;
   border: none;
@@ -123,7 +123,7 @@ const MobileMenuLink = styled(Link)`
   padding: 0.5rem 1.5rem;
   font-weight: 700;
   letter-spacing: -0.4px;
-  color: #fff;
+  color: var(--navbarColor);
 
   & > i {
     margin-right: 0.5rem;

@@ -40,7 +40,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     &.light {
-      --navbarMain: #4568dc;
       --green: #76b835;
       --black: rgba(${TEXT_RGB_LIGHT} ,1);
       --text: rgba(${TEXT_RGB_LIGHT} ,0.95);

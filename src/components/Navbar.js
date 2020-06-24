@@ -28,7 +28,7 @@ export const NavbarCotent = styled(ContentWrapper)`
 
 const SiteTitle = styled.div`
   margin-right: auto;
-  color: #fff;
+  color: var(--navbarColor);
   font-weight: 400;
   font-size: 0.9rem;
   font-family: 'Roboto', sans-serif;

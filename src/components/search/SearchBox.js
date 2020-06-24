@@ -32,7 +32,7 @@ const SearchInput = styled.input`
   padding: 0 12px;
   padding-left: 25px;
   outline: none;
-  color: #fff;
+  color: var(--navbarColor);
   font-size: 16px;
 `
 
@@ -40,7 +40,7 @@ const SearchIcon = styled('i')`
   ${mixin.centeredY()}
   margin-top: 1px;
   left: 8px;
-  color: #fff;
+  color: var(--navbarColor);
   font-size: 0.8rem;
 `
 
