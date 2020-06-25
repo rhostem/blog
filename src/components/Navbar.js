@@ -77,7 +77,6 @@ class Navbar extends React.Component {
   componentDidMount() {}
 
   render() {
-    const { toggleTheme } = this.props
     return (
       <Wrap>
         <NavbarCotent>
@@ -96,7 +95,7 @@ class Navbar extends React.Component {
           </MenuArea>
 
           <DarkModeToggleWrap>
-            <DarkmodeToggleButton onClick={toggleTheme} />
+            <DarkmodeToggleButton />
           </DarkModeToggleWrap>
         </NavbarCotent>
       </Wrap>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { DarkModeContext, themeModes } from 'components/hooks/useDarkMode'
+import { DarkModeContext, themeNames } from 'components/hooks/useDarkMode'
 import styled from 'styled-components'
 import { useContext } from 'react'
 import { centeredY } from 'styles/mixin/centered'
@@ -45,20 +45,20 @@ const ToggleThumb = styled.div`
   width: 24px;
   height: 24px;
   background: #fff;
-  left: ${({ mode }) =>
-    mode === themeModes.DARK ? 'calc(100% - 24px);' : '0'};
+  left: ${({ themeName }) =>
+    themeName === themeNames.DARK ? 'calc(100% - 24px);' : '0'};
   transition: left 0.2s linear;
 `
 
 export default function DarkmodeToggleButton() {
-  const { mode, toggleTheme } = useContext(DarkModeContext)
+  const { theme, toggleTheme } = useContext(DarkModeContext)
   return (
-    mode && (
+    theme && (
       <ToggleButton onClick={toggleTheme}>
         <ToggleTrack>
           <div className="moon" />
           <div className="sun" />
-          <ToggleThumb mode={mode} style={{}} />
+          <ToggleThumb themeName={theme} />
         </ToggleTrack>
       </ToggleButton>
     )

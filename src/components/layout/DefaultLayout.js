@@ -23,7 +23,7 @@ const PageContents = styled(ContentWrapper)`
 `
 
 const DefaultLayout = ({ children }) => {
-  const { mode, toggleTheme } = useDarkMode()
+  const { theme, toggleTheme } = useDarkMode()
 
   return (
     <StaticQuery
@@ -40,10 +40,10 @@ const DefaultLayout = ({ children }) => {
         <>
           <DarkModeContext.Provider
             value={{
-              mode,
+              theme,
               toggleTheme,
             }}>
-            <Navbar toggleTheme={toggleTheme} />
+            <Navbar />
             <Page>
               <PageContents>{children}</PageContents>
               <Footer />
