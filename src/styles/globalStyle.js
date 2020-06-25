@@ -50,7 +50,7 @@ export const GlobalStyle = createGlobalStyle`
       --linkHover: #4568dc;
       --body: #fff;
       --border: rgba(${TEXT_RGB_LIGHT}, 0.2);
-      --hrBackgroundImage: linear-gradient(90deg,rgba(${TEXT_RGB_LIGHT},.2), rgba($--{TEXT_RGB_LIGHT},.75), rgba(${TEXT_RGB_LIGHT},.2));
+      --hrBackgroundImage: linear-gradient(90deg,rgba(${TEXT_RGB_LIGHT},.2), rgba(${TEXT_RGB_LIGHT},.75), rgba(${TEXT_RGB_LIGHT},.2));
       --navbarBg: linear-gradient(to right, #4568dc, #b06ab3);
       --navbarColor: #fff;
       --codeBlock: #f5f2f0;
