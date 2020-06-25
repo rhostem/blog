@@ -13,6 +13,7 @@ import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 import * as R from 'ramda'
 import PageTitle from '../components/PageTitle'
 import { media } from 'styles/'
+import { format } from 'date-fns'
 
 const PostTitle = styled(PageTitle)`
   text-align: left;
@@ -199,7 +200,8 @@ class PostTemplate extends Component {
         )}
 
         <PostInfo>
-          {frontmatter.date} &middot; {markdownRemark.timeToRead} min to read
+          {format(frontmatter.date, 'YYYY-MM-DD')} &middot;{' '}
+          {markdownRemark.timeToRead} min to read
         </PostInfo>
 
         <TagsWrapper>
