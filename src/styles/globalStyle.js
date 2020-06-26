@@ -5,6 +5,7 @@ import { sizes } from 'styles/sizes'
 import { normalize } from 'polished'
 import materialOceanic from 'styles/prism_themes/materialOceanic'
 import defaultTheme from 'styles/prism_themes/defaultTheme'
+import scrollbar from 'styles/mixin/scrollbar'
 
 const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
 const TEXT_RGB_DARK = '215, 215, 215' // #D7D7D7
@@ -54,7 +55,9 @@ export const GlobalStyle = createGlobalStyle`
       --navbarBg: linear-gradient(to right, #4568dc, #b06ab3);
       --navbarColor: #fff;
       --codeBlock: #f5f2f0;
-      --codeInline: rgba(${TEXT_RGB_LIGHT}, 0.1);
+      --codeBlockScrollTrack: var(--smoke);
+      --codeBlockScrollThumb: var(--calm);
+      --codeInline: #f5f2f0;
       --loadingSpinner: #333;
       --blockquoteBackground: #f5f5f5;
       --disqusBackground: transparent;
@@ -80,6 +83,8 @@ export const GlobalStyle = createGlobalStyle`
       --navbarBg: #282C35;
       --navbarColor: #fff;
       --codeBlock: #282C35;
+      --codeBlockScrollTrack: var(--smoke);
+      --codeBlockScrollThumb: var(--calm);
       --codeInline: rgba(40, 44, 53, 0.5);
       --loadingSpinner: #EFEFEF;
       --blockquoteBackground: rgba(${TEXT_RGB_DARK}, 0.1);
@@ -322,6 +327,12 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     text-shadow: none;
     overflow-x: scroll;
+    ${scrollbar({
+      height: '8.5px',
+      trackColor: 'var(--codeBlockScrollTrack)',
+      thunmbColor: 'var(--codeBlockScrollThumb)',
+      radius: '0',
+    })};
   }
 
   .gatsby-highlight pre[class*=language-] tt,code {
