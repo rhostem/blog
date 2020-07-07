@@ -173,6 +173,7 @@ export const GlobalStyle = createGlobalStyle`
 
   ul, ol {
     padding-left: ${rhythm(1)};
+    margin-left: 0 !important;
   }
 
   li {
