@@ -1,6 +1,6 @@
 export const sizes = {
   baseFontSize: '16px',
-  baseLineHeight: 1.417,
+  baseLineHeight: 1.666,
   mobile: '400px',
   phablet: '550px',
   tablet: '750px',

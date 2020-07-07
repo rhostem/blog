@@ -49,6 +49,7 @@
     "gatsby-plugin-sharp": "^2.0.17",
     "gatsby-plugin-sitemap": "^2.0.4",
     "gatsby-plugin-styled-components": "^3.0.4",
+    "gatsby-plugin-typography": "^2.5.9",
     "gatsby-remark-autolink-headers": "^2.0.12",
     "gatsby-remark-copy-linked-files": "^2.0.8",
     "gatsby-remark-external-links": "0.0.4",
@@ -72,10 +73,12 @@
     "react-instantsearch-dom": "^5.7.0",
     "react-paginate": "^6.2.0",
     "react-transition-group": "^2.5.2",
-    "react-typography": "^0.16.18",
+    "react-typography": "^0.16.19",
     "striptags": "^3.1.1",
     "styled-components": "^4.4.1",
-    "swr": "^0.2.3"
+    "swr": "^0.2.3",
+    "typography": "^0.16.19",
+    "typography-theme-wordpress-2016": "^0.16.19"
   },
   "keywords": [
     "gatsby"

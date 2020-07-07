@@ -1,4 +1,3 @@
-import defaultTheme from 'styles/prism_themes/default'
 const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
 
 const lightTheme = {
