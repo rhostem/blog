@@ -18,9 +18,9 @@ import { format } from 'date-fns'
 const PostTitle = styled(PageTitle)`
   text-align: left;
   margin-bottom: 0.7rem;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   ${media.OVER_MOBILE} {
-    font-size: 2.1rem;
+    font-size: 1.6rem;
   }
 `
 

@@ -6,6 +6,7 @@ import { normalize } from 'polished'
 import materialOceanic from 'styles/prism_themes/materialOceanic'
 import defaultTheme from 'styles/prism_themes/defaultTheme'
 import scrollbar from 'styles/mixin/scrollbar'
+import { rhythm } from 'utils/typography'
 
 const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
 const TEXT_RGB_DARK = '215, 215, 215' // #D7D7D7
@@ -17,7 +18,6 @@ export const GlobalStyle = createGlobalStyle`
     fontFamily: 'Menlo Regular',
     fontFilePath: '/fonts/menlo-regular',
   })}
-
 
   * {
     font-size: inherit;
@@ -114,7 +114,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   hr {
-    margin: 3.5rem auto;
+    margin: ${rhythm(2)} auto;
     width: 50%;
     height: 1px;
     color: var(--black);
@@ -123,88 +123,36 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
   }
 
-  p {
-    line-height: 1.71rem;
-
-    & > img {
-      margin-bottom: 1.4rem;
-
-      & + em {
-        font-size: 0.9em;
-        line-height: 1.4;  display: block;
-        text-align: center;
-        margin-bottom: 2.8rem;
-        color: var(--light);
-      }
-    }
-  }
-
   h1, h2, h3, h4, h5, h6 {
     color: var(--black);
-    font-weight: 700;
-
-
     & > code {
       word-break: break-word !important;
     }
   }
 
-  h1 {
-    font-size: 2.1rem;
-    line-height: 1.4;
-    margin-top: 5.6rem;
-    margin-bottom: 2.4rem;
-  }
 
-  h2 {
-    font-size: 1.5rem;
-    line-height: 1.4;
-    margin-top: 4.2rem;
-    margin-bottom: 2.4rem;
+  p {
+    & > img {
+      margin-bottom: ${rhythm(0.5)};
 
-    ${media.OVER_MOBILE} {
-      font-size: 1.8rem;
+      & + em {
+        display: block;
+        font-size: 0.9em;
+        text-align: center;
+        margin-bottom: ${rhythm(1)};
+        color: var(--light);
+      }
     }
-  }
-
-  h3 {
-    font-size: 1.3rem;
-    line-height: 1.4;
-    margin-top: 2.8rem;
-    margin-bottom: 1.4rem;
-
-    ${media.OVER_MOBILE} {
-      font-size: 1.6rem;
-    }
-  }
-
-  h4 {
-    font-size: 1.2rem;
-    margin-top: 2.4rem;
-    margin-bottom: 1.4rem;
-  }
-
-  h5 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
-  }
-
-  h6 {
-    font-size: 1rem;
-    margin-top: 1.4rem;
-    margin-bottom: 1.4rem;
   }
 
   blockquote {
     border-left: 3px solid var(--linkHover);
     background: var(--blockquoteBackground);
-    margin-left: -0.1rem;
-    margin-right: -0.1rem;
-    margin-top: 2.8rem;
-    margin-bottom: 2.8rem;
-    padding: 1.75rem 1rem;
+    margin-left: -1.05rem;
+    margin-right: -1.05rem;
+    margin-top: ${rhythm(1)};
+    margin-bottom: ${rhythm(1)};
+    padding: ${rhythm(1)} 1rem;
 
     & > p {
       &:first-child {
@@ -223,13 +171,12 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  ul {
-    padding-left: 1.4rem;
+  ul, ol {
+    padding-left: ${rhythm(1)};
   }
 
   li {
-    line-height: 1.71rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: ${rhythm(0.25)};
   }
 
 
@@ -238,13 +185,9 @@ export const GlobalStyle = createGlobalStyle`
   tt,
   code[class*='language-'],
   pre[class*='language-'] {
-    font-family: Menlo, Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Courier, monospace;
+    font-family: Menlo, Consolas, 'Roboto Mono', 'Droid Sans Mono', 'Liberation Mono', Courier, monospace !important;
+    font-size: 0.9em !important;
     font-variant: none;
-  }
-
-  code[class*='language-'],
-  pre[class*='language-'] {
-    font-size: 0.9em;
   }
 
   /* 코드 블럭이 아닌 곳의 코드 하이라이팅 */
@@ -263,8 +206,8 @@ export const GlobalStyle = createGlobalStyle`
   /* Style gatsby-remark-images elements. */
   .gatsby-resp-image-link {
     box-shadow: none;
-    margin-top: 2.8rem;
-    margin-bottom: 2.8rem;
+    margin-top: ${rhythm(1)};
+    margin-bottom: ${rhythm(1)};
 
     &::after {
       display: none !important;
@@ -301,8 +244,8 @@ export const GlobalStyle = createGlobalStyle`
   /* Fake image captions. */
   .post .gatsby-resp-image-link + em {
     display: block;
-    margin-top: -1.4rem;
-    margin-bottom: 2.8rem;
+    margin-top: ${rhythm(-0.5)};
+    margin-bottom: ${rhythm(1)};
     line-height: 1.4;
     text-align: center;
     font-size: 0.8em;
@@ -390,7 +333,7 @@ export const GlobalStyle = createGlobalStyle`
     position: relative;
     display: block;
     padding-bottom: 56.25%;
-    margin: 3.2rem 0;
+    margin: ${rhythm(1)} 0;
   }
 
   .iframe-video {
