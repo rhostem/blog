@@ -26,6 +26,5 @@
     ],
     "add-module-exports",
     "transform-flow-strip-types",
-    "babel-plugin-styled-components",
   ]
 }

@@ -21,7 +21,7 @@
     "start": "npm run dev",
     "format": "prettier --write \"src/**/*.{js,css}\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "clean": "rm -rf .cache node_modules/.cache"
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "algoliasearch": "^3.33.0",

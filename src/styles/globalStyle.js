@@ -12,7 +12,7 @@ const TEXT_RGB_LIGHT = '46, 46, 46' // #2E2E2E
 const TEXT_RGB_DARK = '215, 215, 215' // #D7D7D7
 
 export const GlobalStyle = createGlobalStyle`
-  ${normalize};
+  ${normalize()};
 
   ${fontFace({
     fontFamily: 'Menlo Regular',
