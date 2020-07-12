@@ -14,6 +14,21 @@ export default class HTML extends React.Component {
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes} className="light">
+          {/* rollbar config - https://rollbar.com  */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                var _rollbarConfig = {
+                  accessToken: "e6890d05cd8f4ef887346ee2ed2e3df5",
+                  captureUncaught: true,
+                  captureUnhandledRejections: true,
+                  payload: {
+                      environment: "${process.env.NODE_ENV}"
+                  }
+                };
+              `,
+            }}
+          />
           <script
             dangerouslySetInnerHTML={{
               __html: `

@@ -4,7 +4,7 @@ import { GlobalStyle } from '../styles/globalStyle'
 
 export default function Head({ children }) {
   return (
-    <div>
+    <>
       <Helmet>
         <link rel="stylesheet" href="/fonts/nanum-square/font.css" />
         <link
@@ -23,9 +23,10 @@ export default function Head({ children }) {
           integrity="sha256-HB49n/BZjuqiCtQQf49OdZn63XuKFaxcIHWf0HNKte8="
           crossorigin="anonymous"
         />
-        >{children}
+        <script defer src="/js/rollbar.js" />
+        {children}
       </Helmet>
       <GlobalStyle />
-    </div>
+    </>
   )
 }
