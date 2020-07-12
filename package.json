@@ -17,7 +17,7 @@
     "build": "npm run clean && BRANCH=$(git rev-parse --abbrev-ref HEAD) gatsby build",
     "serve": "gatsby serve",
     "build:serve": "gatsby build && gatsby serve",
-    "dev": "npm run clean && gatsby develop",
+    "dev": "gatsby develop",
     "start": "npm run dev",
     "format": "prettier --write \"src/**/*.{js,css}\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
