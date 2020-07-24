@@ -1,9 +1,11 @@
-# blog [![CircleCI](https://circleci.com/gh/rhostem/blog.svg?style=svg)](https://circleci.com/gh/rhostem/blog)
+# blog
 
 [blog.rhostem.com](https://blog.rhostem.com/)
 
-Gatsby + Contentful + CircleCI + AWS LightSail
-
+- 컨텐츠 관리: Contentful
+- 프레임워크: Gatsby 
+- 빌드: Gatsby Cloud
+- 호스팅: Vercel
 
 ## Frontmatter sample
 
