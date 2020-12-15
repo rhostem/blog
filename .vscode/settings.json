@@ -10,8 +10,7 @@
     "statusBar.background": "#4a67d6",
     "statusBarItem.hoverBackground": "#748adf",
     "statusBar.foreground": "#e7e7e7",
-    "activityBar.activeBackground": "#748adf",
-    "statusBar.border": "#4a67d6"
+    "activityBar.activeBackground": "#748adf"
   },
   "files.exclude": {
     "**/public": true
