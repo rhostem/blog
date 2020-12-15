@@ -29,7 +29,7 @@ export default css`
     overflow: auto;
     position: relative;
     margin: 0.5em 0;
-    padding: 1.25em 1em;
+    padding: 1em;
   }
 
   code[class='language-text'] {
