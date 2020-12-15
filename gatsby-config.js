@@ -184,12 +184,10 @@ module.exports = {
                 description: edge.node.excerpt,
                 date: edge.node.frontmatter.date,
                 author: rssMetadata.author,
-                url: `${rssMetadata.site_url}/posts/${
-                  edge.node.frontmatter.path
-                }`,
-                guid: `${rssMetadata.site_url}/posts/${
-                  edge.node.frontmatter.path
-                }`,
+                url: `${rssMetadata.site_url}/posts/${edge.node.frontmatter
+                  .path || edge.node.frontmatter.title.replace(/\s/g, '_')}`,
+                guid: `${rssMetadata.site_url}/posts/${edge.node.frontmatter
+                  .path || edge.node.frontmatter.title.replace(/\s/g, '_')}`,
                 custom_elements: [{ 'content:encoded': edge.node.html }],
               }))
             },

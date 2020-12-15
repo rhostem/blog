@@ -127,7 +127,10 @@ const IndexPage = () => (
                 {item.posts.map(post => (
                   <PostTitleLink
                     key={post.id}
-                    to={getPostRoute(post.frontmatter.path)}>
+                    to={getPostRoute(
+                      post.frontmatter.path ||
+                        post.frontmatter.title.replace(/\s/g, '_')
+                    )}>
                     {post.frontmatter.title}
                   </PostTitleLink>
                 ))}

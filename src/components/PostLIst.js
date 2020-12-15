@@ -152,7 +152,9 @@ class PostList extends React.Component<Props, State> {
           return (
             <div key={node.id}>
               <PostListItem
-                path={getPostRoute(frontmatter.path)}
+                path={getPostRoute(
+                  frontmatter.path || frontmatter.title.replace(/\s/g, '_')
+                )}
                 title={frontmatter.title}
                 subTitle={frontmatter.subTitle}
                 date={frontmatter.date}

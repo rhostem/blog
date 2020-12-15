@@ -50,7 +50,10 @@ exports.createPages = ({ graphql, actions }) => {
     const blogTemplate = path.resolve(`./src/templates/post.js`)
     postEdges.forEach(edge => {
       createPage({
-        path: getPostRoute(edge.node.frontmatter.path),
+        path: getPostRoute(
+          edge.node.frontmatter.path ||
+            edge.node.frontmatter.title.replace(/\s/g, '_')
+        ),
         component: blogTemplate,
         context: {
           id: edge.node.id,
