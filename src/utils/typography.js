@@ -45,6 +45,7 @@ Wordpress2016.overrideThemeStyles = ({ rhythm }, options) => ({
   'h1, h2, h3, h4, h5, h6': {
     fontWeight: '700',
     letterSpacing: 'inherit',
+    textTransform: 'none',
   },
   'h1 code, h2 code, h3 code, h4 code, h5 code, h6 code': {
     fontSize: 'inherit',
