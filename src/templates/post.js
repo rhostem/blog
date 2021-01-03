@@ -35,7 +35,7 @@ const TagsWrapper = styled.div`
   margin-top: 0.7rem;
 `
 
-const Post = styled.article`
+const Post = styled.div`
   margin-top: 2.8rem;
   margin-bottom: 2.8rem;
 `
