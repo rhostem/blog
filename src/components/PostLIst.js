@@ -68,13 +68,16 @@ export const PostListItem = ({
   timeToRead,
 }) => {
   return (
-    <PostLink key={key} to={path}>
-      <PostTitle>{title}</PostTitle>
-      {subTitle && <PostSubTitle>{subTitle}</PostSubTitle>}
-      <Info>
-        {format(new Date(date), 'YYYY.MM.DD')} &middot; {timeToRead} min to read
-      </Info>
-    </PostLink>
+    <article key={key}>
+      <PostLink to={path}>
+        <PostTitle>{title}</PostTitle>
+        {subTitle && <PostSubTitle>{subTitle}</PostSubTitle>}
+        <Info>
+          {format(new Date(date), 'YYYY.MM.DD')} &middot; {timeToRead} min to
+          read
+        </Info>
+      </PostLink>
+    </article>
   )
 }
 
@@ -150,17 +153,16 @@ class PostList extends React.Component<Props, State> {
         {this.postEdgesInView.map(({ node }) => {
           const { frontmatter, timeToRead } = node
           return (
-            <div key={node.id}>
-              <PostListItem
-                path={getPostRoute(
-                  frontmatter.path || frontmatter.title.replace(/\s/g, '_')
-                )}
-                title={frontmatter.title}
-                subTitle={frontmatter.subTitle}
-                date={frontmatter.date}
-                timeToRead={timeToRead}
-              />
-            </div>
+            <PostListItem
+              key={node.id}
+              path={getPostRoute(
+                frontmatter.path || frontmatter.title.replace(/\s/g, '_')
+              )}
+              title={frontmatter.title}
+              subTitle={frontmatter.subTitle}
+              date={frontmatter.date}
+              timeToRead={timeToRead}
+            />
           )
         })}
       </PostListWrap>
