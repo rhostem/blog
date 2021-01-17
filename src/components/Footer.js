@@ -108,10 +108,10 @@ function Footer() {
           </a>
           <span>,&nbsp;</span>
           <a
-            href="https://circleci.com/"
+            href="https://vercel.com"
             target="_blank"
             rel="noopener noreferrer">
-            CircleCI
+            Vercel
           </a>
         </PoweredBy>
       </FooterContent>
