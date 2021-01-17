@@ -13,6 +13,7 @@ import { getMainImageFromRemark } from 'utils/getMainImageFromRemark'
 import * as R from 'ramda'
 import PageTitle from '../components/PageTitle'
 import { format } from 'date-fns'
+import { PROFILE_IMAGE } from 'src/constants'
 
 const PostTitle = styled(PageTitle)`
   text-align: left;
@@ -138,7 +139,10 @@ class PostTemplate extends Component {
     const description = `${
       frontmatter.subTitle ? `${frontmatter.subTitle} - ` : ''
     }${excerpt}`
-    const mainImage = getMainImageFromRemark(markdownRemark.html)
+
+    const DEFAULT_IMAGE = PROFILE_IMAGE
+    const mainImage =
+      getMainImageFromRemark(markdownRemark.html) || DEFAULT_IMAGE
 
     let metaTags = [
       { name: 'author', content: siteMetadata.author },
@@ -152,16 +156,10 @@ class PostTemplate extends Component {
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: title },
       { name: 'twitter:description', content: description },
+      { itemProp: 'image', content: mainImage },
+      { property: 'og:image', content: mainImage },
+      { name: 'twitter:image', content: mainImage },
     ]
-
-    // 메인이미지가 있을 때만 이미지 관련 메타태그를 추가한다.
-    if (mainImage) {
-      metaTags = metaTags.concat([
-        { itemProp: 'image', content: mainImage },
-        { property: 'og:image', content: mainImage },
-        { name: 'twitter:image', content: mainImage },
-      ])
-    }
 
     return (
       <Layout>

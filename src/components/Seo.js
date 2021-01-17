@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import { concat, not, isEmpty, filter, includes, isNil, compose } from 'ramda'
+import { PROFILE_IMAGE } from 'src/constants'
 
 export const DEFAULT_KEYWORDS = ['웹 개발', 'Front-end', '프론트엔드']
 
@@ -16,52 +17,17 @@ function SEO({ title, description, keywords = [], meta = [], lang }) {
         const siteTitle = data.site.siteMetadata.title
 
         let metaTags = [
-          {
-            name: `description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:url`,
-            content: 'https://blog.rhostem.com',
-          },
-
-          {
-            property: `og:type`,
-            content: 'website',
-          },
-          {
-            property: `og:title`,
-            content: title,
-          },
-          {
-            property: `og:description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:image`,
-            content: 'https://blog.rhostem.com/images/rhostem-profile.jpeg',
-          },
-
-          {
-            name: `twitter:card`,
-            content: `summary_large_image`,
-          },
-          {
-            name: `twitter:creator`,
-            content: data.site.siteMetadata.author,
-          },
-          {
-            name: `twitter:title`,
-            content: title,
-          },
-          {
-            name: `twitter:description`,
-            content: metaDescription,
-          },
-          {
-            name: `twitter:image`,
-            content: 'https://blog.rhostem.com/images/rhostem-profile.jpeg',
-          },
+          { name: `description`, content: metaDescription },
+          { property: `og:url`, content: 'https://blog.rhostem.com' },
+          { property: `og:type`, content: 'website' },
+          { property: `og:title`, content: title },
+          { property: `og:description`, content: metaDescription },
+          { property: `og:image`, content: PROFILE_IMAGE },
+          { name: `twitter:card`, content: `summary_large_image` },
+          { name: `twitter:creator`, content: data.site.siteMetadata.author },
+          { name: `twitter:title`, content: title },
+          { name: `twitter:description`, content: metaDescription },
+          { name: `twitter:image`, content: PROFILE_IMAGE },
         ]
 
         // 키워드 추가
