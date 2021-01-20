@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 import swr from 'swr'
 import { StaticQuery, graphql } from 'gatsby'
 import Layout from 'components/layout/DefaultLayout'
@@ -14,8 +14,6 @@ import subDays from 'date-fns/sub_days'
 import format from 'date-fns/format'
 import makeFormUrlEncoded from 'utils/makeFormUrlEncoded'
 import Head from 'components/Head'
-
-const SITE_CONFIG = require('../../site-config')
 
 type IPageView = {
   count: number,

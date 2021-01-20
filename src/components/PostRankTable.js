@@ -31,6 +31,7 @@ const PostTable = styled.table`
     display: inline-flex;
     height: 50px;
     align-items: center;
+    border-bottom: none;
   }
 
   th {
