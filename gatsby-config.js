@@ -128,8 +128,6 @@ module.exports = {
         short_name: SITE_CONFIG.title,
         description: SITE_CONFIG.description,
         start_url: SITE_CONFIG.pathPrefix,
-        background_color: '#f7f7f7',
-        theme_color: '#4568dc',
         display: 'browser',
         icon: `src/images/rhostem-profile.jpeg`, // This path is relative to the root of the site.`,
         icons: [
