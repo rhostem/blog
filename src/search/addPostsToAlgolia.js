@@ -1,9 +1,6 @@
 const R = require('ramda')
 const algoliasearch = require('algoliasearch')
 const striptags = require('striptags')
-const axios = require('axios')
-const { format, subYears } = require('date-fns')
-const { getPostRoute } = require('../utils/routeResolver')
 const decodeHTML = require('../utils/decodeHtml')
 
 /**
@@ -35,26 +32,12 @@ async function addPostIndicesToAlgolia({
 
   const index = client.initIndex(process.env.GATSBY_ALGOLIA_INDEX_POSTS)
 
-  const { data: pageViews } = await axios.get(
-    `https://blogapi.rhostem.com/api/ga/post_pageviews`,
-    {
-      params: {
-        startDate: format(subYears(new Date(), 1), 'YYYY-MM-DD'),
-        endDate: format(new Date(), 'YYYY-MM-DD'),
-      },
-    }
-  )
 
   // 검색에 필요한 데이터 정리
   const postObjects = postEdges.map(edge => {
     const { node } = edge
     const { id, html, timeToRead, frontmatter } = node
     const { path, title, subTitle, date, tags } = frontmatter
-
-    const pageView = R.pipe(
-      data => data.find(p => p.page === getPostRoute(path)),
-      R.prop('count')
-    )(pageViews)
 
     /**
      * 레코드의 크기 제한이 10kb라서 포스트 전체를 하나의 레코드에 담을 수 없다.
@@ -90,7 +73,6 @@ async function addPostIndicesToAlgolia({
         tags,
         timeToRead,
         path,
-        pageView,
       }
     })
   })
@@ -115,7 +97,6 @@ async function addPostIndicesToAlgolia({
       searchableAttributes: ['body', 'title', 'subTitle', 'tags'],
       attributeForDistinct: 'title',
       distinct: true,
-      customRanking: ['desc(pageView)'],
       hitsPerPage: 5,
     },
     (err, content) => {
