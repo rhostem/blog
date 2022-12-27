@@ -32,7 +32,8 @@ const DesktopMenuItem = styled(Link)`
   }
 
   & > i {
-    margin-right: 0.3rem;
+    margin-right: 0.5rem;
+    font-size: 0.75rem;
   }
 `
 
@@ -125,7 +126,8 @@ const MobileMenuLink = styled(Link)`
   color: var(--navbarColor);
 
   & > i {
-    margin-right: 0.5rem;
+    font-size: 0.75rem;
+    margin-right: 0.75rem;
   }
 
   border-bottom: 1px solid #f1f1f1;
@@ -167,11 +169,6 @@ type State = {}
 
 const MENU_LIST = [
   {
-    to: '/stats',
-    text: '인기',
-    icon: () => <i className="fas fa-fire-alt" />,
-  },
-  {
     to: '/tags',
     text: '태그',
     icon: () => <i className="fas fa-tags" />,
@@ -190,7 +187,7 @@ export default class NavMenus extends Component<Props, State> {
         <DesktopMenus>
           {MENU_LIST.map(menu => (
             <DesktopMenuItem to={menu.to} key={menu.to}>
-              {/* {menu.icon()} */}
+              {menu.icon()}
               {menu.text}
             </DesktopMenuItem>
           ))}
